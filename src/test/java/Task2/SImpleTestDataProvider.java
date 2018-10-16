@@ -1,11 +1,11 @@
 package Task2;
 
+import DataProviders.DataProviders;
 import base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 
 public class SImpleTestDataProvider extends TestBase{
 
-    @Test(dataProvider = "simpleDataProvider", dataProviderClass = DataProvider.class)
+    @Test(dataProvider = "simpleDataProvider", dataProviderClass = DataProviders.class)
     public void simpleTest(String s, int i){
 
         //1. Open BR Плохая практика

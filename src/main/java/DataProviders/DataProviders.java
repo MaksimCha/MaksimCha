@@ -1,12 +1,16 @@
 package DataProviders;
 
+
+import org.testng.annotations.DataProvider;
+
 public class DataProviders {
-    @org.testng.annotations.DataProvider
-    public Object[][] simpleDataProvider(){
+
+    @DataProvider
+    public Object[][] simpleDataProvider() {
         return new Object[][] {
-                {"String", 1},
-                {"String", 2},
-                {"String", 3}
+                {"String1", 1},
+                {"String2", 2},
+                {"String3", 3}
         };
     }
 }
