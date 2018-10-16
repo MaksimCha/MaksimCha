@@ -53,6 +53,42 @@ public class simpleSiteTesting {
             assertTrue(image.isDisplayed());
         }
 
+        //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
+        List<WebElement> testedText = driver.findElements(By.cssSelector("div.benefit > span"));
+        String test = "";
+        assertEquals(testedText.get(0).getText(),
+                "To include good practices\n" +
+                "and ideas from successful\n" +
+                "EPAM project");
+        assertEquals(testedText.get(1).getText(),
+                "To be flexible and\n" +
+                "customizable");
+        assertEquals(testedText.get(2).getText(),
+                "To be multiplatform");
+        assertEquals(testedText.get(3).getText(),
+                "Already have good base\n" +
+                        "(about 20 internal and\n" +
+                        "some external projects),\n" +
+                        "wish to get more…");
+
+        //9. Assert a text of the main header
+        WebElement mainTitle = driver.findElement(By.cssSelector("h3.main-title"));
+        assertEquals(mainTitle.getText(), "EPAM FRAMEWORK WISHES…");
+
+        WebElement mainTxt = driver.findElement(By.cssSelector("p.main-txt"));
+        assertEquals(mainTxt.getText(), "LOREM IPSUM DOLOR SIT AMET, " +
+                "CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT " +
+                "LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD " +
+                "EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT " +
+                "DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM " +
+                "DOLORE EU FUGIAT NULLA PARIATUR.");
+
+        //10. Assert that there is the iframe in the center of page
+        WebElement frame = driver.findElement((By.cssSelector("iframe")));
+        assertTrue(frame.isDisplayed());
+
+        //11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe
+        driver.switchTo().frame(frame);
         driver.close();
 
     }
