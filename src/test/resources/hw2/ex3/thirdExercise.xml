@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Refactored Test Suite" verbose="1" >
+    <test name="Refactored Simple Test" >
+
+        <classes>
+            <class name="hw2.ex3.refactorSiteTesting" />
+        </classes>
+
+    </test>
+</suite>
