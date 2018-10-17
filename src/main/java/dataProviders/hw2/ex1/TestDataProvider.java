@@ -1,4 +1,4 @@
-package DataProviders.hw2.ex1;
+package dataProviders.hw2.ex1;
 
 import org.testng.annotations.DataProvider;
 

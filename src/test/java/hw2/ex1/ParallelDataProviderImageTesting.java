@@ -1,7 +1,7 @@
 package hw2.ex1;
 
-import DataProviders.hw2.ex1.TestDataProvider;
 import base.TestBase;
+import dataProviders.hw2.ex1.TestDataProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,10 +12,10 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
-public class parallelDataProviderImageTesting extends TestBase {
+public class ParallelDataProviderImageTesting extends TestBase {
 
     @Test(dataProvider = "testDataProvider", dataProviderClass = TestDataProvider.class, threadPoolSize = 4)
-    public void textImageTesting(String text, int i){
+    public void textImageTesting(String text, int i) {
 
         //1. Open BR
         WebDriver driver = new ChromeDriver();

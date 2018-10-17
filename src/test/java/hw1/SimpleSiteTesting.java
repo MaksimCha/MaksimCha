@@ -12,10 +12,10 @@ import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class simpleSiteTesting {
+public class SimpleSiteTesting {
 
     @Test
-    public void simpleTest(){
+    public void simpleTest() {
 
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
@@ -41,27 +41,30 @@ public class simpleSiteTesting {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6. Assert that there are 4 items on the header section are displayed and they have proper texts
-        List<WebElement> headerItem = driver.findElements(By.cssSelector("ul.uui-navigation.nav > li > a"));
-        assertEquals(headerItem.get(0).getText(), "HOME");
-        assertEquals(headerItem.get(1).getText(), "CONTACT FORM");
-        assertEquals(headerItem.get(2).getText(), "SERVICE");
-        assertEquals(headerItem.get(3).getText(), "METALS & COLORS");
+        List<WebElement> headerItems = driver.findElements(By.cssSelector(".m-18 > li > a"));
+        assertEquals(headerItems.size(), 4);
+        //Realize in foreach and List
+        assertEquals(headerItems.get(0).getText(), "HOME");
+        assertEquals(headerItems.get(1).getText(), "CONTACT FORM");
+        assertEquals(headerItems.get(2).getText(), "SERVICE");
+        assertEquals(headerItems.get(3).getText(), "METALS & COLORS");
 
         //7. Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> testedImages = driver.findElements(By.cssSelector("div.benefit-icon > span"));
-        for(WebElement image : testedImages){
+        for (WebElement image : testedImages) {
             assertTrue(image.isDisplayed());
         }
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> testedText = driver.findElements(By.cssSelector("div.benefit > span"));
+        //Realize by foreach and List
         assertEquals(testedText.get(0).getText(),
                 "To include good practices\n" +
-                "and ideas from successful\n" +
-                "EPAM project");
+                        "and ideas from successful\n" +
+                        "EPAM project");
         assertEquals(testedText.get(1).getText(),
                 "To be flexible and\n" +
-                "customizable");
+                        "customizable");
         assertEquals(testedText.get(2).getText(),
                 "To be multiplatform");
         assertEquals(testedText.get(3).getText(),
