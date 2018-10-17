@@ -55,7 +55,6 @@ public class simpleSiteTesting {
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> testedText = driver.findElements(By.cssSelector("div.benefit > span"));
-        String test = "";
         assertEquals(testedText.get(0).getText(),
                 "To include good practices\n" +
                 "and ideas from successful\n" +
