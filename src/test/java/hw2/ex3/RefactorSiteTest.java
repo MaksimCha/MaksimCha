@@ -1,27 +1,45 @@
-package hw1;
+package hw2.ex3;
 
+import base.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
-import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class SimpleSiteTesting {
+public class RefactorSiteTest extends TestBase {
+
+    private WebDriver driver;
+
+    @BeforeClass
+    public void beforeClass() {
+        driver = new ChromeDriver();
+    }
+
+    @AfterClass
+    public void afterClass() {
+        driver.close();
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod() {
+        driver.manage().window().maximize();
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        System.out.println(driver.getTitle());
+    }
 
     @Test
-    public void simpleTest() {
-
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+    public void refactoredTest() {
 
         //1. Open test site by URL
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
         driver.navigate().to("https://epam.github.io/JDI/");
 
         //2. Assert Browser title
@@ -41,9 +59,7 @@ public class SimpleSiteTesting {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6. Assert that there are 4 items on the header section are displayed and they have proper texts
-        List<WebElement> headerItems = driver.findElements(By.cssSelector(".m-18 > li > a"));
-        assertEquals(headerItems.size(), 4);
-        //Realize in foreach and List
+        List<WebElement> headerItems = driver.findElements(By.cssSelector("ul.uui-navigation.nav > li > a"));
         assertEquals(headerItems.get(0).getText(), "HOME");
         assertEquals(headerItems.get(1).getText(), "CONTACT FORM");
         assertEquals(headerItems.get(2).getText(), "SERVICE");
@@ -56,18 +72,17 @@ public class SimpleSiteTesting {
         }
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> testedText = driver.findElements(By.cssSelector("div.benefit > span"));
-        //Realize by foreach and List
-        assertEquals(testedText.get(0).getText(),
+        List<WebElement> testedTitles = driver.findElements(By.cssSelector("div.benefit > span"));
+        assertEquals(testedTitles.get(0).getText(),
                 "To include good practices\n" +
                         "and ideas from successful\n" +
                         "EPAM project");
-        assertEquals(testedText.get(1).getText(),
+        assertEquals(testedTitles.get(1).getText(),
                 "To be flexible and\n" +
                         "customizable");
-        assertEquals(testedText.get(2).getText(),
+        assertEquals(testedTitles.get(2).getText(),
                 "To be multiplatform");
-        assertEquals(testedText.get(3).getText(),
+        assertEquals(testedTitles.get(3).getText(),
                 "Already have good base\n" +
                         "(about 20 internal and\n" +
                         "some external projects),\n" +
@@ -112,8 +127,5 @@ public class SimpleSiteTesting {
         //16. Assert that there is Footer
         WebElement footer = driver.findElement(By.cssSelector("footer"));
         assertTrue(footer.isDisplayed());
-
-        //17. Close Browser
-        driver.close();
     }
 }

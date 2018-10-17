@@ -1,7 +1,6 @@
 package hw2.ex1;
 
 import base.TestBase;
-import dataProviders.hw2.ex1.TestDataProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,7 +11,7 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
-public class ParallelDataProviderImageTesting extends TestBase {
+public class ParallelDataProviderImageTest extends TestBase {
 
     @Test(dataProvider = "testDataProvider", dataProviderClass = TestDataProvider.class, threadPoolSize = 4)
     public void textImageTesting(String text, int i) {
