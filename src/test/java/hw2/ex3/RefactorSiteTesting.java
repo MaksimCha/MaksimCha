@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -18,17 +17,17 @@ public class RefactorSiteTesting extends TestBase {
     private WebDriver driver;
 
     @BeforeClass
-    public void beforeClass(){
+    public void beforeClass() {
         driver = new ChromeDriver();
     }
 
     @AfterClass
-    public void afterClass(){
+    public void afterClass() {
         driver.close();
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethod(){
+    public void beforeMethod() {
         driver.manage().window().maximize();
     }
 
@@ -60,30 +59,30 @@ public class RefactorSiteTesting extends TestBase {
         assertEquals(driver.getTitle(), "Home Page");
 
         //6. Assert that there are 4 items on the header section are displayed and they have proper texts
-        List<WebElement> headerItem = driver.findElements(By.cssSelector("ul.uui-navigation.nav > li > a"));
-        assertEquals(headerItem.get(0).getText(), "HOME");
-        assertEquals(headerItem.get(1).getText(), "CONTACT FORM");
-        assertEquals(headerItem.get(2).getText(), "SERVICE");
-        assertEquals(headerItem.get(3).getText(), "METALS & COLORS");
+        List<WebElement> headerItems = driver.findElements(By.cssSelector("ul.uui-navigation.nav > li > a"));
+        assertEquals(headerItems.get(0).getText(), "HOME");
+        assertEquals(headerItems.get(1).getText(), "CONTACT FORM");
+        assertEquals(headerItems.get(2).getText(), "SERVICE");
+        assertEquals(headerItems.get(3).getText(), "METALS & COLORS");
 
         //7. Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> testedImages = driver.findElements(By.cssSelector("div.benefit-icon > span"));
-        for(WebElement image : testedImages){
+        for (WebElement image : testedImages) {
             assertTrue(image.isDisplayed());
         }
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> testedText = driver.findElements(By.cssSelector("div.benefit > span"));
-        assertEquals(testedText.get(0).getText(),
+        List<WebElement> testedTitles = driver.findElements(By.cssSelector("div.benefit > span"));
+        assertEquals(testedTitles.get(0).getText(),
                 "To include good practices\n" +
-                "and ideas from successful\n" +
-                "EPAM project");
-        assertEquals(testedText.get(1).getText(),
+                        "and ideas from successful\n" +
+                        "EPAM project");
+        assertEquals(testedTitles.get(1).getText(),
                 "To be flexible and\n" +
-                "customizable");
-        assertEquals(testedText.get(2).getText(),
+                        "customizable");
+        assertEquals(testedTitles.get(2).getText(),
                 "To be multiplatform");
-        assertEquals(testedText.get(3).getText(),
+        assertEquals(testedTitles.get(3).getText(),
                 "Already have good base\n" +
                         "(about 20 internal and\n" +
                         "some external projects),\n" +
