@@ -89,7 +89,29 @@ public class simpleSiteTesting {
 
         //11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame(frame);
-        driver.close();
+        WebElement frameLogo = driver.findElement(By.cssSelector("div.epam-logo > a > img"));
+        assertTrue(frameLogo.isDisplayed());
 
+        //12. Switch to original window back
+        driver.switchTo().parentFrame();
+
+        //13. Assert a text of the sub header
+        WebElement subHeader = driver.findElement(By.cssSelector("h3.text-center > a"));
+        assertTrue(subHeader.isDisplayed());
+
+        //14. Assert that JDI GITHUB is a link and has a proper URL
+        String subHeadLink = driver.findElement(By.cssSelector("h3.text-center > a")).getAttribute("href");
+        assertEquals(subHeadLink, "https://github.com/epam/JDI");
+
+        //15. Assert that there is Left Section
+        WebElement leftSection = driver.findElement(By.cssSelector("div.mCustomScrollBox"));
+        assertTrue(leftSection.isDisplayed());
+
+        //16. Assert that there is Footer
+        WebElement footer = driver.findElement(By.cssSelector("footer"));
+        assertTrue(footer.isDisplayed());
+
+        //17. Close Browser
+        driver.close();
     }
 }
