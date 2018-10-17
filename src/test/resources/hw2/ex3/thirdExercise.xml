@@ -4,7 +4,7 @@
     <test name="Refactored Simple Test" >
 
         <classes>
-            <class name="hw2.ex3.refactorSiteTesting" />
+            <class name="hw2.ex3.RefactorSiteTesting" />
         </classes>
 
     </test>
