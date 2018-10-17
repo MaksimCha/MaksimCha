@@ -44,11 +44,12 @@ public class SimpleTestPageObject extends TestBase {
         //TODO Business logic
         WebDriver driver1 = new ChromeDriver();
         //2. Navigate
-        homePage.open(driver1);
+        //homePage.open(driver1);
+
         driver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //3. Assert
-        homePage.checkTitle(driver1);
+        //homePage.checkTitle(driver1);
 
         assertEquals(driver.getTitle(), "Home Page");
 
