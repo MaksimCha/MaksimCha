@@ -1,7 +1,6 @@
 package pageObject;
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -29,7 +28,7 @@ public class HomePageSelenide {
         submit.click();
     }
 
-    public void openPage(){
+    public void openPage() {
         open("https://epam.github.io/JDI/index.html");
     }
 
