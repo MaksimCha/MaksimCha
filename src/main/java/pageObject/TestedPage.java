@@ -1,4 +1,4 @@
-package hw3;
+package pageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -65,8 +65,8 @@ public class TestedPage {
         submit.click();
     }
 
-    public void open(WebDriver driver, String url) {
-        driver.navigate().to(url);
+    public void open(WebDriver driver) {
+        driver.navigate().to("https://epam.github.io/JDI/index.html");
     }
 
     public void switchToMainFrame(WebDriver driver) {

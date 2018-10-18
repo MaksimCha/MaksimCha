@@ -1,10 +1,10 @@
-package hw2.ex1;
+package dataProviders;
 
 import org.testng.annotations.DataProvider;
 
 public class TestDataProvider {
 
-    @DataProvider
+    @DataProvider(parallel = true)
     public Object[][] testDataProvider() {
         return new Object[][]{
                 {"To include good practices\n" +

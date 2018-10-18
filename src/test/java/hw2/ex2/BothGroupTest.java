@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 public class BothGroupTest extends TestBase {
 
     @Test(groups = {"Smoke", "Regression"})
-    public void firstOfFourthCopyTest() {
+    public void firstOfSmokeRegressionTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();
@@ -113,7 +113,7 @@ public class BothGroupTest extends TestBase {
     }
 
     @Test(groups = {"Smoke", "Regression"})
-    public void secondOfFourthCopyTest() {
+    public void secondOfSmokeRegressionTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();
@@ -211,7 +211,7 @@ public class BothGroupTest extends TestBase {
     }
 
     @Test(groups = {"Smoke", "Regression"})
-    public void thirdOfFourthCopyTest() {
+    public void thirdOfSmokeRegressionTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();

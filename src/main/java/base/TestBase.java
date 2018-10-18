@@ -6,6 +6,8 @@ import static java.lang.System.setProperty;
 
 public class TestBase {
 
+    private long time;
+    public static final String token = "@#$%^&*(!@";
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
@@ -16,6 +18,5 @@ public class TestBase {
     public void afterSuite() {
         System.out.println(System.currentTimeMillis());
     }
-
 
 }

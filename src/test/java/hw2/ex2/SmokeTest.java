@@ -12,10 +12,10 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class SmokeTestes extends TestBase {
+public class SmokeTest extends TestBase {
 
     @Test(groups = {"Smoke"})
-    public void firstOfFirstCopyTest() {
+    public void firstOfSmokeTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();
@@ -113,7 +113,7 @@ public class SmokeTestes extends TestBase {
     }
 
     @Test(groups = {"Smoke"})
-    public void secondOfFirstCopyTest() {
+    public void secondOfSmokeTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();
@@ -211,7 +211,7 @@ public class SmokeTestes extends TestBase {
     }
 
     @Test(groups = {"Smoke"})
-    public void thirdOfFirstCopyTest() {
+    public void thirdOfSmokeTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();

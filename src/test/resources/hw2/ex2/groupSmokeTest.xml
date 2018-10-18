@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite" parallel="methods" thread-count="3">
-    <test name="Simple Test" >
+    <test name="Smoke Test" >
 
         <groups>
             <run>
@@ -10,7 +10,7 @@
         </groups>
 
         <classes>
-            <class name="hw2.ex2.SmokeTestes" />
+            <class name="hw2.ex2.SmokeTest" />
             <class name="hw2.ex2.RegressionTest" />
             <class name="hw2.ex2.RegressionSmokeTest" />
             <class name="hw2.ex2.BothGroupTest" />

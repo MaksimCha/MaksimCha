@@ -8,32 +8,37 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pageObject.TestedPage;
 
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+
+import static enums.Users.PITER_CHAILOWSKI;
 
 public class PageObjectTest extends TestBase {
 
     private WebDriver driver;
     private TestedPage testedPage;
-    private final static String MAIN_HEADER_TITLE = "EPAM FRAMEWORK WISHES…";
-    private final static String MAIN_HEADER_TEXT =
+
+    //TODO enum
+    private final String MAIN_HEADER_TITLE = "EPAM FRAMEWORK WISHES…";
+    private final String MAIN_HEADER_TEXT =
             "LOREM IPSUM DOLOR SIT AMET, " +
                     "CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT " +
                     "LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD " +
                     "EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT " +
                     "DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM " +
                     "DOLORE EU FUGIAT NULLA PARIATUR.";
-    private final static String LOGIN_TITLE = "PITER CHAILOVSKII";
-    private final static String FIRST_IMAGE_TITLE =
+    private final String LOGIN_TITLE = "PITER CHAILOVSKII";
+    private final String FIRST_IMAGE_TITLE =
             "To include good practices\n" +
                     "and ideas from successful\n" +
                     "EPAM project";
-    private final static String SECOND_IMAGE_TITLE =
+    private final String SECOND_IMAGE_TITLE =
             "To be flexible and\n" +
                     "customizable";
-    private final static String THIRD_IMAGE_TITLE = "To be multiplatform";
-    private final static String FOURTH_IMAGE_TITLE =
+    private final String THIRD_IMAGE_TITLE = "To be multiplatform";
+    private final String FOURTH_IMAGE_TITLE =
             "Already have good base\n" +
                     "(about 20 internal and\n" +
                     "some external projects),\n" +
@@ -60,13 +65,13 @@ public class PageObjectTest extends TestBase {
     public void simpleTest() {
 
         //1. Navigate
-        testedPage.open(driver, "https://epam.github.io/JDI/index.html");
+        testedPage.open(driver);
 
         //2. Assert
         testedPage.checkTitle(driver, "Home Page");
 
         //3. Login
-        testedPage.login("epam", "1234");
+        testedPage.login(PITER_CHAILOWSKI.login, PITER_CHAILOWSKI.password);
 
         //4. Assert User name in the left-top side of screen that user is loggined
         testedPage.checkLoginTitle(LOGIN_TITLE);

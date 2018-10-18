@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 public class RegressionTest extends TestBase {
 
     @Test(groups = {"Regression"})
-    public void firstOfSecondCopyTest() {
+    public void firstOfRegressionTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();
@@ -113,7 +113,7 @@ public class RegressionTest extends TestBase {
     }
 
     @Test(groups = {"Regression"})
-    public void secondOfSecondCopyTest() {
+    public void secondOfRegressionTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();
@@ -211,7 +211,7 @@ public class RegressionTest extends TestBase {
     }
 
     @Test(groups = {"Regression"})
-    public void thirdOfSecondCopyTest() {
+    public void thirdOfRegressionTest() {
 
         //1. Open test site by URL
         WebDriver driver = new ChromeDriver();

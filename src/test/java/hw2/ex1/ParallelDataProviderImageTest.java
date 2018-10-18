@@ -1,6 +1,7 @@
 package hw2.ex1;
 
 import base.TestBase;
+import dataProviders.TestDataProvider;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,18 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.testng.Assert.assertEquals;
 
 public class ParallelDataProviderImageTest extends TestBase {
 
-    private AtomicInteger threadSize = new AtomicInteger(0);
-
     @Test(dataProvider = "testDataProvider", dataProviderClass = TestDataProvider.class, threadPoolSize = 4)
     public void textImageTesting(String text, int i) {
-
-        System.out.println(threadSize.incrementAndGet());
 
         //1. Open BR
         WebDriver driver = new ChromeDriver();
