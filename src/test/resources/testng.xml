@@ -10,7 +10,7 @@
         </groups>
 
         <classes>
-            <class name="Task2.SimpleTest" />
+            <class name="task2.SimpleTest" />
         </classes>
 
     </test>

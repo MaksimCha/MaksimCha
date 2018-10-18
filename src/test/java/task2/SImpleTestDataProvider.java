@@ -1,4 +1,4 @@
-package Task2;
+package task2;
 
 import dataProviders.DataProviders;
 import base.TestBase;

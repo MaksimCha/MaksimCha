@@ -1,4 +1,4 @@
-package Task3;
+package task3;
 
 import base.TestBase;
 import org.openqa.selenium.By;
