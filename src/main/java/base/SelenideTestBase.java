@@ -11,7 +11,6 @@ public class SelenideTestBase {
     public void beforeSuite(){
         Configuration.browser = "chrome";
         Configuration.screenshots = false;
-        Configuration.timeout = 100000;
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
     }
 

@@ -13,7 +13,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestedPageSelenide {
+public class DatesPageSelenide {
 
     @FindBy(css = ".profile-photo")
     private SelenideElement profileButton;
