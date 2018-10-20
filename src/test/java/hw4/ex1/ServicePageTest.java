@@ -3,7 +3,7 @@ package hw4.ex1;
 import base.SelenideTestBase;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pageObject.DatesPageSelenide;
+import pageObjects.DatesPageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
 

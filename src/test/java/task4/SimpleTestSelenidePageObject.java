@@ -4,13 +4,11 @@ import base.SelenideTestBase;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.*;
 import listeners.AllureAttachmentListener;
-import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pageObject.HomePageSelenide;
+import pageObjects.HomePageSelenide;
 
-import static com.codeborne.selenide.CollectionCondition.sizeLessThan;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;

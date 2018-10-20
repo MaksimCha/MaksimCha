@@ -10,7 +10,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageObject.HomePage;
+import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
 

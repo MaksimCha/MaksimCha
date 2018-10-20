@@ -1,4 +1,4 @@
-package pageObject;
+package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.Then;
