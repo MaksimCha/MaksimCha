@@ -6,7 +6,6 @@ import org.testng.annotations.Test;
 import pageObject.TestedPageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static com.codeborne.selenide.Selenide.sleep;
 import static enums.Titles.HOME_PAGE_TITLE;
 import static enums.Titles.LOGIN_TITLE;
 import static enums.Users.PITER_CHAILOWSKI;

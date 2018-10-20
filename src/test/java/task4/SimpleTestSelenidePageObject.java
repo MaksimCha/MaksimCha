@@ -2,8 +2,11 @@ package task4;
 
 import base.SelenideTestBase;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.*;
+import listeners.AllureAttachmentListener;
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObject.HomePageSelenide;
 
@@ -15,6 +18,9 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static java.lang.System.setProperty;
 import static org.testng.Assert.assertEquals;
 
+@Feature("Smoke tests")
+@Story("Home page testing")
+@Listeners(AllureAttachmentListener.class)
 public class SimpleTestSelenidePageObject extends SelenideTestBase {
 
     private HomePageSelenide homePageSelenide;
@@ -24,6 +30,9 @@ public class SimpleTestSelenidePageObject extends SelenideTestBase {
         homePageSelenide = page(HomePageSelenide.class);
     }
 
+    @Issue("IGRT-192")
+    @Flaky
+    @TmsLink("")
     @Test
     public void simpleTest() {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");

@@ -68,8 +68,6 @@ public class TestedPageSelenide {
     }
 
     public void checkDatesPageDisplaying() {
-        loginTitle.waitUntil(Condition.getWebDriver().getTitle() == "Dates"){
-            sleep(1000);
-        }
+        assertEquals(getWebDriver().getTitle(), "Dates");
     }
 }

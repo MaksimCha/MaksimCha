@@ -1,6 +1,7 @@
 package pageObject;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -21,6 +22,7 @@ public class HomePageSelenide {
 
     //==============================================methods=========================================
 
+    @Step("Login on site")
     public void login(String name, String passwd) {
         profileButton.click();
         login.sendKeys(name);
@@ -28,6 +30,7 @@ public class HomePageSelenide {
         submit.click();
     }
 
+    @Step
     public void openPage() {
         open("https://epam.github.io/JDI/index.html");
     }
