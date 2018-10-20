@@ -1,4 +1,4 @@
-Feature: JDI Home Page?
+Feature: Home Page tests
 
   Scenario: Home Page Interface test
     Given I'm on the Home Page
