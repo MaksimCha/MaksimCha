@@ -1,68 +1,132 @@
 package pageObjects;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.selected;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.Titles.DIFEL_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class ServicePageSelenide {
 
-    @FindBy(css = ".profile-photo")
-    private SelenideElement profileButton;
+    private ElementsCollection CheckBoxes = $$(By.cssSelector(".label-checkbox > input"));
 
-    @FindBy(css = "[id = 'Name']")
-    private SelenideElement login;
+    private ElementsCollection RadioButtons = $$(By.cssSelector(".label-radio > input"));
 
-    @FindBy(css = "[id = 'Password']")
-    private SelenideElement password;
+    private ElementsCollection DropDownItems = $$(By.cssSelector(".colors .uui-form-element > option"));
 
-    @FindBy(css = "[type = 'submit']")
-    private SelenideElement submit;
+    private SelenideElement DropDown = $(By.cssSelector(".main-content-hg .colors"));
 
-    @FindBy(css = "div.profile-photo > span")
-    private SelenideElement loginTitle;
+    private ElementsCollection Buttons = $$(By.cssSelector(".main-content-hg .uui-button"));
 
-    @FindBy(css = ".m-l8 [class = 'dropdown-toggle']")
-    private SelenideElement serviceButton;
+    private SelenideElement LeftSection = $(By.cssSelector(".sidebar-menu"));
 
-    @FindBy(css = ".m-l8 [href = 'dates.html']")
-    private SelenideElement datesButton;
+    private SelenideElement RightSection = $(By.cssSelector(".right-fix-panel"));
 
-    @FindBy(css = "iframe")
-    private SelenideElement mainFrame;
+    private ElementsCollection Logs = $$(By.cssSelector(".panel-body-list.logs > li"));
 
     //==============================methods==================================
 
     public void openPage() {
-        open("https://epam.github.io/JDI/index.html");
+        open("https://epam.github.io/JDI/different-elements.html");
     }
 
-    public void login(String name, String passwd) {
-        profileButton.click();
-        login.sendKeys(name);
-        password.sendKeys(passwd);
-        submit.click();
+    public void selectCheckBoxes(int count, String value) {
+        CheckBoxes.shouldBe(sizeGreaterThan(count));
+        int i = 0;
+        for (SelenideElement item : CheckBoxes) {
+            if (i == count) {
+                item.click();
+                checkCheckBoxesLog(value, item.is(selected));
+            }
+            ++i;
+        }
     }
 
-    public void realiseDatesButton() {
-        serviceButton.click();
-        datesButton.click();
+    public void selectRadioButton(int count, String value) {
+        RadioButtons.shouldBe(sizeGreaterThan(count));
+        int i = 0;
+        iterateButtons(count, value, i, RadioButtons);
     }
 
+    public void selectDropDownButton(int count, String value) {
+        DropDownItems.shouldBe(sizeGreaterThan(count));
+        int i = 0;
+        iterateButtons(count, value, i, DropDownItems);
+    }
+
+    private void iterateButtons(int count, String value, int i, ElementsCollection Items) {
+        for (SelenideElement item : Items) {
+            if (i == count) {
+                item.click();
+                checkLog(value);
+            }
+            ++i;
+        }
+    }
+
+    public void selectDropDown(int count, String value) {
+        DropDownItems.shouldBe(sizeGreaterThan(count));
+        int i = 0;
+        iterateButtons(count, value, i, DropDownItems);
+    }
     //==============================checks===================================
 
-    public void checkTitle(String title) {
-        assertEquals(getWebDriver().getTitle(), title);
+    public void checkTitle() {
+        assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.title);
     }
 
-    public void checkLoginTitle(String title) {
-        loginTitle.shouldHave(text(title));
+    public void checkDifElPageExists() {
+        this.checkCheckBoxes();
+        this.checkCheckRadios();
+        this.checkDropDown();
+        this.checkButtons();
     }
 
-    public void checkDatesPageDisplaying() {
-        assertEquals(getWebDriver().getTitle(), "Dates");
+    private void checkCheckBoxes() {
+        for (SelenideElement RadioButton : RadioButtons) {
+            RadioButton.shouldBe(visible);
+        }
+    }
+
+    private void checkCheckRadios() {
+        for (SelenideElement CheckBoxe : CheckBoxes) {
+            CheckBoxe.shouldBe(visible);
+        }
+    }
+
+    private void checkDropDown() {
+        DropDown.shouldBe(visible);
+    }
+
+    private void checkButtons() {
+        for (SelenideElement Button : Buttons) {
+            Button.shouldBe(visible);
+        }
+    }
+
+    public void checkRightSection() {
+        RightSection.shouldBe(visible);
+    }
+
+    public void checkLeftSection() {
+        LeftSection.shouldBe(visible);
+    }
+
+    private void checkCheckBoxesLog(String value, boolean checked) {
+        String lastLogText = Logs.first().getText();
+        assertTrue(lastLogText.contains(value));
+        assertTrue(lastLogText.contains(String.valueOf(checked)));
+    }
+
+    public void checkLog(String value) {
+        String lastLogText = Logs.first().getText();
+        assertTrue(lastLogText.contains(value));
     }
 }

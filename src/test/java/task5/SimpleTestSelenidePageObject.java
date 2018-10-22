@@ -41,7 +41,7 @@ public class SimpleTestSelenidePageObject extends SelenideTestBase {
         homePageSelenide.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
 
         //5 Check main title
-        homePageSelenide.checkMainText();
+        homePageSelenide.checkTitle();
 
 
     }
