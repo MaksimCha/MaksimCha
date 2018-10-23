@@ -3,16 +3,9 @@
 <suite name="Test Suite" verbose="1" >
     <test name="Simple Test" >
 
-        <groups>
-            <run>
-                <include name="Group1"/>
-            </run>
-        </groups>
-
         <classes>
-            <class name="task2.SimpleTest" />
+            <class name="task5.SimpleTestSelenidePageObject" />
         </classes>
 
     </test>
 </suite>
-

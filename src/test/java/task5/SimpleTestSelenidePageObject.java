@@ -42,7 +42,5 @@ public class SimpleTestSelenidePageObject extends SelenideTestBase {
 
         //5 Check main title
         homePageSelenide.checkTitle();
-
-
     }
 }
