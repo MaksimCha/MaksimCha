@@ -16,12 +16,17 @@ import java.util.Iterator;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.Titles.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HomePageSelenideCucumber {
+
+    public HomePageSelenideCucumber(){
+        page(this);
+    }
 
     @FindBy(css = ".profile-photo")
     private SelenideElement profileButton;
