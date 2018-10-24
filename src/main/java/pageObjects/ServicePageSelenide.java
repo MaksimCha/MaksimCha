@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -33,10 +34,7 @@ public class ServicePageSelenide {
 
     //==============================methods==================================
 
-    public void openPage() {
-        open("https://epam.github.io/JDI/different-elements.html");
-    }
-
+    @Step
     public void selectCheckBoxes(int count, String value) {
         CheckBoxes.shouldBe(sizeGreaterThan(count));
         int i = 0;
@@ -49,19 +47,20 @@ public class ServicePageSelenide {
         }
     }
 
+    @Step
     public void selectRadioButton(int count, String value) {
         RadioButtons.shouldBe(sizeGreaterThan(count));
-        int i = 0;
-        iterateButtons(count, value, i, RadioButtons);
+        iterateButtons(count, value, RadioButtons);
     }
 
+    @Step
     public void selectDropDownButton(int count, String value) {
         DropDownItems.shouldBe(sizeGreaterThan(count));
-        int i = 0;
-        iterateButtons(count, value, i, DropDownItems);
+        iterateButtons(count, value, DropDownItems);
     }
 
-    private void iterateButtons(int count, String value, int i, ElementsCollection Items) {
+    private void iterateButtons(int count, String value, ElementsCollection Items) {
+        int i = 0;
         for (SelenideElement item : Items) {
             if (i == count) {
                 item.click();
@@ -71,17 +70,14 @@ public class ServicePageSelenide {
         }
     }
 
-    public void selectDropDown(int count, String value) {
-        DropDownItems.shouldBe(sizeGreaterThan(count));
-        int i = 0;
-        iterateButtons(count, value, i, DropDownItems);
-    }
     //==============================checks===================================
 
+    @Step
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.title);
     }
 
+    @Step
     public void checkDifElPageExists() {
         this.checkCheckBoxes();
         this.checkCheckRadios();
@@ -111,20 +107,24 @@ public class ServicePageSelenide {
         }
     }
 
+    @Step
     public void checkRightSection() {
         RightSection.shouldBe(visible);
     }
 
+    @Step
     public void checkLeftSection() {
         LeftSection.shouldBe(visible);
     }
 
+    @Step
     private void checkCheckBoxesLog(String value, boolean checked) {
         String lastLogText = Logs.first().getText();
         assertTrue(lastLogText.contains(value));
         assertTrue(lastLogText.contains(String.valueOf(checked)));
     }
 
+    @Step
     public void checkLog(String value) {
         String lastLogText = Logs.first().getText();
         assertTrue(lastLogText.contains(value));

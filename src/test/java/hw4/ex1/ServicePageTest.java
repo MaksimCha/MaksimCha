@@ -1,7 +1,11 @@
 package hw4.ex1;
 
 import base.SelenideTestBase;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.HomePageSelenide;
 import pageObjects.ServicePageSelenide;
@@ -14,6 +18,9 @@ import static enums.RadioButtonItems.DIF_EL_ITEM_SELEN;
 import static enums.Titles.LOGIN_TITLE;
 import static enums.Users.PITER_CHALOVSKII;
 
+@Feature("Smoke tests")
+@Story("Different Elements Page Testing")
+@Listeners(AllureAttachmentListener.class)
 public class ServicePageTest extends SelenideTestBase {
 
     private HomePageSelenide homePageSelenide;

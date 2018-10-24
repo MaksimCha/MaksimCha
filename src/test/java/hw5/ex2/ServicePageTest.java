@@ -1,4 +1,4 @@
-package hw5.ex1;
+package hw5.ex2;
 
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
@@ -87,7 +87,7 @@ public class ServicePageTest extends SelenideTestBase {
 
         //17. Unselect and assert checkboxes
         servicePageSelenide.selectCheckBoxes(DIF_EL_ITEM_WATER.counter, DIF_EL_ITEM_WATER.value);
-        servicePageSelenide.selectCheckBoxes(DIF_EL_ITEM_WIND.counter, DIF_EL_ITEM_WIND.value);
+        servicePageSelenide.selectCheckBoxes(DIF_EL_ITEM_WIND.counter, DIF_EL_ITEM_WATER.value);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
 

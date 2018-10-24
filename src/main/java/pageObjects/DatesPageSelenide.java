@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -41,10 +42,7 @@ public class DatesPageSelenide {
     private ElementsCollection difElLogs = $$(By.cssSelector(".panel-body-list.logs > li"));
     //==============================methods==================================
 
-    public void openPage() {
-        open("https://epam.github.io/JDI/index.html");
-    }
-
+    @Step
     public void login(String name, String passwd) {
         profileButton.click();
         login.sendKeys(name);
@@ -52,11 +50,13 @@ public class DatesPageSelenide {
         submit.click();
     }
 
+    @Step
     public void realiseDatesButton() {
         serviceButton.click();
         datesButton.click();
     }
 
+    @Step
     public void dragAndDropSlider(int leftValue, int rightValue) {
         SelenideElement leftSlider = sliderItems.first();
         setSliderPosition(leftValue, leftSlider);
@@ -66,6 +66,7 @@ public class DatesPageSelenide {
         checkSliderLog(rightValue, false);
     }
 
+    @Step
     private void setSliderPosition(Integer position, SelenideElement sliderItem) {
         double width = (double) slider.getSize().getWidth();
         Actions act = new Actions(getWebDriver());
@@ -76,10 +77,12 @@ public class DatesPageSelenide {
 
     //==============================checks===================================
 
+    @Step
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), "Dates");
     }
 
+    @Step
     private void checkSliderLog(int position, boolean value) {
         String lastLogText = difElLogs.first().getText();
         String nameSlider = value ? "From" : "To";

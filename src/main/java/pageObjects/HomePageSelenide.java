@@ -3,6 +3,7 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -52,10 +53,12 @@ public class HomePageSelenide {
 
     //==============================methods==================================
 
+    @Step
     public void openPage() {
         open("https://epam.github.io/JDI/index.html");
     }
 
+    @Step
     public void login(String name, String passwd) {
         profileButton.click();
         login.sendKeys(name);
@@ -63,28 +66,34 @@ public class HomePageSelenide {
         submit.click();
     }
 
+    @Step
     public void headServiceButtonRealise() {
         serviceHeadButton.click();
     }
 
+    @Step
     public void leftServiceButtonRealise() {
         serviceLeftButton.click();
     }
 
+    @Step
     public void headServiceDifElRealise(){
         differentElementsButton.click();
     }
 
     //==============================checks===================================
 
+    @Step
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), HOME_PAGE_TITLE.title);
     }
 
+    @Step
     public void checkLoginTitle(String title) {
         loginTitle.shouldHave(text(title));
     }
 
+    @Step
     public void checkHeadServiceDropDownContains(){
         ArrayList<String> expectedTitles = new ArrayList<String>();
         expectedTitles.add(FIRST_SERVICE_HEADER.title);
@@ -104,6 +113,7 @@ public class HomePageSelenide {
         }
     }
 
+    @Step
     public void checkLeftServiceDropDownContains() {
         ArrayList<String> expectedTitles = new ArrayList<String>();
         expectedTitles.add(FIRST_SERVICE_LEFTER.title);
