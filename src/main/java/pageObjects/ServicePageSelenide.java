@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.CheckBoxItems;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -124,11 +125,11 @@ public class ServicePageSelenide {
     }
 
     @Step
-    public void checkCheckBoxesLogs(){
-        iterateCheckBoxes(WIND.counter, WIND.value, Logs.first().getText());
+    public void checkCheckBoxesLogs(CheckBoxItems item, CheckBoxItems item2){
+        iterateCheckBoxes(item.counter, item.value, Logs.first().getText());
         Iterator<SelenideElement> Log = Logs.iterator();
         Log.next();
-        iterateCheckBoxes(WATER.counter, WATER.value, Log.next().getText());
+        iterateCheckBoxes(item2.counter, item2.value, Log.next().getText());
     }
 
     @Step

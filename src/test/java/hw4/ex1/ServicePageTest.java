@@ -74,7 +74,7 @@ public class ServicePageTest extends SelenideTestBase {
         servicePageSelenide.selectCheckBoxes(WIND.counter, WIND.value);
 
         //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        servicePageSelenide.checkCheckBoxesLogs();
+        servicePageSelenide.checkCheckBoxesLogs(WIND, WATER);
 
         //13. Select radio
         servicePageSelenide.selectRadioButton(SELEN.counter, SELEN.value);
@@ -93,6 +93,6 @@ public class ServicePageTest extends SelenideTestBase {
         servicePageSelenide.selectCheckBoxes(WIND.counter, WIND.value);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        servicePageSelenide.checkCheckBoxesLogs();
+        servicePageSelenide.checkCheckBoxesLogs(WIND, WATER);
     }
 }

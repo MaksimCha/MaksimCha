@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gherkin.ast.DataTable;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -15,9 +14,10 @@ import java.util.Map;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.CheckBoxItems.WATER;
+import static enums.CheckBoxItems.WIND;
 import static enums.Titles.DIFEL_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -42,24 +42,23 @@ public class ServicePageSelenideCucumber {
 
     //==============================methods==================================
 
-    private void selectCheckBox(Integer count, String value){
+    @Step
+    @When("I select checkBoxes")
+    public void selectCheckBoxes(Map<Integer, String> var){
+        for (Map.Entry pair: var.entrySet()) {
+            selectCheckBox((Integer)pair.getKey());
+        }
+    }
+
+    @Step
+    private void selectCheckBox(int count) {
         CheckBoxes.shouldBe(sizeGreaterThan(count));
         int i = 0;
         for (SelenideElement item : CheckBoxes) {
             if (i == count) {
                 item.click();
-                checkCheckBoxesLog(value, item.is(selected));
             }
             ++i;
-        }
-    }
-
-    @Step
-    @When("I select checkBoxes")
-    public void selectCheckBoxes(Map<Integer, String> variables) {
-        for (Object o : variables.entrySet()) {
-            Map.Entry pair = (Map.Entry) o;
-            selectCheckBox((Integer) pair.getKey(), (String) pair.getValue());
         }
     }
 
@@ -80,7 +79,6 @@ public class ServicePageSelenideCucumber {
         for (SelenideElement item : Items) {
             if (i == count) {
                 item.click();
-                checkLog(value);
             }
             ++i;
         }
@@ -95,6 +93,14 @@ public class ServicePageSelenideCucumber {
     }
 
     @Step
+    public void checkDifElPageExists() {
+        this.checkCheckBoxes();
+        this.checkRadioButtons();
+        this.checkDropDown();
+        this.checkButtons();
+    }
+
+    @Step
     @And("4 checkboxes are displayed on the Different Elements Page")
     public void checkCheckBoxes() {
         for (SelenideElement RadioButton : RadioButtons) {
@@ -105,8 +111,8 @@ public class ServicePageSelenideCucumber {
     @Step
     @And("4 radiobuttons are displayed on the Different Elements Page")
     public void checkRadioButtons() {
-        for (SelenideElement CheckBox : CheckBoxes) {
-            CheckBox.shouldBe(visible);
+        for (SelenideElement CheckBoxe : CheckBoxes) {
+            CheckBoxe.shouldBe(visible);
         }
     }
 
@@ -137,10 +143,28 @@ public class ServicePageSelenideCucumber {
     }
 
     @Step
-    private void checkCheckBoxesLog(String value, boolean checked) {
-        String lastLogText = Logs.first().getText();
-        assertTrue(lastLogText.contains(value));
-        assertTrue(lastLogText.contains(String.valueOf(checked)));
+    public void checkCheckBoxesLogs() {
+        iterateCheckBoxes(WIND.counter, WIND.value, Logs.first().getText());
+        Iterator<SelenideElement> Log = Logs.iterator();
+        Log.next();
+        iterateCheckBoxes(WATER.counter, WATER.value, Log.next().getText());
+    }
+
+    @Step
+    private void iterateCheckBoxes(int count, String value, String expected) {
+        int i = 0;
+        for (SelenideElement item : CheckBoxes) {
+            if (i == count) {
+                checkCheckBoxLog(value, item.is(selected), expected);
+            }
+            ++i;
+        }
+    }
+
+    @Step
+    private void checkCheckBoxLog(String value, boolean checked, String expected) {
+        assertTrue(expected.contains(value));
+        assertTrue(expected.contains(String.valueOf(checked)));
     }
 
     @Step
