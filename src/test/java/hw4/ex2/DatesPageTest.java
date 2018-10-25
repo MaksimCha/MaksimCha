@@ -11,6 +11,7 @@ import pageObjects.DatesPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
+import static enums.Sliders.SLIDER;
 import static enums.Titles.LOGIN_TITLE;
 import static enums.Users.PITER_CHALOVSKII;
 
@@ -50,26 +51,30 @@ public class DatesPageTest extends SelenideTestBase {
         //6. Using drag-and-drop set Range sliders.
         // left sliders - the most left position,
         // right slider - the most right position
-        datesPageSelenide.dragAndDropSlider(0, 100);
+        datesPageSelenide.dragAndDropSlider(0, SLIDER.leftSide);
+        datesPageSelenide.dragAndDropSlider(100, SLIDER.rightSide);
 
         //7. Assert that for "From" and "To" sliders there are logs rows with corresponding values
 
         //8. Using drag-and-drop set Range sliders.
         // left sliders - the most left position,
         // right slider - the most left position.
-        datesPageSelenide.dragAndDropSlider(0, 0);
+        datesPageSelenide.dragAndDropSlider(0, SLIDER.leftSide);
+        datesPageSelenide.dragAndDropSlider(0, SLIDER.rightSide);
 
         //9. Assert that for "From" and "To" sliders there are logs rows with corresponding values
 
         //10. Using drag-and-drop set Range sliders.
         // left sliders - the most right position,
         // right slider - the most right position.
-        datesPageSelenide.dragAndDropSlider(100, 100);
+        datesPageSelenide.dragAndDropSlider(100, SLIDER.rightSide);
+        datesPageSelenide.dragAndDropSlider(100, SLIDER.leftSide);
 
         //11. Assert that for "From" and "To" sliders there are logs rows with corresponding values
 
         //12. Using drag-and-drop set Range sliders.
-        datesPageSelenide.dragAndDropSlider(30, 70);
+        datesPageSelenide.dragAndDropSlider(30, SLIDER.leftSide);
+        datesPageSelenide.dragAndDropSlider(70, SLIDER.rightSide);
 
         //13. Assert that for "From" and "To" sliders there are logs rows with corresponding values
     }

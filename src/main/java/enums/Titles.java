@@ -15,6 +15,7 @@ public enum Titles {
                     "(about 20 internal and\n" +
                     "some external projects),\n" +
                     "wish to get more…"),
+
     MAIN_HEADER_TITLE("EPAM FRAMEWORK WISHES…"),
     MAIN_HEADER_TEXT(
             "LOREM IPSUM DOLOR SIT AMET, " +
@@ -23,12 +24,15 @@ public enum Titles {
                     "EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT " +
                     "DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM " +
                     "DOLORE EU FUGIAT NULLA PARIATUR."),
+
     LOGIN_TITLE("PITER CHAILOVSKII"),
     HOME_PAGE_TITLE("Home Page"),
+
     FIRST_HEADER_ITEM_TITLE("HOME"),
     SECOND_HEADER_ITEM_TITLE("CONTACT FORM"),
     THIRD_HEADER_ITEM_TITLE("SERVICE"),
     FOURTH_HEADER_ITEM_TITLE("METALS & COLORS"),
+
     SUBHEADER_LINK("https://github.com/epam/JDI"),
 
     FIRST_SERVICE_HEADER("SUPPORT"),

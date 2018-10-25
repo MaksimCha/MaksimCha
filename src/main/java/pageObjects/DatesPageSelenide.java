@@ -57,13 +57,10 @@ public class DatesPageSelenide {
     }
 
     @Step
-    public void dragAndDropSlider(int leftValue, int rightValue) {
-        SelenideElement leftSlider = sliderItems.first();
-        setSliderPosition(leftValue, leftSlider);
-        checkSliderLog(leftValue, true);
-        SelenideElement rightSlider = sliderItems.last();
-        setSliderPosition(rightValue, rightSlider);
-        checkSliderLog(rightValue, false);
+    public void dragAndDropSlider(int position, boolean side) {
+        SelenideElement slider = side?sliderItems.first():sliderItems.last();
+        setSliderPosition(position, slider);
+        checkSliderLog(position, side);
     }
 
     @Step

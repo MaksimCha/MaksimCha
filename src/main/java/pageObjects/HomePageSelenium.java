@@ -3,16 +3,17 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static enums.Titles.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestedPage {
+public class HomePageSelenium {
 
     @FindBy(css = ".profile-photo")
     private WebElement profileButton;
@@ -29,13 +30,13 @@ public class TestedPage {
     @FindBy(css = "div.profile-photo > span")
     private WebElement loginTitle;
 
-    @FindAll({@FindBy(css = ".m-l8 > li > a")})
+    @FindBy(css = ".m-l8 > li > a")
     private List<WebElement> headerItems;
 
-    @FindAll({@FindBy(css = "div.benefit-icon > span")})
+    @FindBy(css = "div.benefit-icon > span")
     private List<WebElement> testedImages;
 
-    @FindAll({@FindBy(css = "div.benefit > span")})
+    @FindBy(css = "div.benefit > span")
     private List<WebElement> imageTitles;
 
     @FindBy(css = "h3.main-title")
@@ -87,10 +88,16 @@ public class TestedPage {
         assertEquals(loginTitle.getText(), title);
     }
 
-    public void checkHeaderItemText(List<String> itemTexts) {
-        assertEquals(headerItems.size(), itemTexts.size());
+    public void checkHeaderItemText() {
+        ArrayList<String> expectedTitles = new ArrayList<>();
+        expectedTitles.add(FIRST_HEADER_ITEM_TITLE.title);
+        expectedTitles.add(SECOND_HEADER_ITEM_TITLE.title);
+        expectedTitles.add(THIRD_HEADER_ITEM_TITLE.title);
+        expectedTitles.add(FOURTH_HEADER_ITEM_TITLE.title);
+
+        assertEquals(headerItems.size(), expectedTitles.size());
         Iterator<WebElement> headerItem = headerItems.iterator();
-        Iterator<String> itemText = itemTexts.iterator();
+        Iterator<String> itemText = expectedTitles.iterator();
         while (headerItem.hasNext() && itemText.hasNext()) {
             assertEquals(headerItem.next().getText(), itemText.next());
         }
@@ -102,10 +109,16 @@ public class TestedPage {
         }
     }
 
-    public void checkImageTitles(List<String> titles) {
-        assertEquals(imageTitles.size(), titles.size());
+    public void checkImageTitles() {
+        ArrayList<String> expectedImageTitles = new ArrayList<>();
+        expectedImageTitles.add(FIRST_IMAGE_TITLE.title);
+        expectedImageTitles.add(SECOND_IMAGE_TITLE.title);
+        expectedImageTitles.add(THIRD_IMAGE_TITLE.title);
+        expectedImageTitles.add(FOURTH_IMAGE_TITLE.title);
+
+        assertEquals(imageTitles.size(), expectedImageTitles.size());
         Iterator<WebElement> headerItem = imageTitles.iterator();
-        Iterator<String> itemText = titles.iterator();
+        Iterator<String> itemText = expectedImageTitles.iterator();
         while (headerItem.hasNext() && itemText.hasNext()) {
             assertEquals(headerItem.next().getText(), itemText.next());
         }
