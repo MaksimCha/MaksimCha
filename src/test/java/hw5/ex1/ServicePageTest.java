@@ -90,7 +90,7 @@ public class ServicePageTest extends SelenideTestBase {
 
         //17. Unselect and assert checkboxes
         servicePageSelenide.selectCheckBoxes(WATER.counter, WATER.value);
-        servicePageSelenide.selectCheckBoxes(WATER.counter, WATER.value);
+        servicePageSelenide.selectCheckBoxes(WIND.counter, WIND.value);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         servicePageSelenide.checkCheckBoxesLogs();
