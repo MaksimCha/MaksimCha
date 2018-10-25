@@ -2,10 +2,10 @@ package enums;
 
 public enum CheckBoxItems {
 
-    DIF_EL_ITEM_WATER(0, "Water"),
-    DIF_EL_ITEM_EARTH(1, "Earth"),
-    DIF_EL_ITEM_WIND(2, "Wind"),
-    DIF_EL_ITEM_FIRE(3, "Fire");
+    WATER(0, "Water"),
+    EARTH(1, "Earth"),
+    WIND(2, "Wind"),
+    FIRE(3, "Fire");
 
     public int counter;
     public String value;

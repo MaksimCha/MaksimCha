@@ -11,10 +11,10 @@ import pageObjects.HomePageSelenide;
 import pageObjects.ServicePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.CheckBoxItems.DIF_EL_ITEM_WATER;
-import static enums.CheckBoxItems.DIF_EL_ITEM_WIND;
-import static enums.DropDownItems.DIF_EL_ITEM_YELLOW;
-import static enums.RadioButtonItems.DIF_EL_ITEM_SELEN;
+import static enums.CheckBoxItems.WATER;
+import static enums.CheckBoxItems.WIND;
+import static enums.DropDownItems.YELLOW;
+import static enums.RadioButtonItems.SELEN;
 import static enums.Titles.LOGIN_TITLE;
 import static enums.Users.PITER_CHALOVSKII;
 
@@ -70,26 +70,29 @@ public class ServicePageTest extends SelenideTestBase {
         servicePageSelenide.checkLeftSection();
 
         //11. Select checkboxes
-        servicePageSelenide.selectCheckBoxes(DIF_EL_ITEM_WATER.counter, DIF_EL_ITEM_WATER.value);
-        servicePageSelenide.selectCheckBoxes(DIF_EL_ITEM_WIND.counter, DIF_EL_ITEM_WIND.value);
+        servicePageSelenide.selectCheckBoxes(WATER.counter, WATER.value);
+        servicePageSelenide.selectCheckBoxes(WIND.counter, WIND.value);
 
         //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+        servicePageSelenide.checkCheckBoxesLogs();
 
         //13. Select radio
-        servicePageSelenide.selectRadioButton(DIF_EL_ITEM_SELEN.counter, DIF_EL_ITEM_SELEN.value);
+        servicePageSelenide.selectRadioButton(SELEN.counter, SELEN.value);
 
         //14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
+        servicePageSelenide.checkLog(SELEN.value);
 
         //15. Select in dropdown
-        servicePageSelenide.selectDropDownButton(DIF_EL_ITEM_YELLOW.counter, DIF_EL_ITEM_YELLOW.value);
+        servicePageSelenide.selectDropDownButton(YELLOW.counter, YELLOW.value);
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value.
+        servicePageSelenide.checkLog(YELLOW.value);
 
         //17. Unselect and assert checkboxes
-        servicePageSelenide.selectCheckBoxes(DIF_EL_ITEM_WATER.counter, DIF_EL_ITEM_WATER.value);
-        servicePageSelenide.selectCheckBoxes(DIF_EL_ITEM_WIND.counter, DIF_EL_ITEM_WIND.value);
+        servicePageSelenide.selectCheckBoxes(WATER.counter, WATER.value);
+        servicePageSelenide.selectCheckBoxes(WIND.counter, WIND.value);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-
+        servicePageSelenide.checkCheckBoxesLogs();
     }
 }

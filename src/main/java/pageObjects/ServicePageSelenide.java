@@ -5,11 +5,15 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
+import java.util.Iterator;
+
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.CheckBoxItems.WATER;
+import static enums.CheckBoxItems.WIND;
 import static enums.Titles.DIFEL_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -41,7 +45,6 @@ public class ServicePageSelenide {
         for (SelenideElement item : CheckBoxes) {
             if (i == count) {
                 item.click();
-                checkCheckBoxesLog(value, item.is(selected));
             }
             ++i;
         }
@@ -64,7 +67,6 @@ public class ServicePageSelenide {
         for (SelenideElement item : Items) {
             if (i == count) {
                 item.click();
-                checkLog(value);
             }
             ++i;
         }
@@ -122,10 +124,28 @@ public class ServicePageSelenide {
     }
 
     @Step
-    private void checkCheckBoxesLog(String value, boolean checked) {
-        String lastLogText = Logs.first().getText();
-        assertTrue(lastLogText.contains(value));
-        assertTrue(lastLogText.contains(String.valueOf(checked)));
+    public void checkCheckBoxesLogs(){
+        iterateCheckBoxes(WIND.counter, WIND.value, Logs.first().getText());
+        Iterator<SelenideElement> Log = Logs.iterator();
+        Log.next();
+        iterateCheckBoxes(WATER.counter, WATER.value, Log.next().getText());
+    }
+
+    @Step
+    private void iterateCheckBoxes(int count, String value, String expected) {
+        int i = 0;
+        for (SelenideElement item : CheckBoxes) {
+            if (i == count) {
+                checkCheckBoxLog(value, item.is(selected), expected);
+            }
+            ++i;
+        }
+    }
+
+    @Step
+    private void checkCheckBoxLog(String value, boolean checked, String expected) {
+        assertTrue(expected.contains(value));
+        assertTrue(expected.contains(String.valueOf(checked)));
     }
 
     @Step

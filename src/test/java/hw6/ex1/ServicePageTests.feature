@@ -12,11 +12,13 @@ Feature: Different Elements Page tests
     When I click Service subcategory in the header
     Then 8 options are displayed in dropdown
     When I click Different Elements Page category
-    Then Different Elements Page is opened
+    Then The browser title is Different Elements Page
     And 4 checkboxes are displayed on the Different Elements Page
     And 4 radiobuttons are displayed on the Different Elements Page
     And dropdown are displayed on the Different Elements Page
     And 2 buttons are displayed on the Different Elements Page
     And right section are displayed on the Different Elements Page
     And left section are displayed on the Different Elements Page
-    When I select checkBoxes Water and Wind
+    When I select checkBoxes
+    |0    |Water|
+    |2    |Wind |

@@ -2,15 +2,21 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import gherkin.ast.DataTable;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+
+import java.util.Iterator;
+import java.util.Map;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.Titles.DIFEL_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
@@ -36,8 +42,7 @@ public class ServicePageSelenideCucumber {
 
     //==============================methods==================================
 
-    @Step
-    public void selectCheckBoxes(int count, String value) {
+    private void selectCheckBox(Integer count, String value){
         CheckBoxes.shouldBe(sizeGreaterThan(count));
         int i = 0;
         for (SelenideElement item : CheckBoxes) {
@@ -46,6 +51,15 @@ public class ServicePageSelenideCucumber {
                 checkCheckBoxesLog(value, item.is(selected));
             }
             ++i;
+        }
+    }
+
+    @Step
+    @When("I select checkBoxes")
+    public void selectCheckBoxes(Map<Integer, String> variables) {
+        for (Object o : variables.entrySet()) {
+            Map.Entry pair = (Map.Entry) o;
+            selectCheckBox((Integer) pair.getKey(), (String) pair.getValue());
         }
     }
 
@@ -75,50 +89,49 @@ public class ServicePageSelenideCucumber {
     //==============================checks===================================
 
     @Step
+    @Then("The browser title is Different Elements Page")
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.title);
     }
 
     @Step
-    public void checkDifElPageExists() {
-        this.checkCheckBoxes();
-        this.checkCheckRadios();
-        this.checkDropDown();
-        this.checkButtons();
-    }
-
-    @Step
-    private void checkCheckBoxes() {
+    @And("4 checkboxes are displayed on the Different Elements Page")
+    public void checkCheckBoxes() {
         for (SelenideElement RadioButton : RadioButtons) {
             RadioButton.shouldBe(visible);
         }
     }
 
     @Step
-    private void checkCheckRadios() {
-        for (SelenideElement CheckBoxe : CheckBoxes) {
-            CheckBoxe.shouldBe(visible);
+    @And("4 radiobuttons are displayed on the Different Elements Page")
+    public void checkRadioButtons() {
+        for (SelenideElement CheckBox : CheckBoxes) {
+            CheckBox.shouldBe(visible);
         }
     }
 
     @Step
-    private void checkDropDown() {
+    @And("dropdown are displayed on the Different Elements Page")
+    public void checkDropDown() {
         DropDown.shouldBe(visible);
     }
 
     @Step
-    private void checkButtons() {
+    @And("2 buttons are displayed on the Different Elements Page")
+    public void checkButtons() {
         for (SelenideElement Button : Buttons) {
             Button.shouldBe(visible);
         }
     }
 
     @Step
+    @And("right section are displayed on the Different Elements Page")
     public void checkRightSection() {
         RightSection.shouldBe(visible);
     }
 
     @Step
+    @And("left section are displayed on the Different Elements Page")
     public void checkLeftSection() {
         LeftSection.shouldBe(visible);
     }

@@ -1,10 +1,10 @@
 package enums;
 
 public enum DropDownItems {
-    DIF_EL_ITEM_RED(0, "Red"),
-    DIF_EL_ITEM_GREEN(1, "Green"),
-    DIF_EL_ITEM_BLUE(2, "Blue"),
-    DIF_EL_ITEM_YELLOW(3, "Yellow");
+    RED(0, "Red"),
+    GREEN(1, "Green"),
+    BLUE(2, "Blue"),
+    YELLOW(3, "Yellow");
 
     public int counter;
     public String value;

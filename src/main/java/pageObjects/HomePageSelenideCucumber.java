@@ -2,7 +2,9 @@ package pageObjects;
 
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.qameta.allure.Step;
@@ -49,6 +51,12 @@ public class HomePageSelenideCucumber {
     @FindBy(css = ".sidebar-menu .menu-title")
     private SelenideElement serviceLeftButton;
 
+    @FindBy(css = "h3.main-title")
+    private SelenideElement mainTitle;
+
+    @FindBy(css = "p.main-txt")
+    private SelenideElement mainTxt;
+
     private ElementsCollection testedImages = $$(By.cssSelector("div.benefit-icon > span"));
 
     private ElementsCollection imageTitles = $$(By.cssSelector("div.benefit > span"));
@@ -78,16 +86,13 @@ public class HomePageSelenideCucumber {
     }
 
     @Step
+    @When("I click Service subcategory in the header")
     public void headServiceButtonRealise() {
         serviceHeadButton.click();
     }
 
     @Step
-    public void leftServiceButtonRealise() {
-        serviceLeftButton.click();
-    }
-
-    @Step
+    @When("I click Different Elements Page category")
     public void headServiceDifElRealise(){
         differentElementsButton.click();
     }
@@ -107,7 +112,7 @@ public class HomePageSelenideCucumber {
     }
 
     @Step
-    @Then("4 pictures are displayed on the Home Page")
+    @And("4 pictures are displayed on the Home Page")
     public void checkIndexPageImages() {
         for (SelenideElement image : testedImages) {
             assertTrue(image.isDisplayed());
@@ -115,6 +120,31 @@ public class HomePageSelenideCucumber {
     }
 
     @Step
+    @And("4 texts are displayed under pictures respectively")
+    public void checkImageTitles() {
+        ArrayList<String> expectedImageTitles = new ArrayList<>();
+        expectedImageTitles.add(FIRST_IMAGE_TITLE.title);
+        expectedImageTitles.add(SECOND_IMAGE_TITLE.title);
+        expectedImageTitles.add(THIRD_IMAGE_TITLE.title);
+        expectedImageTitles.add(FOURTH_IMAGE_TITLE.title);
+
+        assertEquals(imageTitles.size(), expectedImageTitles.size());
+        Iterator<SelenideElement> headerItem = imageTitles.iterator();
+        Iterator<String> itemText = expectedImageTitles.iterator();
+        while (headerItem.hasNext() && itemText.hasNext()) {
+            assertEquals(headerItem.next().getText(), itemText.next());
+        }
+    }
+
+    @Step
+    @And("2 texts are displayed")
+    public void checkMainHeaderText() {
+        assertEquals(mainTitle.getText(), MAIN_HEADER_TITLE.title);
+        assertEquals(mainTxt.getText(), MAIN_HEADER_TEXT.title);
+    }
+
+    @Step
+    @Then("8 options are displayed in dropdown")
     public void checkHeadServiceDropDownContains(){
         ArrayList<String> expectedTitles = new ArrayList<String>();
         expectedTitles.add(FIRST_SERVICE_HEADER.title);
@@ -128,26 +158,6 @@ public class HomePageSelenideCucumber {
 
         assertEquals(serviceHeadListItems.size(), expectedTitles.size());
         Iterator<SelenideElement> serviceListItem = serviceHeadListItems.iterator();
-        Iterator<String> itemText = expectedTitles.iterator();
-        while (serviceListItem.hasNext() && itemText.hasNext()) {
-            assertEquals(serviceListItem.next().getText(), itemText.next());
-        }
-    }
-
-    @Step
-    public void checkLeftServiceDropDownContains() {
-        ArrayList<String> expectedTitles = new ArrayList<String>();
-        expectedTitles.add(FIRST_SERVICE_LEFTER.title);
-        expectedTitles.add(SECOND_SERVICE_LEFTER.title);
-        expectedTitles.add(THIRD_SERVICE_LEFTER.title);
-        expectedTitles.add(FOURTH_SERVICE_LEFTER.title);
-        expectedTitles.add(FIFTH_SERVICE_LEFTER.title);
-        expectedTitles.add(SIXTH_SERVICE_LEFTER.title);
-        expectedTitles.add(SEVENTH_SERVICE_LEFTER.title);
-        expectedTitles.add(EIGHTH_SERVICE_LEFTER.title);
-
-        assertEquals(serviceLeftListItems.size(), expectedTitles.size());
-        Iterator<SelenideElement> serviceListItem = serviceLeftListItems.iterator();
         Iterator<String> itemText = expectedTitles.iterator();
         while (serviceListItem.hasNext() && itemText.hasNext()) {
             assertEquals(serviceListItem.next().getText(), itemText.next());
