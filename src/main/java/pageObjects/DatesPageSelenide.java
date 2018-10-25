@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Iterator;
+
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
@@ -39,7 +41,7 @@ public class DatesPageSelenide {
 
     private SelenideElement slider = $(By.cssSelector("div.ui-corner-all"));
 
-    private ElementsCollection difElLogs = $$(By.cssSelector(".panel-body-list.logs > li"));
+    private ElementsCollection Logs = $$(By.cssSelector(".panel-body-list.logs > li"));
     //==============================methods==================================
 
     @Step
@@ -60,7 +62,6 @@ public class DatesPageSelenide {
     public void dragAndDropSlider(int position, boolean side) {
         SelenideElement slider = side?sliderItems.first():sliderItems.last();
         setSliderPosition(position, slider);
-        checkSliderLog(position, side);
     }
 
     @Step
@@ -80,10 +81,24 @@ public class DatesPageSelenide {
     }
 
     @Step
-    private void checkSliderLog(int position, boolean value) {
-        String lastLogText = difElLogs.first().getText();
+    public void checkSliderLogs(int leftPosition, int rightPosition, boolean inverse){
+        if(inverse) {
+            checkSliderLog(leftPosition, true, Logs.first().getText());
+            Iterator<SelenideElement> Log = Logs.iterator();
+            Log.next();
+            checkSliderLog(rightPosition, false, Log.next().getText());
+        }else{
+            checkSliderLog(rightPosition, false, Logs.first().getText());
+            Iterator<SelenideElement> Log = Logs.iterator();
+            Log.next();
+            checkSliderLog(leftPosition, true, Log.next().getText());
+        }
+    }
+
+    @Step
+    private void checkSliderLog(int position, boolean value, String expected) {
         String nameSlider = value ? "From" : "To";
-        assertTrue(lastLogText.contains(nameSlider));
-        assertTrue(lastLogText.contains(String.valueOf(position)));
+        assertTrue(expected.contains(nameSlider));
+        assertTrue(expected.contains(String.valueOf(position)));
     }
 }

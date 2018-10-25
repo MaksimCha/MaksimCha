@@ -55,6 +55,7 @@ public class DatesPageTest extends SelenideTestBase {
         datesPageSelenide.dragAndDropSlider(100, SLIDER.rightSide);
 
         //7. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPageSelenide.checkSliderLogs(0, 100, false);
 
         //8. Using drag-and-drop set Range sliders.
         // left sliders - the most left position,
@@ -63,6 +64,7 @@ public class DatesPageTest extends SelenideTestBase {
         datesPageSelenide.dragAndDropSlider(0, SLIDER.rightSide);
 
         //9. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPageSelenide.checkSliderLogs(0, 0, false);
 
         //10. Using drag-and-drop set Range sliders.
         // left sliders - the most right position,
@@ -71,11 +73,13 @@ public class DatesPageTest extends SelenideTestBase {
         datesPageSelenide.dragAndDropSlider(100, SLIDER.leftSide);
 
         //11. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPageSelenide.checkSliderLogs(100, 100, true);
 
         //12. Using drag-and-drop set Range sliders.
         datesPageSelenide.dragAndDropSlider(30, SLIDER.leftSide);
         datesPageSelenide.dragAndDropSlider(70, SLIDER.rightSide);
 
         //13. Assert that for "From" and "To" sliders there are logs rows with corresponding values
+        datesPageSelenide.checkSliderLogs(30, 70, false);
     }
 }
