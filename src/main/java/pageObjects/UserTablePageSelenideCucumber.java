@@ -4,15 +4,13 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import gherkin.ast.DataTable;
-import gherkin.ast.TableRow;
+import dataTableRows.UserTableRow;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Iterator;
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -25,6 +23,7 @@ public class UserTablePageSelenideCucumber {
         page(this);
     }
 
+    private List<UserTableRow> rows;
     @FindBy(css = ".main-content-hg > table > tbody > tr > td > select")
     private ElementsCollection numberTypeDropDowns;
 
@@ -90,8 +89,12 @@ public class UserTablePageSelenideCucumber {
     }
 
     @Step
-    @And("User table contains following values")
-    public void checkUserTable(int number, String user, String description){
-
+    @And("^User table contains following values$")
+    public void checkUserTable(List<UserTableRow> rows){
+        this.rows = rows;
+        for (UserTableRow row: rows) {
+            userNames.get(row.getNumber()).shouldBe(text(row.getUser()));
+            descriptionTexts.get(row.getNumber()).shouldBe(text(row.getDescription()));
+        }
     }
 }
