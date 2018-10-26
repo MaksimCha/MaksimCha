@@ -52,7 +52,10 @@ public enum Titles {
     SIXTH_SERVICE_LEFTER("Table with pages"),
     SEVENTH_SERVICE_LEFTER("Different elements"),
     EIGHTH_SERVICE_LEFTER("Performance"),
-    DIFEL_PAGE_TITLE("Different Elements");
+
+    DIFEL_PAGE_TITLE("Different Elements"),
+
+    USER_TABLE_PAGE_TITLE("User Table");
 
     public String title;
 

@@ -2,7 +2,7 @@ Feature: User Table Page test
 
   Scenario: User Table Page Interface test
 
-    Given I am on "Home Page"
+    Given I'm on the Home Page
     And I login as user "Piter Chailovskii"
     When I click on "Service" button in Header
     And I click on "User Table" button in Service dropdown
@@ -13,14 +13,14 @@ Feature: User Table Page test
     And 6 Description texts under images are displayed on Users Table on User Table Page
     And 6 checkboxes are displayed on Users Table on User Table Page
 
-    And User table contains following values:
-    | Number | User             |     Description               |
-    | 1      | Roman            |  Lorem ipsum                  |
-    | 2      | SergeyIvan       |  Lorem ipsum                  |
-    | 3      | Vladzimir        |  Lorem ipsum                  |
-    | 4      | Helen Benett     |  Lorem ipsum some description |
-    | 5      | Yoshi Tannamuri  |  Lorem ipsum some description |
-    | 6      | Giovanni Rovelli |  Lorem ipsum some description |
+    And User table contains following values
+    | number | user             | description                  |
+    | 1      | Roman            | Lorem ipsum                  |
+    | 2      | SergeyIvan       | Lorem ipsum                  |
+    | 3      | Vladzimir        | Lorem ipsum                  |
+    | 4      | Helen Benett     | Lorem ipsum some description |
+    | 5      | Yoshi Tannamuri  | Lorem ipsum some description |
+    | 6      | Giovanni Rovelli | Lorem ipsum some description |
 
     When I select 'vip' checkbox for "Sergey Ivan"
     Then 1 log row has "Vip: condition changed to true" text in log section

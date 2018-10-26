@@ -68,12 +68,21 @@ public class HomePageSelenideCucumber {
     @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
     private SelenideElement differentElementsButton;
 
+    @FindBy(css = ".m-l8 .dropdown-menu [href = 'user-table.html']")
+    private SelenideElement userTableButton;
+
     //==============================methods==================================
 
     @Step
     @When("I'm on the Home Page")
     public void openPage() {
         open("https://epam.github.io/JDI/index.html");
+    }
+
+    @Step
+    @And("I login as user \"Piter Chailovskii\"")
+    public void loginAsPiter(){
+        login("epam", "1234");
     }
 
     @Step
@@ -86,7 +95,7 @@ public class HomePageSelenideCucumber {
     }
 
     @Step
-    @When("I click Service subcategory in the header")
+    @When("I click on \"Service\" button in Header")
     public void headServiceButtonRealise() {
         serviceHeadButton.click();
     }
@@ -95,6 +104,12 @@ public class HomePageSelenideCucumber {
     @When("I click Different Elements Page category")
     public void headServiceDifElRealise(){
         differentElementsButton.click();
+    }
+
+    @Step
+    @And("I click on \"User Table\" button in Service dropdown")
+    public void headServiceUserTableRealise(){
+        userTableButton.click();
     }
 
     //==============================checks===================================

@@ -9,7 +9,7 @@ Feature: Different Elements Page tests
     And 4 pictures are displayed on the Home Page
     And 4 texts are displayed under pictures respectively
     And 2 texts are displayed
-    When I click Service subcategory in the header
+    When I click on "Service" button in Header
     Then 8 options are displayed in dropdown
     When I click Different Elements Page category
     Then The browser title is Different Elements Page
@@ -20,5 +20,12 @@ Feature: Different Elements Page tests
     And right section are displayed on the Different Elements Page
     And left section are displayed on the Different Elements Page
     When I select checkBoxes
-    |0    |Water|
-    |2    |Wind |
+      |0    |Water|
+      |2    |Wind |
+    Then Logs are displayed and status corresponding to selected checkboxes
+      |0    |Water|
+      |2    |Wind |
+    When I select radio 1, Selen
+    Then Log are displayed and status corresponding to selected radio Selen
+    When I select dropdown 1, Yellow
+    Then Log are displayed and status corresponding to selected dropdown Yellow
