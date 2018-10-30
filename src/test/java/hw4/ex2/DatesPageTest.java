@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import pageObjects.DatesPageSelenide;
 import pageObjects.HomePageSelenide;
 
+import static com.codeborne.selenide.Selenide.getWebDriverLogs;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.Sliders.SLIDER;
 import static enums.Titles.LOGIN_TITLE;
@@ -30,7 +31,7 @@ public class DatesPageTest extends SelenideTestBase {
     }
 
     @Test
-    public void simpleTest() {
+    public void datesPageTest() {
 
         //1. Open test site by URL
         homePageSelenide.openPage();
@@ -39,13 +40,13 @@ public class DatesPageTest extends SelenideTestBase {
         homePageSelenide.checkTitle();
 
         //3. Perform login
-        homePageSelenide.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
+        homePageSelenide.login(PITER_CHALOVSKII);
 
         //4. Assert User name in the left-top side of screen that user is loggined
-        homePageSelenide.checkLoginTitle(LOGIN_TITLE.title);
+        homePageSelenide.checkLoginTitle(LOGIN_TITLE);
 
         //5. Open through the header menu Service -> Dates Page
-        datesPageSelenide.realiseDatesButton();
+        datesPageSelenide.datesButtonClick();
         datesPageSelenide.checkTitle();
 
         //6. Using drag-and-drop set Range sliders.
@@ -55,7 +56,7 @@ public class DatesPageTest extends SelenideTestBase {
         datesPageSelenide.dragAndDropSlider(100, SLIDER.rightSide);
 
         //7. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkSliderLogs(0, 100, false);
+        datesPageSelenide.checkSliderLogs(0, 100, SLIDER.rightSide);
 
         //8. Using drag-and-drop set Range sliders.
         // left sliders - the most left position,
@@ -64,7 +65,7 @@ public class DatesPageTest extends SelenideTestBase {
         datesPageSelenide.dragAndDropSlider(0, SLIDER.rightSide);
 
         //9. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkSliderLogs(0, 0, false);
+        datesPageSelenide.checkSliderLogs(0, 0, SLIDER.rightSide);
 
         //10. Using drag-and-drop set Range sliders.
         // left sliders - the most right position,
@@ -73,13 +74,13 @@ public class DatesPageTest extends SelenideTestBase {
         datesPageSelenide.dragAndDropSlider(100, SLIDER.leftSide);
 
         //11. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkSliderLogs(100, 100, true);
+        datesPageSelenide.checkSliderLogs(100, 100, SLIDER.leftSide);
 
         //12. Using drag-and-drop set Range sliders.
         datesPageSelenide.dragAndDropSlider(30, SLIDER.leftSide);
         datesPageSelenide.dragAndDropSlider(70, SLIDER.rightSide);
 
         //13. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        datesPageSelenide.checkSliderLogs(30, 70, false);
+        datesPageSelenide.checkSliderLogs(30, 70, SLIDER.rightSide);
     }
 }
