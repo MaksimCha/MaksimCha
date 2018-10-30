@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import enums.CheckBoxItems;
+import enums.RadioButtonItems;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
@@ -44,15 +45,15 @@ public class ServicePageSelenide {
     //==============================methods==================================
 
     @Step
-    public void selectCheckBoxes(int count) {
-        assertTrue(checkBoxes.size() >= count);
-        iterateButtons(count, checkBoxes);
+    public void selectCheckBoxes(CheckBoxItems item) {
+        assertTrue(checkBoxes.size() >= item.counter);
+        iterateButtons(item.counter, checkBoxes);
     }
 
     @Step
-    public void selectRadioButton(int count) {
-        assertTrue(radioButtons.size() >= count);
-        iterateButtons(count, radioButtons);
+    public void selectRadioButton(RadioButtonItems item) {
+        assertTrue(radioButtons.size() >= item.counter);
+        iterateButtons(item.counter, radioButtons);
     }
 
     @Step

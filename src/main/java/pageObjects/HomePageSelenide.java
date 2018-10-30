@@ -43,10 +43,10 @@ public class HomePageSelenide {
     private SelenideElement serviceLeftButton;
 
     @FindBy(css = ".m-l8 .dropdown-menu > li > a")
-    private List<SelenideElement> serviceHeadListItems;
+    private List<SelenideElement> headerServiceItems;
 
     @FindBy(css = ".sidebar-menu .menu-title [class = 'sub'] li > a")
-    private List<SelenideElement> serviceLeftListItems;
+    private List<SelenideElement> leftPannelServiceItems;
 
     @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
     private SelenideElement differentElementsButton;
@@ -97,11 +97,11 @@ public class HomePageSelenide {
     }
 
     @Step
-    public void checkServiceDropDownContains(boolean isHead) {
-        if(isHead){
-            checkDropDownContains(serviceHeadListItems);
+    public void checkServiceDropDownContains(boolean isHeader) {
+        if(isHeader){
+            checkDropDownContains(headerServiceItems);
         }else{
-            checkDropDownContains(serviceLeftListItems);
+            checkDropDownContains(leftPannelServiceItems);
         }
     }
 
