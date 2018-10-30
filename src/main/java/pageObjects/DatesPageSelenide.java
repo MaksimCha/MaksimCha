@@ -1,15 +1,13 @@
 package pageObjects;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.Iterator;
+import java.util.List;
 
-import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -37,11 +35,14 @@ public class DatesPageSelenide {
     @FindBy(css = ".m-l8 [href = 'dates.html']")
     private SelenideElement datesButton;
 
-    private ElementsCollection sliderItems = $$(By.cssSelector("a.ui-corner-all"));
+    @FindBy(css = "a.ui-corner-all")
+    private List<SelenideElement> sliderItems;
 
-    private SelenideElement slider = $(By.cssSelector("div.ui-corner-all"));
+    @FindBy(css = "div.ui-widget-content")
+    private SelenideElement mainSlider;
 
-    private ElementsCollection Logs = $$(By.cssSelector(".panel-body-list.logs > li"));
+    @FindBy(css = ".panel-body-list.logs > li")
+    private List<SelenideElement> logs;
     //==============================methods==================================
 
     @Step
@@ -53,20 +54,20 @@ public class DatesPageSelenide {
     }
 
     @Step
-    public void realiseDatesButton() {
+    public void datesButtonClick() {
         serviceButton.click();
         datesButton.click();
     }
 
     @Step
-    public void dragAndDropSlider(int position, boolean side) {
-        SelenideElement slider = side?sliderItems.first():sliderItems.last();
+    public void dragAndDropSlider(int position, boolean isSide) {
+        SelenideElement slider = isSide?sliderItems.get(0):sliderItems.get(1);
         setSliderPosition(position, slider);
     }
 
     @Step
     private void setSliderPosition(Integer position, SelenideElement sliderItem) {
-        double width = (double) slider.getSize().getWidth();
+        double width = (double) mainSlider.getSize().width;
         Actions act = new Actions(getWebDriver());
         Double currentPosition = Double.parseDouble(sliderItem.getCssValue("left").replaceAll("px", "")) / (width / 100);
         int xOffset = (int) ((position - currentPosition - 1) * (width / 100));
@@ -81,23 +82,20 @@ public class DatesPageSelenide {
     }
 
     @Step
-    public void checkSliderLogs(int leftPosition, int rightPosition, boolean inverse){
-        if(inverse) {
-            checkSliderLog(leftPosition, true, Logs.first().getText());
-            Iterator<SelenideElement> Log = Logs.iterator();
-            Log.next();
-            checkSliderLog(rightPosition, false, Log.next().getText());
+    public void checkSliderLogs(int leftPosition, int rightPosition, boolean isInverse){
+        Iterator<SelenideElement> log = logs.iterator();
+        if(isInverse) {
+            checkSliderLog(leftPosition, true, log.next().getText());
+            checkSliderLog(rightPosition, false, log.next().getText());
         }else{
-            checkSliderLog(rightPosition, false, Logs.first().getText());
-            Iterator<SelenideElement> Log = Logs.iterator();
-            Log.next();
-            checkSliderLog(leftPosition, true, Log.next().getText());
+            checkSliderLog(rightPosition, false, log.next().getText());
+            checkSliderLog(leftPosition, true, log.next().getText());
         }
     }
 
     @Step
-    private void checkSliderLog(int position, boolean value, String expected) {
-        String nameSlider = value ? "From" : "To";
+    private void checkSliderLog(int position, boolean isLast, String expected) {
+        String nameSlider = isLast ? "From" : "To";
         assertTrue(expected.contains(nameSlider));
         assertTrue(expected.contains(String.valueOf(position)));
     }

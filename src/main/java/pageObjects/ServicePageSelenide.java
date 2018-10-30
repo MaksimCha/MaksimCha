@@ -1,71 +1,69 @@
 package pageObjects;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import enums.CheckBoxItems;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.Iterator;
+import java.util.List;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.CheckBoxItems.WATER;
-import static enums.CheckBoxItems.WIND;
 import static enums.Titles.DIFEL_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class ServicePageSelenide {
 
-    private ElementsCollection CheckBoxes = $$(By.cssSelector(".label-checkbox > input"));
+    @FindBy(css = ".label-checkbox > input")
+    private List<SelenideElement> checkBoxes;
 
-    private ElementsCollection RadioButtons = $$(By.cssSelector(".label-radio > input"));
+    @FindBy(css = ".label-radio > input")
+    private List<SelenideElement> radioButtons;
 
-    private ElementsCollection DropDownItems = $$(By.cssSelector(".colors .uui-form-element > option"));
+    @FindBy(css = "option")
+    private List<SelenideElement> dropDownItems;
 
-    private SelenideElement DropDown = $(By.cssSelector(".main-content-hg .colors"));
+    @FindBy(css = ".colors")
+    private SelenideElement dropDown;
 
-    private ElementsCollection Buttons = $$(By.cssSelector(".main-content-hg .uui-button"));
+    @FindBy(css = ".main-content-hg .uui-button")
+    private List<SelenideElement> buttons;
 
-    private SelenideElement LeftSection = $(By.cssSelector(".sidebar-menu"));
+    @FindBy(css = ".sidebar-menu")
+    private SelenideElement leftSection;
 
-    private SelenideElement RightSection = $(By.cssSelector(".right-fix-panel"));
+    @FindBy(css = ".right-fix-panel")
+    private SelenideElement lightSection;
 
-    private ElementsCollection Logs = $$(By.cssSelector(".panel-body-list.logs > li"));
+    @FindBy(css = ".panel-body-list.logs > li")
+    private List<SelenideElement> logs;
 
     //==============================methods==================================
 
     @Step
-    public void selectCheckBoxes(int count, String value) {
-        CheckBoxes.shouldBe(sizeGreaterThan(count));
-        int i = 0;
-        for (SelenideElement item : CheckBoxes) {
-            if (i == count) {
-                item.click();
-            }
-            ++i;
-        }
+    public void selectCheckBoxes(int count) {
+        assertTrue(checkBoxes.size() >= count);
+        iterateButtons(count, checkBoxes);
     }
 
     @Step
-    public void selectRadioButton(int count, String value) {
-        RadioButtons.shouldBe(sizeGreaterThan(count));
-        iterateButtons(count, value, RadioButtons);
+    public void selectRadioButton(int count) {
+        assertTrue(radioButtons.size() >= count);
+        iterateButtons(count, radioButtons);
     }
 
     @Step
-    public void selectDropDownButton(int count, String value) {
-        DropDownItems.shouldBe(sizeGreaterThan(count));
-        iterateButtons(count, value, DropDownItems);
+    public void selectDropDownButton(int count) {
+        assertTrue(dropDownItems.size() >= count);
+        iterateButtons(count, dropDownItems);
     }
 
-    private void iterateButtons(int count, String value, ElementsCollection Items) {
+    private void iterateButtons(int count, List<SelenideElement> items) {
         int i = 0;
-        for (SelenideElement item : Items) {
+        for (SelenideElement item : items) {
             if (i == count) {
                 item.click();
             }
@@ -77,65 +75,64 @@ public class ServicePageSelenide {
 
     @Step
     public void checkTitle() {
-        assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.title);
+        assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.getTitle());
     }
 
     @Step
     public void checkDifElPageExists() {
-        this.checkCheckBoxes();
-        this.checkCheckRadios();
-        this.checkDropDown();
-        this.checkButtons();
+        checkCheckBoxes();
+        checkCheckRadios();
+        checkDropDown();
+        checkButtons();
     }
 
     @Step
     private void checkCheckBoxes() {
-        for (SelenideElement RadioButton : RadioButtons) {
+        for (SelenideElement RadioButton : radioButtons) {
             RadioButton.shouldBe(visible);
         }
     }
 
     @Step
     private void checkCheckRadios() {
-        for (SelenideElement CheckBoxe : CheckBoxes) {
-            CheckBoxe.shouldBe(visible);
+        for (SelenideElement CheckBox : checkBoxes) {
+            CheckBox.shouldBe(visible);
         }
     }
 
     @Step
     private void checkDropDown() {
-        DropDown.shouldBe(visible);
+        dropDown.shouldBe(visible);
     }
 
     @Step
     private void checkButtons() {
-        for (SelenideElement Button : Buttons) {
+        for (SelenideElement Button : buttons) {
             Button.shouldBe(visible);
         }
     }
 
     @Step
     public void checkRightSection() {
-        RightSection.shouldBe(visible);
+        lightSection.shouldBe(visible);
     }
 
     @Step
     public void checkLeftSection() {
-        LeftSection.shouldBe(visible);
+        leftSection.shouldBe(visible);
     }
 
     @Step
-    public void checkCheckBoxesLogs(CheckBoxItems item, CheckBoxItems item2){
-        iterateCheckBoxes(item.counter, item.value, Logs.first().getText());
-        Iterator<SelenideElement> Log = Logs.iterator();
-        Log.next();
-        iterateCheckBoxes(item2.counter, item2.value, Log.next().getText());
+    public void checkCheckBoxesLogs(CheckBoxItems item, CheckBoxItems item2) {
+        Iterator<SelenideElement> log = logs.iterator();
+        iterateCheckBoxes(item.counter, item.value, log.next().getText());
+        iterateCheckBoxes(item2.counter, item2.value, log.next().getText());
     }
 
     @Step
     private void iterateCheckBoxes(int count, String value, String expected) {
         int i = 0;
-        for (SelenideElement item : CheckBoxes) {
+        for (SelenideElement item : checkBoxes) {
             if (i == count) {
                 checkCheckBoxLog(value, item.is(selected), expected);
             }
@@ -144,14 +141,14 @@ public class ServicePageSelenide {
     }
 
     @Step
-    private void checkCheckBoxLog(String value, boolean checked, String expected) {
+    private void checkCheckBoxLog(String value, boolean isChecked, String expected) {
         assertTrue(expected.contains(value));
-        assertTrue(expected.contains(String.valueOf(checked)));
+        assertTrue(expected.contains(String.valueOf(isChecked)));
     }
 
     @Step
     public void checkLog(String value) {
-        String lastLogText = Logs.first().getText();
+        String lastLogText = logs.get(0).getText();
         assertTrue(lastLogText.contains(value));
     }
 }

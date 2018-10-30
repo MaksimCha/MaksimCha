@@ -45,7 +45,7 @@ public class UserTablePageSelenideCucumber {
     @Step
     @Then("\"User Table\" page is opened")
     public void checkTitle() {
-        assertEquals(getWebDriver().getTitle(), USER_TABLE_PAGE_TITLE.title);
+        assertEquals(getWebDriver().getTitle(), USER_TABLE_PAGE_TITLE.getTitle());
     }
 
     @Step

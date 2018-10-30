@@ -90,10 +90,10 @@ public class HomePageSelenium {
 
     public void checkHeaderItemText() {
         ArrayList<String> expectedTitles = new ArrayList<>();
-        expectedTitles.add(FIRST_HEADER_ITEM_TITLE.title);
-        expectedTitles.add(SECOND_HEADER_ITEM_TITLE.title);
-        expectedTitles.add(THIRD_HEADER_ITEM_TITLE.title);
-        expectedTitles.add(FOURTH_HEADER_ITEM_TITLE.title);
+        expectedTitles.add(FIRST_HEADER_ITEM.getTitle());
+        expectedTitles.add(SECOND_HEADER_ITEM.getTitle());
+        expectedTitles.add(THIRD_HEADER_ITEM.getTitle());
+        expectedTitles.add(FOURTH_HEADER_ITEM.getTitle());
 
         assertEquals(headerItems.size(), expectedTitles.size());
         Iterator<WebElement> headerItem = headerItems.iterator();
@@ -111,10 +111,10 @@ public class HomePageSelenium {
 
     public void checkImageTitles() {
         ArrayList<String> expectedImageTitles = new ArrayList<>();
-        expectedImageTitles.add(FIRST_IMAGE_TITLE.title);
-        expectedImageTitles.add(SECOND_IMAGE_TITLE.title);
-        expectedImageTitles.add(THIRD_IMAGE_TITLE.title);
-        expectedImageTitles.add(FOURTH_IMAGE_TITLE.title);
+        expectedImageTitles.add(FIRST_IMAGE_TITLE.getTitle());
+        expectedImageTitles.add(SECOND_IMAGE_TITLE.getTitle());
+        expectedImageTitles.add(THIRD_IMAGE_TITLE.getTitle());
+        expectedImageTitles.add(FOURTH_IMAGE_TITLE.getTitle());
 
         assertEquals(imageTitles.size(), expectedImageTitles.size());
         Iterator<WebElement> headerItem = imageTitles.iterator();

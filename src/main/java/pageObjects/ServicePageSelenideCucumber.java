@@ -95,7 +95,7 @@ public class ServicePageSelenideCucumber {
     @Step
     @Then("The browser title is Different Elements Page")
     public void checkTitle() {
-        assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.title);
+        assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.getTitle());
     }
 
     @Step

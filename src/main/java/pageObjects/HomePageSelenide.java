@@ -1,25 +1,23 @@
 package pageObjects;
 
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.Titles;
+import enums.Users;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.Titles.*;
-import static enums.Titles.EIGHTH_SERVICE_LEFTER;
+import static enums.Links.HOME_PAGE_LINK;
+import static enums.Titles.HOME_PAGE_TITLE;
+import static enums.Titles.getServiceTitleSet;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class HomePageSelenide {
 
@@ -44,40 +42,45 @@ public class HomePageSelenide {
     @FindBy(css = ".sidebar-menu .menu-title")
     private SelenideElement serviceLeftButton;
 
-    private ElementsCollection serviceHeadListItems = $$(By.cssSelector(".m-l8 .dropdown-menu > li > a"));
+    @FindBy(css = ".m-l8 .dropdown-menu > li > a")
+    private List<SelenideElement> serviceHeadListItems;
 
-    private ElementsCollection serviceLeftListItems = $$(By.cssSelector(".sidebar-menu .menu-title [class = 'sub'] li > a"));
+    @FindBy(css = ".sidebar-menu .menu-title [class = 'sub'] li > a")
+    private List<SelenideElement> serviceLeftListItems;
 
     @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
     private SelenideElement differentElementsButton;
+
+    public HomePageSelenide() {
+    }
 
     //==============================methods==================================
 
     @Step
     public void openPage() {
-        open("https://epam.github.io/JDI/index.html");
+        open(HOME_PAGE_LINK.getLink());
     }
 
     @Step
-    public void login(String name, String passwd) {
+    public void login(Users user) {
         profileButton.click();
-        login.sendKeys(name);
-        password.sendKeys(passwd);
+        login.sendKeys(user.login);
+        password.sendKeys(user.password);
         submit.click();
     }
 
     @Step
-    public void headServiceButtonRealise() {
+    public void headServiceButtonClick() {
         serviceHeadButton.click();
     }
 
     @Step
-    public void leftServiceButtonRealise() {
+    public void leftServiceButtonClick() {
         serviceLeftButton.click();
     }
 
     @Step
-    public void headServiceDifElRealise(){
+    public void differentElementsButtonClick() {
         differentElementsButton.click();
     }
 
@@ -85,51 +88,29 @@ public class HomePageSelenide {
 
     @Step
     public void checkTitle() {
-        assertEquals(getWebDriver().getTitle(), HOME_PAGE_TITLE.title);
+        assertEquals(getWebDriver().getTitle(), HOME_PAGE_TITLE.getTitle());
     }
 
     @Step
-    public void checkLoginTitle(String title) {
-        loginTitle.shouldHave(text(title));
+    public void checkLoginTitle(Titles title) {
+        loginTitle.shouldHave(text(title.getTitle()));
     }
 
     @Step
-    public void checkHeadServiceDropDownContains(){
-        ArrayList<String> expectedTitles = new ArrayList<String>();
-        expectedTitles.add(FIRST_SERVICE_HEADER.title);
-        expectedTitles.add(SECOND_SERVICE_HEADER.title);
-        expectedTitles.add(THIRD_SERVICE_HEADER.title);
-        expectedTitles.add(FOURTH_SERVICE_HEADER.title);
-        expectedTitles.add(FIFTH_SERVICE_HEADER.title);
-        expectedTitles.add(SIXTH_SERVICE_HEADER.title);
-        expectedTitles.add(SEVENTH_SERVICE_HEADER.title);
-        expectedTitles.add(EIGHTH_SERVICE_HEADER.title);
-
-        assertEquals(serviceHeadListItems.size(), expectedTitles.size());
-        Iterator<SelenideElement> serviceListItem = serviceHeadListItems.iterator();
-        Iterator<String> itemText = expectedTitles.iterator();
-        while (serviceListItem.hasNext() && itemText.hasNext()) {
-            assertEquals(serviceListItem.next().getText(), itemText.next());
+    public void checkServiceDropDownContains(boolean isHead) {
+        if(isHead){
+            checkDropDownContains(serviceHeadListItems);
+        }else{
+            checkDropDownContains(serviceLeftListItems);
         }
     }
 
-    @Step
-    public void checkLeftServiceDropDownContains() {
-        ArrayList<String> expectedTitles = new ArrayList<String>();
-        expectedTitles.add(FIRST_SERVICE_LEFTER.title);
-        expectedTitles.add(SECOND_SERVICE_LEFTER.title);
-        expectedTitles.add(THIRD_SERVICE_LEFTER.title);
-        expectedTitles.add(FOURTH_SERVICE_LEFTER.title);
-        expectedTitles.add(FIFTH_SERVICE_LEFTER.title);
-        expectedTitles.add(SIXTH_SERVICE_LEFTER.title);
-        expectedTitles.add(SEVENTH_SERVICE_LEFTER.title);
-        expectedTitles.add(EIGHTH_SERVICE_LEFTER.title);
-
-        assertEquals(serviceLeftListItems.size(), expectedTitles.size());
-        Iterator<SelenideElement> serviceListItem = serviceLeftListItems.iterator();
-        Iterator<String> itemText = expectedTitles.iterator();
-        while (serviceListItem.hasNext() && itemText.hasNext()) {
-            assertEquals(serviceListItem.next().getText(), itemText.next());
+    private void checkDropDownContains(List<SelenideElement> serviceItems) {
+        assertEquals(serviceItems.size(), getServiceTitleSet().size());
+        ArrayList<String> actualTitles = new ArrayList<>();
+        for (SelenideElement item:serviceItems) {
+            actualTitles.add(item.getText().toUpperCase());
         }
+        assertTrue(actualTitles.containsAll(getServiceTitleSet()));
     }
 }
