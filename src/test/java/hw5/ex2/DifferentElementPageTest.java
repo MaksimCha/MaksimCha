@@ -20,7 +20,7 @@ import static enums.Users.PITER_CHALOVSKII;
 @Feature("Smoke tests")
 @Story("Different Elements Page Testing")
 @Listeners(AllureAttachmentListener.class)
-public class ServicePageTest extends SelenideTestBase {
+public class DifferentElementPageTest extends SelenideTestBase {
 
     private HomePageSelenide homePageSelenide;
     private DifferentElementPageSelenide differentElementPageSelenide;
@@ -32,7 +32,7 @@ public class ServicePageTest extends SelenideTestBase {
     }
 
     @Test
-    public void simpleTest() {
+    public void differentElementsPageTest() {
 
         //1. Open test site by URL
         homePageSelenide.openPage();
@@ -79,13 +79,13 @@ public class ServicePageTest extends SelenideTestBase {
         differentElementPageSelenide.selectRadioButton(SELEN);
 
         //14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
-        differentElementPageSelenide.checkLog(SELEN.value);
+        differentElementPageSelenide.checkRadioButtonLog(SELEN);
 
         //15. Select in dropdown
         differentElementPageSelenide.selectDropDownButton(YELLOW);
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value.
-        differentElementPageSelenide.checkLog(YELLOW.value);
+        differentElementPageSelenide.checkDropDownLog(YELLOW);
 
         //17. Unselect and assert checkboxes
         differentElementPageSelenide.selectCheckBoxes(WATER);
