@@ -7,7 +7,7 @@ import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pageObjects.DifferentEllementPageSelenide;
+import pageObjects.DifferentElementPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
@@ -23,12 +23,12 @@ import static enums.Users.PITER_CHALOVSKII;
 public class DifferentElementPageTest extends SelenideTestBase {
 
     private HomePageSelenide homePageSelenide;
-    private DifferentEllementPageSelenide differentEllementPageSelenide;
+    private DifferentElementPageSelenide differentElementPageSelenide;
 
     @BeforeClass
     public void beforeClass() {
         homePageSelenide = page(HomePageSelenide.class);
-        differentEllementPageSelenide = page(DifferentEllementPageSelenide.class);
+        differentElementPageSelenide = page(DifferentElementPageSelenide.class);
     }
 
     @Test
@@ -57,41 +57,41 @@ public class DifferentElementPageTest extends SelenideTestBase {
         //7. Open through the header menu Service -> Different Elements Page
         homePageSelenide.headServiceButtonClick();
         homePageSelenide.differentElementsButtonClick();
-        differentEllementPageSelenide.checkTitle();
+        differentElementPageSelenide.checkTitle();
 
         //8. Check interface on Different elements page, it contains all needed elements
-        differentEllementPageSelenide.checkDifElPageExists();
+        differentElementPageSelenide.checkDifElPageExists();
 
         //9. Assert that there is Right Section
-        differentEllementPageSelenide.checkRightSection();
+        differentElementPageSelenide.checkRightSection();
 
         //10. Assert that there is Left Section
-        differentEllementPageSelenide.checkLeftSection();
+        differentElementPageSelenide.checkLeftSection();
 
         //11. Select checkboxes
-        differentEllementPageSelenide.selectCheckBoxes(WATER);
-        differentEllementPageSelenide.selectCheckBoxes(WIND);
+        differentElementPageSelenide.selectCheckBoxes(WATER);
+        differentElementPageSelenide.selectCheckBoxes(WIND);
 
         //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentEllementPageSelenide.checkCheckBoxesLogs(WIND, WATER);
+        differentElementPageSelenide.checkCheckBoxesLogs(WIND, WATER);
 
         //13. Select radio
-        differentEllementPageSelenide.selectRadioButton(SELEN);
+        differentElementPageSelenide.selectRadioButton(SELEN);
 
         //14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
-        differentEllementPageSelenide.checkRadioButtonLog(SELEN);
+        differentElementPageSelenide.checkRadioButtonLog(SELEN);
 
         //15. Select in dropdown
-        differentEllementPageSelenide.selectDropDownButton(YELLOW);
+        differentElementPageSelenide.selectDropDownButton(YELLOW);
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value.
-        differentEllementPageSelenide.checkDropDownLog(YELLOW);
+        differentElementPageSelenide.checkDropDownLog(YELLOW);
 
         //17. Unselect and assert checkboxes
-        differentEllementPageSelenide.selectCheckBoxes(WATER);
-        differentEllementPageSelenide.selectCheckBoxes(WIND);
+        differentElementPageSelenide.selectCheckBoxes(WATER);
+        differentElementPageSelenide.selectCheckBoxes(WIND);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentEllementPageSelenide.checkCheckBoxesLogs(WIND, WATER);
+        differentElementPageSelenide.checkCheckBoxesLogs(WIND, WATER);
     }
 }

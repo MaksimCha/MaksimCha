@@ -17,7 +17,7 @@ import static enums.Titles.DIFEL_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class DifferentEllementPageSelenide {
+public class DifferentElementPageSelenide {
 
     @FindBy(css = ".label-checkbox > input")
     private List<SelenideElement> checkBoxes;
