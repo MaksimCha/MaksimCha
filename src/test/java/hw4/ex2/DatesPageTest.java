@@ -1,6 +1,7 @@
 package hw4.ex2;
 
 import base.SelenideTestBase;
+import enums.Sliders;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
@@ -11,7 +12,7 @@ import pageObjects.DatesPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.Sliders.SLIDER;
+import static enums.Sliders.*;
 import static enums.Users.PITER_CHALOVSKII;
 
 @Feature("Smoke tests")
