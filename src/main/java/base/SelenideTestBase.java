@@ -8,7 +8,7 @@ import static java.lang.System.setProperty;
 public class SelenideTestBase {
 
     @BeforeSuite
-    public void beforeSuite(){
+    public void beforeSuite() {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.screenshots = false;

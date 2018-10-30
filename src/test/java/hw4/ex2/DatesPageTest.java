@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import pageObjects.DatesPageSelenide;
 import pageObjects.HomePageSelenide;
 
-import static com.codeborne.selenide.Selenide.getWebDriverLogs;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.Sliders.SLIDER;
 import static enums.Titles.LOGIN_TITLE;

@@ -61,7 +61,7 @@ public class DatesPageSelenide {
 
     @Step
     public void dragAndDropSlider(int position, boolean isSide) {
-        SelenideElement slider = isSide?sliderItems.get(0):sliderItems.get(1);
+        SelenideElement slider = isSide ? sliderItems.get(0) : sliderItems.get(1);
         setSliderPosition(position, slider);
     }
 
@@ -82,12 +82,12 @@ public class DatesPageSelenide {
     }
 
     @Step
-    public void checkSliderLogs(int leftPosition, int rightPosition, boolean isInverse){
+    public void checkSliderLogs(int leftPosition, int rightPosition, boolean isInverse) {
         Iterator<SelenideElement> log = logs.iterator();
-        if(isInverse) {
+        if (isInverse) {
             checkSliderLog(leftPosition, true, log.next().getText());
             checkSliderLog(rightPosition, false, log.next().getText());
-        }else{
+        } else {
             checkSliderLog(rightPosition, false, log.next().getText());
             checkSliderLog(leftPosition, true, log.next().getText());
         }
