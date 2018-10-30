@@ -9,6 +9,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static java.lang.Double.*;
+import static java.lang.String.valueOf;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -69,7 +71,7 @@ public class DatesPageSelenide {
     private void setSliderPosition(Integer position, SelenideElement sliderItem) {
         double width = (double) mainSlider.getSize().width;
         Actions act = new Actions(getWebDriver());
-        Double currentPosition = Double.parseDouble(sliderItem.getCssValue("left").replaceAll("px", "")) / (width / 100);
+        Double currentPosition = parseDouble(sliderItem.getCssValue("left").replaceAll("px", "")) / (width / 100);
         int xOffset = (int) ((position - currentPosition - 1) * (width / 100));
         act.dragAndDropBy(sliderItem, xOffset, 0).build().perform();
     }
@@ -97,6 +99,6 @@ public class DatesPageSelenide {
     private void checkSliderLog(int position, boolean isLast, String expected) {
         String nameSlider = isLast ? "From" : "To";
         assertTrue(expected.contains(nameSlider));
-        assertTrue(expected.contains(String.valueOf(position)));
+        assertTrue(expected.contains(valueOf(position)));
     }
 }
