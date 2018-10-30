@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static java.lang.Double.*;
+import static java.lang.Double.parseDouble;
 import static java.lang.String.valueOf;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -45,6 +45,8 @@ public class DatesPageSelenide {
 
     @FindBy(css = ".panel-body-list.logs > li")
     private List<SelenideElement> logs;
+
+    private boolean sideFlag;
     //==============================methods==================================
 
     @Step
@@ -62,9 +64,32 @@ public class DatesPageSelenide {
     }
 
     @Step
-    public void dragAndDropSlider(int position, boolean isSide) {
-        SelenideElement slider = isSide ? sliderItems.get(0) : sliderItems.get(1);
-        setSliderPosition(position, slider);
+    public void dragAndDropSlider(int fromPosition, int toPosition) {
+        double width = (double) mainSlider.getSize().width;
+        Double currentLeftPosition = parseDouble(sliderItems
+                .get(0)
+                .getCssValue("left")
+                .replaceAll("px", "")) / (width / 100);
+        Double currentRightPosition = parseDouble(sliderItems
+                .get(1)
+                .getCssValue("left")
+                .replaceAll("px", "")) / (width / 100);
+        if(currentLeftPosition.equals(currentRightPosition)){
+            if(fromPosition > currentRightPosition){
+                setSliderPosition(fromPosition, sliderItems.get(1));
+                setSliderPosition(toPosition, sliderItems.get(0));
+                sideFlag = true;
+            }
+            if(toPosition < currentLeftPosition) {
+                setSliderPosition(fromPosition, sliderItems.get(0));
+                setSliderPosition(toPosition, sliderItems.get(1));
+                sideFlag = false;
+            }
+        }else{
+            setSliderPosition(fromPosition, sliderItems.get(0));
+            setSliderPosition(toPosition, sliderItems.get(1));
+            sideFlag = false;
+        }
     }
 
     @Step
@@ -84,9 +109,9 @@ public class DatesPageSelenide {
     }
 
     @Step
-    public void checkSliderLogs(int leftPosition, int rightPosition, boolean isInverse) {
+    public void checkSliderLogs(int leftPosition, int rightPosition) {
         Iterator<SelenideElement> log = logs.iterator();
-        if (isInverse) {
+        if (sideFlag) {
             checkSliderLog(leftPosition, true, log.next().getText());
             checkSliderLog(rightPosition, false, log.next().getText());
         } else {

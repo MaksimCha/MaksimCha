@@ -51,7 +51,7 @@ public class PageObjectTest extends TestBase {
         homePageSelenium.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
 
         //4. Assert User name in the left-top side of screen that user is loggined
-        homePageSelenium.checkLoginTitle(LOGIN_TITLE.getTitle());
+        homePageSelenium.checkLoginTitle(PITER_CHALOVSKII.title);
 
         //5. Assert Browser title
         homePageSelenium.checkTitle(driver, HOME_PAGE_TITLE.getTitle());

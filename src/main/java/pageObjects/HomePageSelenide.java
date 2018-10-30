@@ -13,8 +13,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.Links.HOME_PAGE_LINK;
+import static enums.ServiceItems.getServiceItemTitles;
+import static enums.ServiceItems.values;
 import static enums.Titles.HOME_PAGE_TITLE;
-import static enums.Titles.getServiceTitleSet;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -50,6 +51,8 @@ public class HomePageSelenide {
     @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
     private SelenideElement differentElementsButton;
 
+    private boolean isHeader = true;
+
     public HomePageSelenide() {
     }
 
@@ -71,11 +74,13 @@ public class HomePageSelenide {
     @Step
     public void headServiceButtonClick() {
         serviceHeadButton.click();
+        isHeader = true;
     }
 
     @Step
     public void leftServiceButtonClick() {
         serviceLeftButton.click();
+        isHeader = false;
     }
 
     @Step
@@ -96,7 +101,7 @@ public class HomePageSelenide {
     }
 
     @Step
-    public void checkServiceDropDownContains(boolean isHeader) {
+    public void checkServiceDropDownContains() {
         if(isHeader){
             checkDropDownContains(headerServiceItems);
         }else{
@@ -105,11 +110,11 @@ public class HomePageSelenide {
     }
 
     private void checkDropDownContains(List<SelenideElement> serviceItems) {
-        assertEquals(serviceItems.size(), getServiceTitleSet().size());
+        assertEquals(serviceItems.size(), values().length);
         ArrayList<String> actualTitles = new ArrayList<>();
         for (SelenideElement item:serviceItems) {
             actualTitles.add(item.getText().toUpperCase());
         }
-        assertTrue(actualTitles.containsAll(getServiceTitleSet()));
+        assertTrue(actualTitles.containsAll(getServiceItemTitles()));
     }
 }

@@ -48,11 +48,11 @@ public class DifferentElementPageTest extends SelenideTestBase {
 
         //5. Click on "Service" subcategory in the header and check that drop down contains options
         homePageSelenide.headServiceButtonClick();
-        homePageSelenide.checkServiceDropDownContains(true);
+        homePageSelenide.checkServiceDropDownContains();
 
         //6. Click on Service subcategory in the left section and check that drop down contains options
         homePageSelenide.leftServiceButtonClick();
-        homePageSelenide.checkServiceDropDownContains(false);
+        homePageSelenide.checkServiceDropDownContains();
 
         //7. Open through the header menu Service -> Different Elements Page
         homePageSelenide.headServiceButtonClick();
