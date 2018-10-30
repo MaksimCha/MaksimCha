@@ -42,6 +42,9 @@ public class HomePageSelenide {
     @FindBy(css = ".sidebar-menu .menu-title")
     private SelenideElement serviceLeftButton;
 
+    @FindBy(css = ".m-l8 [href = 'dates.html']")
+    private SelenideElement datesButton;
+
     @FindBy(css = ".m-l8 .dropdown-menu > li > a")
     private List<SelenideElement> headerServiceItems;
 
@@ -84,6 +87,12 @@ public class HomePageSelenide {
     }
 
     @Step
+    public void datesButtonClick() {
+        serviceHeadButton.click();
+        datesButton.click();
+    }
+
+    @Step
     public void differentElementsButtonClick() {
         differentElementsButton.click();
     }
@@ -102,9 +111,9 @@ public class HomePageSelenide {
 
     @Step
     public void checkServiceDropDownContains() {
-        if(isHeader){
+        if (isHeader) {
             checkDropDownContains(headerServiceItems);
-        }else{
+        } else {
             checkDropDownContains(leftPannelServiceItems);
         }
     }
@@ -112,7 +121,7 @@ public class HomePageSelenide {
     private void checkDropDownContains(List<SelenideElement> serviceItems) {
         assertEquals(serviceItems.size(), values().length);
         ArrayList<String> actualTitles = new ArrayList<>();
-        for (SelenideElement item:serviceItems) {
+        for (SelenideElement item : serviceItems) {
             actualTitles.add(item.getText().toUpperCase());
         }
         assertTrue(actualTitles.containsAll(getServiceItemTitles()));

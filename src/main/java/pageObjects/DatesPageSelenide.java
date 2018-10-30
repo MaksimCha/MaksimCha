@@ -58,12 +58,6 @@ public class DatesPageSelenide {
     }
 
     @Step
-    public void datesButtonClick() {
-        serviceButton.click();
-        datesButton.click();
-    }
-
-    @Step
     public void dragAndDropSlider(int fromPosition, int toPosition) {
         double width = (double) mainSlider.getSize().width;
         Double currentLeftPosition = parseDouble(sliderItems
@@ -74,29 +68,21 @@ public class DatesPageSelenide {
                 .get(1)
                 .getCssValue("left")
                 .replaceAll("px", "")) / (width / 100);
-        if(currentLeftPosition.equals(currentRightPosition)){
-            if(fromPosition > currentRightPosition){
-                setSliderPosition(fromPosition, sliderItems.get(1));
-                setSliderPosition(toPosition, sliderItems.get(0));
-                sideFlag = true;
-            }
-            if(toPosition < currentLeftPosition) {
-                setSliderPosition(fromPosition, sliderItems.get(0));
-                setSliderPosition(toPosition, sliderItems.get(1));
-                sideFlag = false;
-            }
-        }else{
-            setSliderPosition(fromPosition, sliderItems.get(0));
-            setSliderPosition(toPosition, sliderItems.get(1));
+        if (fromPosition > currentRightPosition && currentLeftPosition.equals(currentRightPosition)) {
+            setSliderPosition(fromPosition, sliderItems.get(1), currentRightPosition);
+            setSliderPosition(toPosition, sliderItems.get(0), currentLeftPosition);
+            sideFlag = true;
+        } else {
+            setSliderPosition(fromPosition, sliderItems.get(0), currentLeftPosition);
+            setSliderPosition(toPosition, sliderItems.get(1), currentRightPosition);
             sideFlag = false;
         }
     }
 
     @Step
-    private void setSliderPosition(Integer position, SelenideElement sliderItem) {
+    private void setSliderPosition(Integer position, SelenideElement sliderItem, Double currentPosition) {
         double width = (double) mainSlider.getSize().width;
         Actions act = new Actions(getWebDriver());
-        Double currentPosition = parseDouble(sliderItem.getCssValue("left").replaceAll("px", "")) / (width / 100);
         int xOffset = (int) ((position - currentPosition - 1) * (width / 100));
         act.dragAndDropBy(sliderItem, xOffset, 0).build().perform();
     }

@@ -11,7 +11,6 @@ import pageObjects.DatesPageSelenide;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.Sliders.SLIDER;
 import static enums.Users.PITER_CHALOVSKII;
 
 @Feature("Smoke tests")
@@ -44,7 +43,7 @@ public class DatesPageTest extends SelenideTestBase {
         homePageSelenide.checkLoginTitle(PITER_CHALOVSKII);
 
         //5. Open through the header menu Service -> Dates Page
-        datesPageSelenide.datesButtonClick();
+        homePageSelenide.datesButtonClick();
         datesPageSelenide.checkTitle();
 
         //6. Using drag-and-drop set Range sliders.
