@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import enums.CheckBoxItems;
+import enums.DropDownItems;
 import enums.RadioButtonItems;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,7 @@ import static enums.Titles.DIFEL_PAGE_TITLE;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class ServicePageSelenide {
+public class DifferentEllementPageSelenide {
 
     @FindBy(css = ".label-checkbox > input")
     private List<SelenideElement> checkBoxes;
@@ -57,9 +58,9 @@ public class ServicePageSelenide {
     }
 
     @Step
-    public void selectDropDownButton(int count) {
-        assertTrue(dropDownItems.size() >= count);
-        iterateButtons(count, dropDownItems);
+    public void selectDropDownButton(DropDownItems item) {
+        assertTrue(dropDownItems.size() >= item.counter);
+        iterateButtons(item.counter, dropDownItems);
     }
 
     private void iterateButtons(int count, List<SelenideElement> items) {
@@ -151,5 +152,15 @@ public class ServicePageSelenide {
     public void checkLog(String value) {
         String lastLogText = logs.get(0).getText();
         assertTrue(lastLogText.contains(value));
+    }
+
+    @Step
+    public void checkRadioButtonLog(RadioButtonItems item) {
+        checkLog(item.value);
+    }
+
+    @Step
+    public void checkDropDownLog(DropDownItems item) {
+        checkLog(item.value);
     }
 }

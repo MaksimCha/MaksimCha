@@ -12,7 +12,6 @@ import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
 import static enums.Sliders.SLIDER;
-import static enums.Titles.LOGIN_TITLE;
 import static enums.Users.PITER_CHALOVSKII;
 
 @Feature("Smoke tests")
@@ -42,7 +41,7 @@ public class DatesPageTest extends SelenideTestBase {
         homePageSelenide.login(PITER_CHALOVSKII);
 
         //4. Assert User name in the left-top side of screen that user is loggined
-        homePageSelenide.checkLoginTitle(LOGIN_TITLE);
+        homePageSelenide.checkLoginTitle(PITER_CHALOVSKII);
 
         //5. Open through the header menu Service -> Dates Page
         datesPageSelenide.datesButtonClick();
