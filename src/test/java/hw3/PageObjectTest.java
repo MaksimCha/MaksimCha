@@ -39,22 +39,22 @@ public class PageObjectTest extends TestBase {
     }
 
     @Test
-    public void simpleTest() {
+    public void homePageTest() {
 
         //1. Navigate
         homePageSelenium.open(driver);
 
         //2. Assert
-        homePageSelenium.checkTitle(driver, HOME_PAGE_TITLE.title);
+        homePageSelenium.checkTitle(driver, HOME_PAGE_TITLE.getTitle());
 
         //3. Login
         homePageSelenium.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
 
         //4. Assert User name in the left-top side of screen that user is loggined
-        homePageSelenium.checkLoginTitle(LOGIN_TITLE.title);
+        homePageSelenium.checkLoginTitle(LOGIN_TITLE.getTitle());
 
         //5. Assert Browser title
-        homePageSelenium.checkTitle(driver, HOME_PAGE_TITLE.title);
+        homePageSelenium.checkTitle(driver, HOME_PAGE_TITLE.getTitle());
 
         //6. Assert that there are 4 items on the header section are displayed and they have proper texts
 
@@ -67,8 +67,8 @@ public class PageObjectTest extends TestBase {
         homePageSelenium.checkImageTitles();
 
         //9. Assert a text of the main header
-        homePageSelenium.checkMainHeaderText(MAIN_HEADER_TITLE.title,
-                MAIN_HEADER_TEXT.title);
+        homePageSelenium.checkMainHeaderText(MAIN_HEADER_TITLE.getTitle(),
+                MAIN_HEADER_TEXT.getTitle());
 
         //10. Assert that there is the iframe in the center of page
         homePageSelenium.checkFrameDisplaying();
@@ -84,7 +84,7 @@ public class PageObjectTest extends TestBase {
         homePageSelenium.checkSubHeaderDisplaying();
 
         //14. Assert that JDI GITHUB is a link and has a proper URL
-        homePageSelenium.checkSubHeaderLink(SUBHEADER_LINK.title);
+        homePageSelenium.checkSubHeaderLink(SUBHEADER_LINK.getTitle());
 
         //15. Assert that there is Left Section
         homePageSelenium.checkLeftSectionDisplaying();
