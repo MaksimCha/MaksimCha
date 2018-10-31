@@ -31,7 +31,7 @@ public class DifferentElementPageTest extends SelenideTestBase {
         differentElementPageSelenide = page(DifferentElementPageSelenide.class);
     }
 
-    @Test
+    @Test(threadPoolSize = 3)
     public void differentElementsPageTest() {
 
         //1. Open test site by URL

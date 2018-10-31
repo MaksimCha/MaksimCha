@@ -35,6 +35,7 @@ public enum Titles {
     SUBHEADER_LINK("https://github.com/epam/JDI"),
 
     DIFEL_PAGE_TITLE("Different Elements"),
+    DATES_PAGE_TITLE("Dates"),
 
     USER_TABLE_PAGE_TITLE("User Table");
 

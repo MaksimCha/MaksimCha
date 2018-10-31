@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.Titles.DATES_PAGE_TITLE;
 import static java.lang.Double.parseDouble;
 import static java.lang.String.valueOf;
 import static org.testng.Assert.assertEquals;
@@ -91,7 +92,7 @@ public class DatesPageSelenide {
 
     @Step
     public void checkTitle() {
-        assertEquals(getWebDriver().getTitle(), "Dates");
+        assertEquals(getWebDriver().getTitle(), DATES_PAGE_TITLE.getTitle());
     }
 
     @Step

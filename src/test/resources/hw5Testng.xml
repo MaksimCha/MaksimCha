@@ -5,8 +5,6 @@
 
         <classes>
             <class name="hw5.ex2.DifferentElementPageTest" />
-            <class name="hw5.ex2.DifferentElementPageTest" />
-            <class name="hw5.ex2.DifferentElementPageTest" />
         </classes>
 
     </test>
