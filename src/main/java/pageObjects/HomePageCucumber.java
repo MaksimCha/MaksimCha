@@ -62,6 +62,9 @@ public class HomePageCucumber {
     @FindBy(css = ".m-l8 .dropdown-menu [href = 'user-table.html']")
     private SelenideElement userTableButton;
 
+    @FindBy(css = "div.benefit > span")
+    private List<SelenideElement> imageTitles;
+
     @FindBy(css = "div.benefit-icon > span")
     private List<SelenideElement> testedImages;
 
@@ -137,9 +140,9 @@ public class HomePageCucumber {
     @Step
     @And("4 texts are displayed under pictures respectively")
     public void checkImageTitles() {
-        assertEquals(testedImages.size(), ImageTitles.values().length);
+        assertEquals(imageTitles.size(), ImageTitles.values().length);
         ArrayList<String> actualTitles = new ArrayList<>();
-        for (SelenideElement item : testedImages) {
+        for (SelenideElement item : imageTitles) {
             actualTitles.add(item.getText().toUpperCase());
         }
         assertTrue(actualTitles.containsAll(ImageTitles.getImageTitles()));

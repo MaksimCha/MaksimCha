@@ -11,7 +11,7 @@ import static java.lang.System.setProperty;
         features = "src/test/java",
         glue = "pageObjects",
         tags = "@smokeTest")
-public class CucumberServicePageRunner extends AbstractTestNGCucumberTests {
+public class CucumberDifElPageRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void beforeSuite(){

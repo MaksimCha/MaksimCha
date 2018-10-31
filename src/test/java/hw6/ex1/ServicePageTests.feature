@@ -25,7 +25,13 @@ Feature: Different Elements Page tests
     Then Logs are displayed and status corresponding to selected checkboxes
       |0    |Water|
       |2    |Wind |
-    When I select radio 1, Selen
+    When I select radio Selen
     Then Log are displayed and status corresponding to selected radio Selen
-    When I select dropdown 1, Yellow
+    When I select dropdown Yellow
     Then Log are displayed and status corresponding to selected dropdown Yellow
+    When I unselect checkBoxes
+      |0    |Water|
+      |2    |Wind |
+    Then Logs are displayed and status corresponding to selected checkboxes
+      |0    |Water|
+      |2    |Wind |
