@@ -5,6 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DifferentElementPageSelenide;
@@ -25,7 +26,7 @@ public class DifferentElementPageTest extends SelenideTestBase {
     private HomePageSelenide homePageSelenide;
     private DifferentElementPageSelenide differentElementPageSelenide;
 
-    @BeforeClass
+    @BeforeMethod
     public void beforeClass() {
         homePageSelenide = page(HomePageSelenide.class);
         differentElementPageSelenide = page(DifferentElementPageSelenide.class);
