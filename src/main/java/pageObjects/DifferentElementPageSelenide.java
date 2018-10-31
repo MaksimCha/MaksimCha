@@ -83,13 +83,13 @@ public class DifferentElementPageSelenide {
     @Step
     public void checkDifElPageExists() {
         checkCheckBoxes();
-        checkCheckRadios();
+        checkRadios();
         checkDropDown();
         checkButtons();
     }
 
     @Step
-    private void checkCheckRadios() {
+    private void checkRadios() {
         for (SelenideElement RadioButton : radioButtons) {
             RadioButton.shouldBe(visible);
         }
