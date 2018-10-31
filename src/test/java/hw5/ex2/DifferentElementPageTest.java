@@ -31,7 +31,21 @@ public class DifferentElementPageTest extends SelenideTestBase {
         differentElementPageSelenide = page(DifferentElementPageSelenide.class);
     }
 
-    @Test(threadPoolSize = 3)
+    @Test()
+    public void firstDifElPageTest(){
+        differentElementsPageTest();
+    }
+
+    @Test()
+    public void secondDifElPageTest(){
+        differentElementsPageTest();
+    }
+
+    @Test()
+    public void thirdDifElPageTest(){
+        differentElementsPageTest();
+    }
+
     public void differentElementsPageTest() {
 
         //1. Open test site by URL
@@ -92,6 +106,6 @@ public class DifferentElementPageTest extends SelenideTestBase {
         differentElementPageSelenide.selectCheckBoxes(WIND);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementPageSelenide.checkCheckBoxesLogs(WIND, WATER);
+        differentElementPageSelenide.checkCheckBoxesLogs(WATER, WIND);
     }
 }
