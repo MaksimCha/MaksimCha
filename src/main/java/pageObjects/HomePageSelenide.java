@@ -37,10 +37,10 @@ public class HomePageSelenide {
     private SelenideElement loginTitle;
 
     @FindBy(css = ".m-l8 .dropdown-toggle")
-    private SelenideElement serviceHeadButton;
+    private SelenideElement headServiceButton;
 
     @FindBy(css = ".sidebar-menu .menu-title")
-    private SelenideElement serviceLeftButton;
+    private SelenideElement leftServiceButton;
 
     @FindBy(css = ".m-l8 [href = 'dates.html']")
     private SelenideElement datesButton;
@@ -73,19 +73,19 @@ public class HomePageSelenide {
 
     @Step
     public void headServiceButtonClick() {
-        serviceHeadButton.click();
+        headServiceButton.click();
         isHeader = true;
     }
 
     @Step
     public void leftServiceButtonClick() {
-        serviceLeftButton.click();
+        leftServiceButton.click();
         isHeader = false;
     }
 
     @Step
     public void datesButtonClick() {
-        serviceHeadButton.click();
+        headServiceButton.click();
         datesButton.click();
     }
 

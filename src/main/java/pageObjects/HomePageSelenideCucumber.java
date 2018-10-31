@@ -1,32 +1,31 @@
 package pageObjects;
 
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import enums.ImageTitles;
+import enums.ServiceItems;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.Links.HOME_PAGE_LINK;
+import static enums.ServiceItems.getServiceItemTitles;
 import static enums.Titles.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class HomePageSelenideCucumber {
 
-    public HomePageSelenideCucumber(){
+    public HomePageSelenideCucumber() {
         page(this);
     }
 
@@ -51,37 +50,41 @@ public class HomePageSelenideCucumber {
     @FindBy(css = ".sidebar-menu .menu-title")
     private SelenideElement serviceLeftButton;
 
+    @FindBy(css = ".m-l8 [href = 'dates.html']")
+    private SelenideElement datesButton;
+
+    @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
+    private SelenideElement differentElementsButton;
+
     @FindBy(css = "h3.main-title")
     private SelenideElement mainTitle;
 
     @FindBy(css = "p.main-txt")
     private SelenideElement mainTxt;
 
-    private ElementsCollection testedImages = $$(By.cssSelector("div.benefit-icon > span"));
-
-    private ElementsCollection imageTitles = $$(By.cssSelector("div.benefit > span"));
-
-    private ElementsCollection serviceHeadListItems = $$(By.cssSelector(".m-l8 .dropdown-menu > li > a"));
-
-    private ElementsCollection serviceLeftListItems = $$(By.cssSelector(".sidebar-menu .menu-title [class = 'sub'] li > a"));
-
-    @FindBy(css = ".m-l8 .dropdown-menu [href = 'different-elements.html']")
-    private SelenideElement differentElementsButton;
-
     @FindBy(css = ".m-l8 .dropdown-menu [href = 'user-table.html']")
     private SelenideElement userTableButton;
+
+    @FindBy(css = "div.benefit-icon > span")
+    private List<SelenideElement> testedImages;
+
+    @FindBy(css = ".m-l8 .dropdown-menu > li > a")
+    private List<SelenideElement> headerServiceItems;
+
+    @FindBy(css = ".sidebar-menu .menu-title [class = 'sub'] li > a")
+    private List<SelenideElement> leftPannelServiceItems;
 
     //==============================methods==================================
 
     @Step
     @When("I'm on the Home Page")
     public void openPage() {
-        open("https://epam.github.io/JDI/index.html");
+        open(HOME_PAGE_LINK.getLink());
     }
 
     @Step
     @And("I login as user \"Piter Chailovskii\"")
-    public void loginAsPiter(){
+    public void loginAsPiter() {
         login("epam", "1234");
     }
 
@@ -102,13 +105,13 @@ public class HomePageSelenideCucumber {
 
     @Step
     @When("I click Different Elements Page category")
-    public void headServiceDifElRealise(){
+    public void headServiceDifElRealise() {
         differentElementsButton.click();
     }
 
     @Step
     @And("I click on \"User Table\" button in Service dropdown")
-    public void headServiceUserTableRealise(){
+    public void headServiceUserTableRealise() {
         userTableButton.click();
     }
 
@@ -137,18 +140,12 @@ public class HomePageSelenideCucumber {
     @Step
     @And("4 texts are displayed under pictures respectively")
     public void checkImageTitles() {
-//        ArrayList<String> expectedImageTitles = new ArrayList<>();
-//        expectedImageTitles.add(FIRST_IMAGE_TITLE.title);
-//        expectedImageTitles.add(SECOND_IMAGE_TITLE.title);
-//        expectedImageTitles.add(THIRD_IMAGE_TITLE.title);
-//        expectedImageTitles.add(FOURTH_IMAGE_TITLE.title);
-//
-//        assertEquals(imageTitles.size(), expectedImageTitles.size());
-//        Iterator<SelenideElement> headerItem = imageTitles.iterator();
-//        Iterator<String> itemText = expectedImageTitles.iterator();
-//        while (headerItem.hasNext() && itemText.hasNext()) {
-//            assertEquals(headerItem.next().getText(), itemText.next());
-//        }
+        assertEquals(testedImages.size(), ImageTitles.values().length);
+        ArrayList<String> actualTitles = new ArrayList<>();
+        for (SelenideElement item : testedImages) {
+            actualTitles.add(item.getText().toUpperCase());
+        }
+        assertTrue(actualTitles.containsAll(ImageTitles.getImageTitles()));
     }
 
     @Step
@@ -160,22 +157,12 @@ public class HomePageSelenideCucumber {
 
     @Step
     @Then("8 options are displayed in dropdown")
-    public void checkHeadServiceDropDownContains(){
-//        ArrayList<String> expectedTitles = new ArrayList<String>();
-//        expectedTitles.add(FIRST_SERVICE_HEADER.title);
-//        expectedTitles.add(SECOND_SERVICE_HEADER.title);
-//        expectedTitles.add(THIRD_SERVICE_HEADER.title);
-//        expectedTitles.add(FOURTH_SERVICE_HEADER.title);
-//        expectedTitles.add(FIFTH_SERVICE_HEADER.title);
-//        expectedTitles.add(SIXTH_SERVICE_HEADER.title);
-//        expectedTitles.add(SEVENTH_SERVICE_HEADER.title);
-//        expectedTitles.add(EIGHTH_SERVICE_HEADER.title);
-
-//        assertEquals(serviceHeadListItems.size(), expectedTitles.size());
-//        Iterator<SelenideElement> serviceListItem = serviceHeadListItems.iterator();
-//        Iterator<String> itemText = expectedTitles.iterator();
-//        while (serviceListItem.hasNext() && itemText.hasNext()) {
-//            assertEquals(serviceListItem.next().getText(), itemText.next());
-//        }
+    public void checkHeadServiceDropDownContains() {
+        assertEquals(headerServiceItems.size(), ServiceItems.values().length);
+        ArrayList<String> actualTitles = new ArrayList<>();
+        for (SelenideElement item : headerServiceItems) {
+            actualTitles.add(item.getText().toUpperCase());
+        }
+        assertTrue(actualTitles.containsAll(getServiceItemTitles()));
     }
 }
