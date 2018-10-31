@@ -56,9 +56,6 @@ public class HomePageSelenide {
 
     private boolean isHeader = true;
 
-    public HomePageSelenide() {
-    }
-
     //==============================methods==================================
 
     @Step
