@@ -23,15 +23,6 @@ import static enums.Users.PITER_CHALOVSKII;
 @Listeners(AllureAttachmentListener.class)
 public class DifferentElementPageTest extends SelenideTestBase {
 
-    private HomePageSelenide homePageSelenide;
-    private DifferentElementPageSelenide differentElementPageSelenide;
-
-    @BeforeMethod
-    public void beforeClass() {
-        homePageSelenide = page(HomePageSelenide.class);
-        differentElementPageSelenide = page(DifferentElementPageSelenide.class);
-    }
-
     @Test()
     public void firstDifElPageTest(){
         differentElementsPageTest();
@@ -48,6 +39,9 @@ public class DifferentElementPageTest extends SelenideTestBase {
     }
 
     public void differentElementsPageTest() {
+
+        HomePageSelenide homePageSelenide = page(HomePageSelenide.class);
+        DifferentElementPageSelenide differentElementPageSelenide = page(DifferentElementPageSelenide.class);
 
         //1. Open test site by URL
         homePageSelenide.openPage();
