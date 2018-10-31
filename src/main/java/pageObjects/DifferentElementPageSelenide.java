@@ -89,14 +89,14 @@ public class DifferentElementPageSelenide {
     }
 
     @Step
-    private void checkCheckBoxes() {
+    private void checkCheckRadios() {
         for (SelenideElement RadioButton : radioButtons) {
             RadioButton.shouldBe(visible);
         }
     }
 
     @Step
-    private void checkCheckRadios() {
+    private void checkCheckBoxes() {
         for (SelenideElement CheckBox : checkBoxes) {
             CheckBox.shouldBe(visible);
         }

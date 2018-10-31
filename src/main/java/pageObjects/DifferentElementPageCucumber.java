@@ -1,6 +1,7 @@
 package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.CheckBoxItems;
 import enums.DropDownItems;
@@ -92,6 +93,7 @@ public class DifferentElementPageCucumber {
     //==============================checks===================================
 
     @Step
+    @Then("The browser title is Different Elements Page")
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), DIFEL_PAGE_TITLE.getTitle());
     }
