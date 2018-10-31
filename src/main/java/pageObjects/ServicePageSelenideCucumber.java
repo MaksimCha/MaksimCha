@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -28,7 +29,8 @@ import static org.testng.Assert.assertTrue;
 
 public class ServicePageSelenideCucumber {
 
-    private ElementsCollection CheckBoxes = $$(By.cssSelector(".label-checkbox > input"));
+    @FindBy(css = ".label-checkbox > input")
+    private ElementsCollection CheckBoxes;
 
     private ElementsCollection RadioButtons = $$(By.cssSelector(".label-radio > input"));
 
@@ -68,19 +70,19 @@ public class ServicePageSelenideCucumber {
 
     @Step
     @When("I select radio (.+), (.+)")
-    public void selectRadioButton(int count, String value) {
+    public void selectRadioButton(int count) {
         RadioButtons.shouldBe(sizeGreaterThan(count));
-        iterateButtons(count, value, RadioButtons);
+        iterateButtons(count, RadioButtons);
     }
 
     @Step
     @When("I select dropdown (.+), (.+)")
-    public void selectDropDownButton(int count, String value) {
+    public void selectDropDownButton(int count) {
         DropDownItems.shouldBe(sizeGreaterThan(count));
-        iterateButtons(count, value, DropDownItems);
+        iterateButtons(count, DropDownItems);
     }
 
-    private void iterateButtons(int count, String value, ElementsCollection Items) {
+    private void iterateButtons(int count, ElementsCollection Items) {
         int i = 0;
         for (SelenideElement item : Items) {
             if (i == count) {

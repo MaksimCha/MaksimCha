@@ -23,9 +23,9 @@ import static enums.Titles.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class HomePageSelenideCucumber {
+public class HomePageCucumber {
 
-    public HomePageSelenideCucumber() {
+    public HomePageCucumber() {
         page(this);
     }
 
@@ -45,10 +45,7 @@ public class HomePageSelenideCucumber {
     private SelenideElement loginTitle;
 
     @FindBy(css = ".m-l8 .dropdown-toggle")
-    private SelenideElement serviceHeadButton;
-
-    @FindBy(css = ".sidebar-menu .menu-title")
-    private SelenideElement serviceLeftButton;
+    private SelenideElement serviceButton;
 
     @FindBy(css = ".m-l8 [href = 'dates.html']")
     private SelenideElement datesButton;
@@ -69,7 +66,7 @@ public class HomePageSelenideCucumber {
     private List<SelenideElement> testedImages;
 
     @FindBy(css = ".m-l8 .dropdown-menu > li > a")
-    private List<SelenideElement> headerServiceItems;
+    private List<SelenideElement> serviceItems;
 
     @FindBy(css = ".sidebar-menu .menu-title [class = 'sub'] li > a")
     private List<SelenideElement> leftPannelServiceItems;
@@ -99,19 +96,19 @@ public class HomePageSelenideCucumber {
 
     @Step
     @When("I click on \"Service\" button in Header")
-    public void headServiceButtonRealise() {
-        serviceHeadButton.click();
+    public void serviceButtonClick() {
+        serviceButton.click();
     }
 
     @Step
     @When("I click Different Elements Page category")
-    public void headServiceDifElRealise() {
+    public void differentElementsButtonClick() {
         differentElementsButton.click();
     }
 
     @Step
     @And("I click on \"User Table\" button in Service dropdown")
-    public void headServiceUserTableRealise() {
+    public void userTableButtonClick() {
         userTableButton.click();
     }
 
@@ -157,10 +154,10 @@ public class HomePageSelenideCucumber {
 
     @Step
     @Then("8 options are displayed in dropdown")
-    public void checkHeadServiceDropDownContains() {
-        assertEquals(headerServiceItems.size(), ServiceItems.values().length);
+    public void checkServiceDropDownContains() {
+        assertEquals(serviceItems.size(), ServiceItems.values().length);
         ArrayList<String> actualTitles = new ArrayList<>();
-        for (SelenideElement item : headerServiceItems) {
+        for (SelenideElement item : serviceItems) {
             actualTitles.add(item.getText().toUpperCase());
         }
         assertTrue(actualTitles.containsAll(getServiceItemTitles()));
