@@ -20,18 +20,18 @@ Feature: Different Elements Page tests
     And right section are displayed on the Different Elements Page
     And left section are displayed on the Different Elements Page
     When I select checkBoxes
-      |0    |Water|
-      |2    |Wind |
+    |Water|
+    |Wind |
     Then Logs are displayed and status corresponding to selected checkboxes
-      |0    |Water|
-      |2    |Wind |
+    |Water|
+    |Wind |
     When I select radio Selen
     Then Log are displayed and status corresponding to selected radio Selen
     When I select dropdown Yellow
     Then Log are displayed and status corresponding to selected dropdown Yellow
     When I unselect checkBoxes
-      |0    |Water|
-      |2    |Wind |
+    |Water|
+    |Wind |
     Then Logs are displayed and status corresponding to selected checkboxes
-      |0    |Water|
-      |2    |Wind |
+    |Water|
+    |Wind |

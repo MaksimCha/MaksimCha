@@ -1,14 +1,15 @@
 package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
+import com.google.common.collect.Lists;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Iterator;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
@@ -26,6 +27,9 @@ public class DifferentElementPageCucumber {
 
     @FindBy(css = ".label-checkbox > input")
     private List<SelenideElement> checkBoxes;
+
+    @FindBy(css = ".label-checkbox")
+    private List<SelenideElement> checkBoxTitles;
 
     @FindBy(css = ".label-radio")
     private List<SelenideElement> radioButtonTitles;
@@ -55,9 +59,15 @@ public class DifferentElementPageCucumber {
 
     @Step
     @When("I (?:un|)select checkBoxes")
-    public void selectCheckBoxes(Map<Integer, String> var) {
-        for (Map.Entry pair : var.entrySet()) {
-            selectCheckBox((Integer) pair.getKey());
+    public void selectCheckBoxes(List<String> items) {
+        for (String name : items) {
+            int i = 0;
+            for (SelenideElement title : checkBoxTitles) {
+                if(title.getText().equalsIgnoreCase(name)){
+                    selectCheckBox(i);
+                }
+                ++i;
+            }
         }
     }
 
@@ -157,32 +167,22 @@ public class DifferentElementPageCucumber {
 
     @Step
     @Then("Logs are displayed and status corresponding to selected checkboxes")
-    public void checkCheckBoxesLogs(Map<Integer, String> var) {
-        var = var.entrySet()
-                .stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByKey()))
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue,
-                        LinkedHashMap::new
-                ));
+    public void checkCheckBoxesLogs(List<String> items) {
+        items = Lists.reverse(items);
         Iterator<SelenideElement> logBox = logs.iterator();
-        for (Map.Entry pair : var.entrySet()) {
+        for (String title : items) {
             if (logBox.hasNext()) {
-                iterateCheckBoxes((Integer) pair.getKey(), (String) pair.getValue(), logBox.next().getText());
+                iterateCheckBoxes(title, logBox.next().getText());
             }
         }
     }
 
     @Step
-    private void iterateCheckBoxes(int count, String value, String expected) {
-        int i = 0;
+    private void iterateCheckBoxes(String value, String expected) {
         for (SelenideElement item : checkBoxes) {
-            if (i == count) {
+            if (item.getText().equalsIgnoreCase(value)) {
                 checkCheckBoxLog(value, item.is(selected), expected);
             }
-            ++i;
         }
     }
 
