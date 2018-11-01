@@ -7,6 +7,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.ImageTitles;
 import enums.ServiceItems;
+import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
@@ -20,6 +21,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.Links.HOME_PAGE_LINK;
 import static enums.ServiceItems.getServiceItemTitles;
 import static enums.Titles.*;
+import static enums.Users.PITER_CHALOVSKII;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -85,7 +87,7 @@ public class HomePageCucumber {
     @Step
     @And("I login as user \"Piter Chailovskii\"")
     public void loginAsPiter() {
-        login("epam", "1234");
+        login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
     }
 
     @Step

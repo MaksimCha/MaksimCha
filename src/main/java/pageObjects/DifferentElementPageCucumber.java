@@ -88,9 +88,7 @@ public class DifferentElementPageCucumber {
     public void selectRadioButton(String name) {
         int i = 0;
         for (SelenideElement title : radioButtonTitles) {
-            if (title.getText().equalsIgnoreCase(name)) {
-                iterateButtons(i, radioButtons);
-            }
+            if (title.getText().equalsIgnoreCase(name)) iterateButtons(i, radioButtons);
             ++i;
         }
     }
@@ -105,6 +103,7 @@ public class DifferentElementPageCucumber {
         }
     }
 
+    @Step
     private void iterateButtons(int count, List<SelenideElement> items) {
         int i = 0;
         for (SelenideElement item : items) {
@@ -126,17 +125,13 @@ public class DifferentElementPageCucumber {
     @Step
     @And("4 radiobuttons are displayed on the Different Elements Page")
     public void checkRadios() {
-        for (SelenideElement radioButton : radioButtons) {
-            radioButton.shouldBe(visible);
-        }
+        for (SelenideElement radioButton : radioButtons) radioButton.shouldBe(visible);
     }
 
     @Step
     @And("4 checkboxes are displayed on the Different Elements Page")
     public void checkCheckBoxes() {
-        for (SelenideElement checkBox : checkBoxes) {
-            checkBox.shouldBe(visible);
-        }
+        for (SelenideElement checkBox : checkBoxes) checkBox.shouldBe(visible);
     }
 
     @Step
@@ -148,9 +143,7 @@ public class DifferentElementPageCucumber {
     @Step
     @And("2 buttons are displayed on the Different Elements Page")
     public void checkButtons() {
-        for (SelenideElement button : buttons) {
-            button.shouldBe(visible);
-        }
+        for (SelenideElement button : buttons) button.shouldBe(visible);
     }
 
     @Step
@@ -180,9 +173,7 @@ public class DifferentElementPageCucumber {
     @Step
     private void iterateCheckBoxes(String value, String expected) {
         for (SelenideElement item : checkBoxes) {
-            if (item.getText().equalsIgnoreCase(value)) {
-                checkCheckBoxLog(value, item.is(selected), expected);
-            }
+            if (item.getText().equalsIgnoreCase(value)) checkCheckBoxLog(value, item.is(selected), expected);
         }
     }
 
@@ -204,6 +195,7 @@ public class DifferentElementPageCucumber {
         checkLog(value);
     }
 
+    @Step
     private void checkLog(String value) {
         String lastLogText = logs.get(0).getText();
         assertTrue(lastLogText.contains(value));

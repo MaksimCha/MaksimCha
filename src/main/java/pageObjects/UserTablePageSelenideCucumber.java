@@ -74,7 +74,7 @@ public class UserTablePageSelenideCucumber {
 
     @Step
     @And("6 Description texts under images are displayed on Users Table on User Table Page")
-    public void checkdescriptionTexts(){
+    public void checkDescriptionTexts(){
         for (SelenideElement descriptionText: descriptionTexts) {
             descriptionText.shouldBe(visible);
         }
