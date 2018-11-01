@@ -40,7 +40,7 @@ public class DifferentElementPageTest extends SelenideTestBase {
         HomePageSelenide homePageSelenide = page(HomePageSelenide.class);
         DifferentElementPageSelenide differentElementPageSelenide = page(DifferentElementPageSelenide.class);
 
-        //1. Open test site by URL
+        //1. Open test JDISite by URL
         homePageSelenide.openPage();
 
         //2. Assert Browser title

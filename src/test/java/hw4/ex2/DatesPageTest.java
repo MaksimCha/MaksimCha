@@ -30,7 +30,7 @@ public class DatesPageTest extends SelenideTestBase {
     @Test
     public void datesPageTest() {
 
-        //1. Open test site by URL
+        //1. Open test JDISite by URL
         homePage.openPage();
 
         //2. Assert Browser title

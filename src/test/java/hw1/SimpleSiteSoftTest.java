@@ -20,7 +20,7 @@ public class SimpleSiteSoftTest {
 
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
-        //1. Open test site by URL
+        //1. Open test JDISite by URL
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.navigate().to("https://epam.github.io/JDI/");

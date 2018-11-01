@@ -1,4 +1,4 @@
-package Task8;
+package task8;
 
 import driverSetups.DriverSetup;
 import org.openqa.selenium.By;

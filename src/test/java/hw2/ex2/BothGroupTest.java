@@ -17,7 +17,7 @@ public class BothGroupTest extends TestBase {
     @Test(groups = {"Smoke", "Regression"})
     public void firstOfSmokeRegressionTest() {
 
-        //1. Open test site by URL
+        //1. Open test JDISite by URL
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.navigate().to("https://epam.github.io/JDI/");
@@ -115,7 +115,7 @@ public class BothGroupTest extends TestBase {
     @Test(groups = {"Smoke", "Regression"})
     public void secondOfSmokeRegressionTest() {
 
-        //1. Open test site by URL
+        //1. Open test JDISite by URL
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.navigate().to("https://epam.github.io/JDI/");
@@ -213,7 +213,7 @@ public class BothGroupTest extends TestBase {
     @Test(groups = {"Smoke", "Regression"})
     public void thirdOfSmokeRegressionTest() {
 
-        //1. Open test site by URL
+        //1. Open test JDISite by URL
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.navigate().to("https://epam.github.io/JDI/");

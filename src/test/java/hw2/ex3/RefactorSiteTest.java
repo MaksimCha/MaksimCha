@@ -39,7 +39,7 @@ public class RefactorSiteTest extends TestBase {
     @Test
     public void refactoredTest() {
 
-        //1. Open test site by URL
+        //1. Open test JDISite by URL
         driver.navigate().to("https://epam.github.io/JDI/");
 
         //2. Assert Browser title
