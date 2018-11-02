@@ -9,7 +9,7 @@ import java.util.Map;
 public class JDIDataProvider {
 
     @DataProvider(parallel = true)
-    public Object[][] JDIFormDataProvider() throws Exception{
+    public Object[][] JDIFormDataProvider() throws Exception {
         JSONReader reader = new JSONReader();
         Map<String, FormData> dataSet = reader.readFromJSON();
         Object[][] objectDataSet = new Object[dataSet.size()][1];

@@ -4,9 +4,13 @@ import com.epam.jdi.uitests.web.selenium.elements.common.Button;
 import com.epam.jdi.uitests.web.selenium.elements.complex.CheckList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.Dropdown;
 import com.epam.jdi.uitests.web.selenium.elements.complex.RadioButtons;
+import com.epam.jdi.uitests.web.selenium.elements.complex.Selector;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import entities.FormData;
+import enums.Even;
+import enums.Nature;
+import enums.Odds;
 import org.openqa.selenium.support.FindBy;
 
 public class MetalColorSubmitForm extends Form<FormData> {
@@ -28,18 +32,19 @@ public class MetalColorSubmitForm extends Form<FormData> {
     @JDropdown(
             root = @FindBy(id = "metals"),
             list = @FindBy(tagName = "li"),
-            value = @FindBy(tagName = "button")
+            value = @FindBy(tagName = "button"),
+            expand = @FindBy(css = "[id = 'metals'] .btn-default .caret")
     )
     public Dropdown metals;
 
-    @FindBy(id = "odds-selector")
-    public RadioButtons oddsRadioButtons;
+    @FindBy(css = "#odds-selector p")
+    public Selector<Odds> oddsRadioButtons;
 
-    @FindBy(id = "even-selector")
-    public RadioButtons evenRadioButtons;
+    @FindBy(css= "#even-selector p")
+    public RadioButtons<Even> evenRadioButtons;
 
-    @FindBy(id = "elements-checklist")
-    public CheckList elementsCheckBoxes;
+    @FindBy(css = ".elements .checkbox")
+    public CheckList<Nature> elementsCheckBoxes;
 
     @FindBy(id = "submit-button")
     public Button submitButton;

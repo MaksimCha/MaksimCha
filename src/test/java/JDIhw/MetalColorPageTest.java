@@ -9,7 +9,7 @@ import static JDISite.JDIExampleSite.*;
 
 public class MetalColorPageTest extends MetalColorPageTestInit {
 
-    @Test(dataProvider = "JDIFormDataProvider", dataProviderClass = JDIDataProvider.class, threadPoolSize = 3)
+    @Test(dataProvider = "JDIFormDataProvider", dataProviderClass = JDIDataProvider.class, threadPoolSize = 5)
     public void loginTest(FormData dataSet) {
 
         //Login on JDI JDISite as User

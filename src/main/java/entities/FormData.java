@@ -3,7 +3,7 @@ package entities;
 import java.util.List;
 
 public class FormData {
-    public List<Integer> summary;
+    public List<String> summary;
 
     public List<String> elements;
 
@@ -13,7 +13,7 @@ public class FormData {
 
     public List<String> vegetables;
 
-    public void setSummary(List<Integer> summary) {
+    public void setSummary(List<String> summary) {
         this.summary = summary;
     }
 

@@ -35,21 +35,20 @@ public class JDIExampleSite extends WebSite {
     @Step
     public static void fillForm(FormData dataSet) {
         metalColorSubmitForm.vegetables.select("vegetables");
-        for (String vegetable : dataSet.vegetables){
+        for (String vegetable : dataSet.vegetables) {
             metalColorSubmitForm.vegetables.select(vegetable);
         }
-        metalColorSubmitForm.metals.click();
+        metalColorSubmitForm.colors.select(dataSet.color);
         metalColorSubmitForm.metals.select(dataSet.metals);
         for (String element : dataSet.elements) {
             metalColorSubmitForm.elementsCheckBoxes.select(element);
         }
-        metalColorSubmitForm.colors.select(dataSet.color);
         metalColorSubmitForm.oddsRadioButtons.select(dataSet.summary.get(0));
         metalColorSubmitForm.evenRadioButtons.select(dataSet.summary.get(1));
     }
 
     @Step
-    public static void submitButtonClick(){
+    public static void submitButtonClick() {
         metalColorSubmitForm.submitButton.click();
     }
 

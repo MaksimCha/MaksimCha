@@ -16,9 +16,9 @@ public class CustomSerializer implements JsonDeserializer<FormData> {
         FormData formData = new FormData();
 
         JsonArray jsonSummury = jsonObject.getAsJsonArray("summary");
-        List<Integer> sums = new ArrayList<>();
+        List<String> sums = new ArrayList<>();
         for(JsonElement summury : jsonSummury) {
-            sums.add(summury.getAsInt());
+            sums.add(summury.getAsString());
         }
         formData.setSummary(sums);
 
