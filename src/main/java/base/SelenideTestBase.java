@@ -10,8 +10,6 @@ public class SelenideTestBase {
     @BeforeSuite
     public void beforeSuite() {
         Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
-        Configuration.screenshots = false;
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
     }
 

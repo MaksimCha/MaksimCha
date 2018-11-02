@@ -5,9 +5,7 @@ import dataProviders.JDIDataProvider;
 import entities.FormData;
 import org.testng.annotations.Test;
 
-import static JDISite.JDIExampleSite.homePage;
-import static JDISite.JDIExampleSite.login;
-import static JDISite.JDIExampleSite.metalColorPage;
+import static JDISite.JDIExampleSite.*;
 
 public class MetalColorPageTest extends MetalColorPageTestInit {
 
@@ -24,6 +22,9 @@ public class MetalColorPageTest extends MetalColorPageTestInit {
         metalColorPage.checkOpened();
 
         //Fill form Metals & Colors by data below:
+        fillForm(dataSet);
 
+        //Submit form Metals & Colors
+        submitButtonClick();
     }
 }

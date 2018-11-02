@@ -1,5 +1,6 @@
 package JDISite.sections;
 
+import com.epam.jdi.uitests.web.selenium.elements.common.Button;
 import com.epam.jdi.uitests.web.selenium.elements.complex.CheckList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.Dropdown;
 import com.epam.jdi.uitests.web.selenium.elements.complex.RadioButtons;
@@ -39,4 +40,7 @@ public class MetalColorSubmitForm extends Form<FormData> {
 
     @FindBy(id = "elements-checklist")
     public CheckList elementsCheckBoxes;
+
+    @FindBy(id = "submit-button")
+    public Button submitButton;
 }

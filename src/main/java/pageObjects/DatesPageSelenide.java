@@ -10,7 +10,6 @@ import java.util.List;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.Titles.DATES_PAGE_TITLE;
-import static java.lang.Double.parseDouble;
 import static java.lang.String.valueOf;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -38,13 +37,13 @@ public class DatesPageSelenide {
     @FindBy(css = ".m-l8 [href = 'dates.html']")
     private SelenideElement datesButton;
 
-    @FindBy(css = "a.ui-corner-all")
+    @FindBy(css = ".ui-slider-handle")
     private List<SelenideElement> sliderItems;
 
-    @FindBy(css = "div.ui-widget-content")
+    @FindBy(css = ".ui-slider")
     private SelenideElement mainSlider;
 
-    @FindBy(css = ".panel-body-list.logs > li")
+    @FindBy(css = ".logs > li")
     private List<SelenideElement> logs;
 
     private boolean sideFlag;
@@ -60,23 +59,30 @@ public class DatesPageSelenide {
 
     @Step
     public void dragAndDropSlider(int fromPosition, int toPosition) {
-        double width = (double) mainSlider.getSize().width;
-        Double currentLeftPosition = parseDouble(sliderItems
-                .get(0)
-                .getCssValue("left")
-                .replaceAll("px", "")) / (width / 100);
-        Double currentRightPosition = parseDouble(sliderItems
-                .get(1)
-                .getCssValue("left")
-                .replaceAll("px", "")) / (width / 100);
-        if (fromPosition > currentRightPosition && currentLeftPosition.equals(currentRightPosition)) {
-            setSliderPosition(fromPosition, sliderItems.get(1), currentRightPosition);
-            setSliderPosition(toPosition, sliderItems.get(0), currentLeftPosition);
-            sideFlag = true;
-        } else {
-            setSliderPosition(fromPosition, sliderItems.get(0), currentLeftPosition);
-            setSliderPosition(toPosition, sliderItems.get(1), currentRightPosition);
+        double width = mainSlider.getSize().getWidth();
+        double sliderWidth = sliderItems.get(0).getSize().getWidth();
+
+        double xSlider = mainSlider.getLocation().getX();
+        double xFrom = sliderItems.get(0).getLocation().getX() + sliderWidth / 2;
+        double xTo = sliderItems.get(1).getLocation().getX() + sliderWidth / 2;
+
+        double offsetXFrom = xSlider - xFrom + fromPosition * width / 100;
+        double offsetXTo = xSlider - xTo + toPosition * width / 100;
+
+        Actions action = new Actions(getWebDriver());
+        if (xTo + offsetXTo <= xFrom) {
+            action.moveToElement(mainSlider)
+                    .dragAndDropBy(sliderItems.get(0), (int) Math.ceil(offsetXFrom), 0)
+                    .dragAndDropBy(sliderItems.get(1), (int) Math.ceil(offsetXTo), 0)
+                    .perform();
             sideFlag = false;
+
+        } else {
+            action.moveToElement(mainSlider)
+                    .dragAndDropBy(sliderItems.get(1), (int) Math.ceil(offsetXTo), 0)
+                    .dragAndDropBy(sliderItems.get(0), (int) Math.ceil(offsetXFrom), 0)
+                    .perform();
+            sideFlag = true;
         }
     }
 
