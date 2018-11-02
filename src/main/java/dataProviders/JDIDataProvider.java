@@ -1,15 +1,23 @@
 package dataProviders;
 
+import JSONReaders.JSONReader;
+import entities.FormData;
 import org.testng.annotations.DataProvider;
+
+import java.util.Map;
 
 public class JDIDataProvider {
 
-    @DataProvider
-    public Object[][] simpleDataProvider() {
-        return new Object[][]{
-                {"String1", 1},
-                {"String2", 2},
-                {"String3", 3}
-        };
+    @DataProvider(parallel = true)
+    public Object[][] JDIFormDataProvider() throws Exception{
+        JSONReader reader = new JSONReader();
+        Map<String, FormData> dataSet = reader.readFromJSON();
+        Object[][] objectDataSet = new Object[dataSet.size()][1];
+        int i = 0;
+        for (FormData data : dataSet.values()) {
+            objectDataSet[i][0] = data;
+            ++i;
+        }
+        return objectDataSet;
     }
 }
