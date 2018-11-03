@@ -5,6 +5,7 @@ import JDISite.pages.MetalColorPage;
 import JDISite.sections.LoginForm;
 import JDISite.sections.MetalColorSubmitForm;
 import com.epam.jdi.uitests.web.selenium.elements.common.Label;
+import com.epam.jdi.uitests.web.selenium.elements.common.TextArea;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
 import entities.FormData;
@@ -12,6 +13,8 @@ import entities.User;
 import enums.Users;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
+
+import static org.testng.Assert.assertEquals;
 
 @JSite("https://epam.github.io/JDI/")
 public class JDIExampleSite extends WebSite {
@@ -25,6 +28,9 @@ public class JDIExampleSite extends WebSite {
     public static Label profilePhoto;
 
     public static MetalColorSubmitForm metalColorSubmitForm;
+
+    @FindBy(css = ".info-panel-body-result")
+    public static TextArea result;
 
     @Step
     public static void login() {
@@ -50,6 +56,37 @@ public class JDIExampleSite extends WebSite {
     @Step
     public static void submitButtonClick() {
         metalColorSubmitForm.submitButton.click();
+    }
+
+    @Step
+    public static void checkResult(FormData dataSet) {
+        int sumOddsEven = 0;
+        for (String sum : dataSet.summary) {
+            sumOddsEven += Integer.parseInt(sum);
+        }
+
+        StringBuilder elements = new StringBuilder();
+        String delim = "";
+        for (String element : dataSet.elements) {
+            elements.append(delim).append(element);
+            delim = ", ";
+        }
+
+        StringBuilder vegetables = new StringBuilder();
+        String delimeter = "";
+        for (String vegetable : dataSet.vegetables) {
+            vegetables.append(delimeter).append(vegetable);
+            delimeter = ", ";
+        }
+
+        String expected =
+                "Summary: " + sumOddsEven +
+                        "\nElements: " + elements +
+                        "\nColor: " + dataSet.color +
+                        "\nMetal: " + dataSet.metals +
+                        "\nVegetables: " + vegetables;
+
+        assertEquals(result.getText(), expected);
     }
 
 }

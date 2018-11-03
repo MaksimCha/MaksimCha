@@ -26,5 +26,8 @@ public class MetalColorPageTest extends MetalColorPageTestInit {
 
         //Submit form Metals & Colors
         submitButtonClick();
+
+        //Result sections should contains data  below:
+        checkResult(dataSet);
     }
 }
