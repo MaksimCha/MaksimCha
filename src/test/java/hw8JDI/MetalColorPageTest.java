@@ -1,4 +1,4 @@
-package JDIhw;
+package hw8JDI;
 
 import base.MetalColorPageTestInit;
 import dataProviders.JDIDataProvider;
