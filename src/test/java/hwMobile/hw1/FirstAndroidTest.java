@@ -1,4 +1,4 @@
-package task8;
+package hwMobile.hw1;
 
 import driverSetups.DriverSetup;
 import org.openqa.selenium.By;

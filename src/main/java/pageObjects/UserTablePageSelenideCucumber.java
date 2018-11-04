@@ -99,7 +99,7 @@ public class UserTablePageSelenideCucumber {
         return parts;
     }
 
-    public List<String> exceptFirstList(List<String> list) {
+    public List<String> exceptFirst(List<String> list) {
         List<String> newList = new ArrayList<>();
         Iterator<String> iter = list.iterator();
         iter.next();
@@ -183,6 +183,6 @@ public class UserTablePageSelenideCucumber {
     @Then("droplist contains values")
     public void checkDropListContent(List<String> containItems) {
         List<List<String>> typeTable = listToTable(typeDropDownItems, 3);
-        assertTrue(typeTable.get(count).containsAll(exceptFirstList(containItems)));
+        assertTrue(typeTable.get(count).containsAll(exceptFirst(containItems)));
     }
 }
