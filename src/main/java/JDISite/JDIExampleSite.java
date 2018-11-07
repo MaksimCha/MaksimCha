@@ -40,6 +40,9 @@ public class JDIExampleSite extends WebSite {
 
     @Step
     public static void fillForm(FormData dataSet) {
+        // TODO This code do not following one of the 'OOP rule'.
+        // TODO In this particular method, you are working with 'metalColorSubmitForm' only,
+        // TODO so you have to place it in the appropriate class.
         metalColorSubmitForm.vegetables.select("vegetables");
         for (String vegetable : dataSet.vegetables) {
             metalColorSubmitForm.vegetables.select(vegetable);
@@ -60,6 +63,7 @@ public class JDIExampleSite extends WebSite {
 
     @Step
     public static void checkResult(FormData dataSet) {
+        // TODO Take a look on Strings.join
         int sumOddsEven = 0;
         for (String sum : dataSet.summary) {
             sumOddsEven += Integer.parseInt(sum);
