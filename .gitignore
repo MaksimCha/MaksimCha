@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-/.idea/
-*.xlsx/
+.idea
+.xlsx
 # TODO This wont work
-*.iml/
-/target/**
+.iml
+target
