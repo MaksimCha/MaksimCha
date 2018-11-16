@@ -4,3 +4,5 @@
 # TODO This wont work
 .iml
 target
+.logs
+.allure
