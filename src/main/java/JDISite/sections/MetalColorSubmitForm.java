@@ -40,7 +40,7 @@ public class MetalColorSubmitForm extends Form<FormData> {
     @FindBy(css = "#odds-selector p")
     public Selector<Odds> oddsRadioButtons;
 
-    @FindBy(css= "#even-selector p")
+    @FindBy(css = "#even-selector p")
     public RadioButtons<Even> evenRadioButtons;
 
     @FindBy(css = ".elements .checkbox")
@@ -48,4 +48,18 @@ public class MetalColorSubmitForm extends Form<FormData> {
 
     @FindBy(id = "submit-button")
     public Button submitButton;
+
+    public void fillForm(FormData dataSet) {
+        vegetables.select("vegetables");
+        for (String vegetable : dataSet.vegetables) {
+            vegetables.select(vegetable);
+        }
+        colors.select(dataSet.color);
+        metals.select(dataSet.metals);
+        for (String element : dataSet.elements) {
+            elementsCheckBoxes.select(element);
+        }
+        oddsRadioButtons.select(dataSet.summary.get(0));
+        evenRadioButtons.select(dataSet.summary.get(1));
+    }
 }

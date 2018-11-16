@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="WINDOWS-1251"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test suite" parallel="methods" thread-count="1">
-    <test name="Tests" preserve-order="true">
+    <test name="Tests">
         <classes>
             <class name="hw8JDI.MetalColorPageTest"/>
         </classes>

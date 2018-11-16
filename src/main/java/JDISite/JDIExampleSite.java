@@ -40,20 +40,7 @@ public class JDIExampleSite extends WebSite {
 
     @Step
     public static void fillForm(FormData dataSet) {
-        // TODO This code do not following one of the 'OOP rule'.
-        // TODO In this particular method, you are working with 'metalColorSubmitForm' only,
-        // TODO so you have to place it in the appropriate class.
-        metalColorSubmitForm.vegetables.select("vegetables");
-        for (String vegetable : dataSet.vegetables) {
-            metalColorSubmitForm.vegetables.select(vegetable);
-        }
-        metalColorSubmitForm.colors.select(dataSet.color);
-        metalColorSubmitForm.metals.select(dataSet.metals);
-        for (String element : dataSet.elements) {
-            metalColorSubmitForm.elementsCheckBoxes.select(element);
-        }
-        metalColorSubmitForm.oddsRadioButtons.select(dataSet.summary.get(0));
-        metalColorSubmitForm.evenRadioButtons.select(dataSet.summary.get(1));
+        metalColorSubmitForm.fillForm(dataSet);
     }
 
     @Step
@@ -63,25 +50,14 @@ public class JDIExampleSite extends WebSite {
 
     @Step
     public static void checkResult(FormData dataSet) {
-        // TODO Take a look on Strings.join
         int sumOddsEven = 0;
         for (String sum : dataSet.summary) {
             sumOddsEven += Integer.parseInt(sum);
         }
 
-        StringBuilder elements = new StringBuilder();
-        String delim = "";
-        for (String element : dataSet.elements) {
-            elements.append(delim).append(element);
-            delim = ", ";
-        }
+        String elements = String.join(", ", dataSet.elements);
 
-        StringBuilder vegetables = new StringBuilder();
-        String delimeter = "";
-        for (String vegetable : dataSet.vegetables) {
-            vegetables.append(delimeter).append(vegetable);
-            delimeter = ", ";
-        }
+        String vegetables = String.join(", ", dataSet.vegetables);
 
         String expected =
                 "Summary: " + sumOddsEven +

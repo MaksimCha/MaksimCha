@@ -22,7 +22,7 @@ Feature: Different Elements Page tests
     When I select checkBoxes
     |Water|
     |Wind |
-    Then Logs are displayed and status corresponding to selected checkboxes
+    Then Logs are displayed and status of selected checkboxes is true
     |Water|
     |Wind |
     When I select radio Selen
@@ -32,6 +32,6 @@ Feature: Different Elements Page tests
     When I unselect checkBoxes
     |Water|
     |Wind |
-    Then Logs are displayed and status corresponding to selected checkboxes
+    Then Logs are displayed and status of selected checkboxes is false
     |Water|
     |Wind |

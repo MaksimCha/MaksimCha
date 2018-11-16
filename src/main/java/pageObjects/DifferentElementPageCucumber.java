@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -63,7 +62,7 @@ public class DifferentElementPageCucumber {
         for (String name : items) {
             int i = 0;
             for (SelenideElement title : checkBoxTitles) {
-                if(title.getText().equalsIgnoreCase(name)){
+                if (title.getText().equalsIgnoreCase(name)) {
                     selectCheckBox(i);
                 }
                 ++i;
@@ -159,28 +158,28 @@ public class DifferentElementPageCucumber {
     }
 
     @Step
-    @Then("Logs are displayed and status corresponding to selected checkboxes")
-    public void checkCheckBoxesLogs(List<String> items) {
+    @Then("Logs are displayed and status of selected checkboxes is (.+)")
+    public void checkCheckBoxesLogs(String checked, List<String> items) {
         items = Lists.reverse(items);
         Iterator<SelenideElement> logBox = logs.iterator();
         for (String title : items) {
             if (logBox.hasNext()) {
-                iterateCheckBoxes(title, logBox.next().getText());
+                iterateCheckBoxes(title, logBox.next().getText(), checked);
             }
         }
     }
 
     @Step
-    private void iterateCheckBoxes(String value, String expected) {
-        for (SelenideElement item : checkBoxes) {
-            if (item.getText().equalsIgnoreCase(value)) checkCheckBoxLog(value, item.is(selected), expected);
+    private void iterateCheckBoxes(String value, String expected, String checked) {
+        for (SelenideElement item : checkBoxTitles) {
+            if (item.getText().equalsIgnoreCase(value)) checkCheckBoxLog(value, checked, expected);
         }
     }
 
     @Step
-    private void checkCheckBoxLog(String value, boolean isChecked, String expected) {
+    private void checkCheckBoxLog(String value, String checked, String expected) {
         assertTrue(expected.contains(value));
-        assertTrue(expected.contains(String.valueOf(isChecked)));
+        assertTrue(expected.contains(checked));
     }
 
     @Step
