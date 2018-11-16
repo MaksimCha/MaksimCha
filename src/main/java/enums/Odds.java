@@ -1,7 +1,10 @@
 package enums;
 
 public enum Odds {
-    ONE("1"), THREE("3"), FIVE("5"), SEVEN("7");
+    ONE("1"),
+    THREE("3"),
+    FIVE("5"),
+    SEVEN("7");
 
     public String value;
 

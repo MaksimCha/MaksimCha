@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import enums.CheckBoxItems;
+import enums.Condition;
 import enums.DropDownItems;
 import enums.RadioButtonItems;
 import io.qameta.allure.Step;
@@ -10,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import java.util.Iterator;
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.selected;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.Titles.DIFEL_PAGE_TITLE;
@@ -46,9 +46,11 @@ public class DifferentElementPageSelenide {
     //==============================methods==================================
 
     @Step
-    public void selectCheckBoxes(CheckBoxItems item) {
-        assertTrue(checkBoxes.size() >= item.counter);
-        iterateButtons(item.counter, checkBoxes);
+    public void selectCheckBoxes(CheckBoxItems... items) {
+        for (CheckBoxItems item : items) {
+            assertTrue(checkBoxes.size() >= item.counter);
+            iterateButtons(item.counter, checkBoxes);
+        }
     }
 
     @Step
@@ -125,18 +127,19 @@ public class DifferentElementPageSelenide {
     }
 
     @Step
-    public void checkCheckBoxesLogs(CheckBoxItems item, CheckBoxItems item2) {
+    public void checkCheckBoxesLogs(Condition condition, CheckBoxItems... items) {
         Iterator<SelenideElement> log = logs.iterator();
-        iterateCheckBoxes(item.counter, item.value, log.next().getText());
-        iterateCheckBoxes(item2.counter, item2.value, log.next().getText());
+        for (CheckBoxItems item : items) {
+            iterateCheckBoxes(item, log.next().getText(), condition.isChecked);
+        }
     }
 
     @Step
-    private void iterateCheckBoxes(int count, String value, String expected) {
+    private void iterateCheckBoxes(CheckBoxItems item, String expected, boolean isChecked) {
         int i = 0;
-        for (SelenideElement item : checkBoxes) {
-            if (i == count) {
-                checkCheckBoxLog(value, item.is(selected), expected);
+        for (SelenideElement checkBox : checkBoxes) {
+            if (i == item.counter) {
+                checkCheckBoxLog(item.value, isChecked, expected);
             }
             ++i;
         }

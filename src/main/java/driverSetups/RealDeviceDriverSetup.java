@@ -7,14 +7,14 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class DriverSetup {
+public class RealDeviceDriverSetup {
     protected AndroidDriver driver;
 
     public void prepareAndroidNative() throws MalformedURLException { // exception required by java.net.URL
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
         //capabilities.setCapability("device","Android"); // mandatory???????
-        capabilities.setCapability("deviceName","emulator-5554");
+        capabilities.setCapability("deviceName","Redmi Note 4");
         capabilities.setCapability("platformName","Android");
 
         // path to app

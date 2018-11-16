@@ -17,14 +17,14 @@ public class CustomSerializer implements JsonDeserializer<FormData> {
 
         JsonArray jsonSummury = jsonObject.getAsJsonArray("summary");
         List<String> sums = new ArrayList<>();
-        for(JsonElement summury : jsonSummury) {
+        for (JsonElement summury : jsonSummury) {
             sums.add(summury.getAsString());
         }
         formData.setSummary(sums);
 
         JsonArray jsonElements = jsonObject.getAsJsonArray("elements");
         List<String> elements = new ArrayList<>();
-        for(JsonElement element : jsonElements) {
+        for (JsonElement element : jsonElements) {
             elements.add(element.getAsString());
         }
         formData.setElements(elements);
@@ -35,7 +35,7 @@ public class CustomSerializer implements JsonDeserializer<FormData> {
 
         JsonArray jsonVegetables = jsonObject.getAsJsonArray("vegetables");
         List<String> vegetables = new ArrayList<>();
-        for(JsonElement vegetable : jsonVegetables) {
+        for (JsonElement vegetable : jsonVegetables) {
             vegetables.add(vegetable.getAsString());
         }
         formData.setVegetables(vegetables);

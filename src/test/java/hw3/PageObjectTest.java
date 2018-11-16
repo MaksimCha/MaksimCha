@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.HomePageSelenium;
 
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import static enums.Titles.*;
