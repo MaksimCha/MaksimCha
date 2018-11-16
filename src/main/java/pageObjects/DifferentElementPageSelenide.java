@@ -2,7 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.SelenideElement;
 import enums.CheckBoxItems;
-import enums.Condition;
+import enums.State;
 import enums.DropDownItems;
 import enums.RadioButtonItems;
 import io.qameta.allure.Step;
@@ -127,10 +127,10 @@ public class DifferentElementPageSelenide {
     }
 
     @Step
-    public void checkCheckBoxesLogs(Condition condition, CheckBoxItems... items) {
+    public void checkCheckBoxesLogs(State state, CheckBoxItems... items) {
         Iterator<SelenideElement> log = logs.iterator();
         for (CheckBoxItems item : items) {
-            iterateCheckBoxes(item, log.next().getText(), condition.isChecked);
+            iterateCheckBoxes(item, log.next().getText(), state.isChecked);
         }
     }
 
@@ -152,7 +152,7 @@ public class DifferentElementPageSelenide {
     }
 
     @Step
-    public void checkLog(String value) {
+    private void checkLog(String value) {
         String lastLogText = logs.get(0).getText();
         assertTrue(lastLogText.contains(value));
     }

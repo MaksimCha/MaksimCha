@@ -52,7 +52,7 @@ public class UserTablePageSelenideCucumber {
     @FindBy(css = ".panel-body-list.logs > li")
     private List<SelenideElement> logs;
 
-    Integer count = 0;
+    private Integer count = 0;
 
     //==============================methods==================================
 
@@ -84,7 +84,7 @@ public class UserTablePageSelenideCucumber {
         }
     }
 
-    public List<List<String>> listToTable(List<SelenideElement> selenideItems, int length) {
+    private List<List<String>> listToTable(List<SelenideElement> selenideItems, int length) {
         List<String> list = new ArrayList<>();
         for (SelenideElement item : selenideItems) {
             list.add(item.getText());
@@ -99,7 +99,7 @@ public class UserTablePageSelenideCucumber {
         return parts;
     }
 
-    public List<String> exceptFirst(List<String> list) {
+    private List<String> exceptFirst(List<String> list) {
         List<String> newList = new ArrayList<>();
         Iterator<String> iter = list.iterator();
         iter.next();

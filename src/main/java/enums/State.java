@@ -1,12 +1,12 @@
 package enums;
 
-public enum Condition {
+public enum State {
     CHECKED(true),
     UNCHECKED(false);
 
     public boolean isChecked;
 
-    Condition(boolean isChecked) {
+    State(boolean isChecked) {
         this.isChecked = isChecked;
     }
 }
