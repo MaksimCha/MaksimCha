@@ -12,8 +12,6 @@ import pageObjects.HomePageSelenide;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.CheckBoxItems.WATER;
 import static enums.CheckBoxItems.WIND;
-import static enums.State.CHECKED;
-import static enums.State.UNCHECKED;
 import static enums.DropDownItems.YELLOW;
 import static enums.RadioButtonItems.SELEN;
 import static enums.Users.PITER_CHALOVSKII;
@@ -81,7 +79,7 @@ public class DifferentElementPageTest extends SelenideTestBase {
         differentElementPageSelenide.selectCheckBoxes(WIND);
 
         //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementPageSelenide.checkCheckBoxesLogs(CHECKED, WIND, WATER);
+        differentElementPageSelenide.checkCheckBoxesLogs(true, WIND, WATER);
 
         //13. Select radio
         differentElementPageSelenide.selectRadioButton(SELEN);
@@ -100,6 +98,6 @@ public class DifferentElementPageTest extends SelenideTestBase {
         differentElementPageSelenide.selectCheckBoxes(WIND);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementPageSelenide.checkCheckBoxesLogs(UNCHECKED, WATER, WIND);
+        differentElementPageSelenide.checkCheckBoxesLogs(false, WATER, WIND);
     }
 }
