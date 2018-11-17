@@ -19,8 +19,8 @@ public class DriverSetup {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
         //capabilities.setCapability("device","Android"); // mandatory???????
-        capabilities.setCapability(DEFAULT_NATIVE.deviceName,device.deviceName);
-        capabilities.setCapability(DEFAULT_NATIVE.platformName,device.platformName);
+        capabilities.setCapability(DEFAULT_NATIVE.deviceName, device.deviceName);
+        capabilities.setCapability(DEFAULT_NATIVE.platformName, device.platformName);
 
         // path to app
         // Copy the application (.apk), which will become AUT, to the specified location,
@@ -38,8 +38,8 @@ public class DriverSetup {
     protected void prepareAndroidWeb(Capabilities device) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory Android capabilities
-        capabilities.setCapability(DEFAULT_WEB.deviceName,device.deviceName);
-        capabilities.setCapability(DEFAULT_WEB.platformName,device.platformName);
+        capabilities.setCapability(DEFAULT_WEB.deviceName, device.deviceName);
+        capabilities.setCapability(DEFAULT_WEB.platformName, device.platformName);
 
         // specific web capabilities
         capabilities.setCapability(DEFAULT_WEB.browserName, device.browserName);
