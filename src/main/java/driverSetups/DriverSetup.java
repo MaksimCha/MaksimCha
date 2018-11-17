@@ -10,11 +10,12 @@ import java.net.URL;
 
 import static enums.Capabilities.DEFAULT_NATIVE;
 import static enums.Capabilities.DEFAULT_WEB;
+import static enums.Links.APPIUM_SERVER_LINK;
 
 public class DriverSetup {
     protected AndroidDriver driver;
 
-    public void prepareAndroidNative(Capabilities device) throws MalformedURLException { // exception required by java.net.URL
+    protected void prepareAndroidNative(Capabilities device) throws MalformedURLException { // exception required by java.net.URL
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
         //capabilities.setCapability("device","Android"); // mandatory???????
@@ -25,13 +26,13 @@ public class DriverSetup {
         // Copy the application (.apk), which will become AUT, to the specified location,
 // e.g. "resources" folder of the project
         File appDir = new File("D:\\Projects\\MaksimCha\\src\\main\\resources");
-        File app = new File(appDir, "ContactManager.apk");
+        File app = new File(appDir, device.app);
 
         //other caps
-        capabilities.setCapability("app", app.getAbsolutePath());
+        capabilities.setCapability(DEFAULT_NATIVE.app, app.getAbsolutePath());
 
 // Init driver for local Appium server with capabilities have been set
-        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
+        driver = new AndroidDriver(new URL(APPIUM_SERVER_LINK.getLink()), capabilities);
     }
 
     protected void prepareAndroidWeb(Capabilities device) throws MalformedURLException {
@@ -44,7 +45,7 @@ public class DriverSetup {
         capabilities.setCapability(DEFAULT_WEB.browserName, device.browserName);
 
         // Init driver for local Appium server with capabilities have been set
-        driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"),
+        driver = new AndroidDriver(new URL(APPIUM_SERVER_LINK.getLink()),
                 capabilities);
 
     }
