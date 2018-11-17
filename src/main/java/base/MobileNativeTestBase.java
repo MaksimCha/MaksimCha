@@ -4,7 +4,7 @@ import driverSetups.DriverSetup;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-import static enums.Capabilities.ANDROID_NATIVE_EMULATOR;
+import static enums.Capabilities.ANDROID_EMULATOR;
 
 public class MobileNativeTestBase extends DriverSetup {
 
@@ -13,14 +13,14 @@ public class MobileNativeTestBase extends DriverSetup {
      * Prepare driver to run test(s)
      */
     public void setUp() throws Exception {
-        prepareAndroidNative(ANDROID_NATIVE_EMULATOR);
+        prepareAndroidNative(ANDROID_EMULATOR);
     }
 
     @AfterClass
     /**
      * Close driver on all tests completion
      */
-    public void tearDown() throws Exception {
+    public void tearDown() {
         driver.quit();
     }
 }

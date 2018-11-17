@@ -8,8 +8,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static enums.Capabilities.DEFAULT_NATIVE;
-import static enums.Capabilities.DEFAULT_WEB;
+import static enums.Capabilities.DEFAULT;
 import static enums.Links.APPIUM_SERVER_LINK;
 
 public class DriverSetup {
@@ -19,17 +18,17 @@ public class DriverSetup {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
         //capabilities.setCapability("device","Android"); // mandatory???????
-        capabilities.setCapability(DEFAULT_NATIVE.deviceName, device.deviceName);
-        capabilities.setCapability(DEFAULT_NATIVE.platformName, device.platformName);
+        capabilities.setCapability(DEFAULT.deviceName, device.deviceName);
+        capabilities.setCapability(DEFAULT.platformName, device.platformName);
 
         // path to app
         // Copy the application (.apk), which will become AUT, to the specified location,
 // e.g. "resources" folder of the project
-        File appDir = new File("D:\\Projects\\MaksimCha\\src\\main\\resources");
+        File appDir = new File("src\\main\\resources");
         File app = new File(appDir, device.app);
 
         //other caps
-        capabilities.setCapability(DEFAULT_NATIVE.app, app.getAbsolutePath());
+        capabilities.setCapability(DEFAULT.app, app.getAbsolutePath());
 
 // Init driver for local Appium server with capabilities have been set
         driver = new AndroidDriver(new URL(APPIUM_SERVER_LINK.getLink()), capabilities);
@@ -38,11 +37,11 @@ public class DriverSetup {
     protected void prepareAndroidWeb(Capabilities device) throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory Android capabilities
-        capabilities.setCapability(DEFAULT_WEB.deviceName, device.deviceName);
-        capabilities.setCapability(DEFAULT_WEB.platformName, device.platformName);
+        capabilities.setCapability(DEFAULT.deviceName, device.deviceName);
+        capabilities.setCapability(DEFAULT.platformName, device.platformName);
 
         // specific web capabilities
-        capabilities.setCapability(DEFAULT_WEB.browserName, device.browserName);
+        capabilities.setCapability(DEFAULT.browserName, device.browserName);
 
         // Init driver for local Appium server with capabilities have been set
         driver = new AndroidDriver(new URL(APPIUM_SERVER_LINK.getLink()),
