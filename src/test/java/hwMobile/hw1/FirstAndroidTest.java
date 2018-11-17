@@ -1,22 +1,10 @@
 package hwMobile.hw1;
 
-import driverSetups.DriverSetup;
+import base.MobileNativeTestBase;
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static enums.Capabilities.ANDROID_NATIVE_EMULATOR;
-
-public class FirstAndroidTest extends DriverSetup {
-
-    @BeforeClass
-    /**
-     * Prepare driver to run test(s)
-     */
-    public void setUp() throws Exception {
-        prepareAndroidNative(ANDROID_NATIVE_EMULATOR);
-    }
+public class FirstAndroidTest extends MobileNativeTestBase {
 
     @Test
     /**
@@ -27,13 +15,5 @@ public class FirstAndroidTest extends DriverSetup {
         By add_btn = By.id(app_package_name + "addContactButton");
         driver.findElement(add_btn).click();
         System.out.println("Simplest Appium test done");
-    }
-
-    @AfterClass
-    /**
-     * Close driver on all tests completion
-     */
-    public void tearDown() throws Exception {
-        driver.quit();
     }
 }
