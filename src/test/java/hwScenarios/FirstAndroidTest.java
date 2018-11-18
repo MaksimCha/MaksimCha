@@ -1,4 +1,4 @@
-package hwMobile.hw1;
+package hwScenarios;
 
 import base.MobileNativeTestBase;
 import org.openqa.selenium.By;
