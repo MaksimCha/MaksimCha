@@ -1,4 +1,4 @@
-package hwMobile.hw1;
+package hwScenarious;
 
 import base.RealDeviceWebTestBase;
 import org.testng.annotations.Test;
@@ -10,6 +10,5 @@ public class RealDeviceWebTest extends RealDeviceWebTestBase {
     @Test(description = "Open website")
     public void webTest() {
         driver.get(IANA_LINK.getLink());
-        System.out.println("Site opening done");
     }
 }
