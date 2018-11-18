@@ -1,11 +1,11 @@
 package driverSetups;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
 import java.net.URL;
 
 
@@ -18,10 +18,15 @@ public class Driver extends TestProperties {
     private static WebDriverWait wait;
     protected DesiredCapabilities capabilities;
 
-    protected static String AUT;
-    protected static String SUT;
+    // Properties to be read
+    protected static String SUT; // site under testing
     protected static String TEST_PLATFORM;
     protected static String DRIVER;
+    protected static String DEVICE_NAME;
+    protected static String UDID;
+    protected static String APP_PACKAGE;
+    protected static String APP_ACTIVITY;
+
 
     /**
      * Initialize driver with appropriate capabilities depending on platform and application
@@ -32,20 +37,25 @@ public class Driver extends TestProperties {
         capabilities = new DesiredCapabilities();
         String browserName;
 
-        AUT = getProperty("aut");
         String t_sut = getProperty("sut");
-        SUT = t_sut == null ? null : "http://" + t_sut;
+        SUT = t_sut == null ? null : "https://" + t_sut;
         TEST_PLATFORM = getProperty("platform");
         DRIVER = getProperty("driver");
+        DEVICE_NAME = getProperty("deviceName");
+        UDID = getProperty("udid");
+        APP_PACKAGE = getProperty("appPackage");
+        APP_ACTIVITY = getProperty("appActivity");
 
         // Setup test platform: Android or iOS. Browser also depends on a platform.
         switch (TEST_PLATFORM) {
             case "Android":
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
                 browserName = "Chrome";
+                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
+
                 break;
             case "iOS":
                 browserName = "Safari";
+                capabilities.setCapability(MobileCapabilityType.UDID, UDID);
                 break;
             default:
                 throw new Exception("Unknown mobile platform");
@@ -53,11 +63,11 @@ public class Driver extends TestProperties {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
 
         // Setup type of application: mobile, web
-        if (AUT != null && SUT == null) {
+        if (APP_PACKAGE != null && APP_ACTIVITY != null && SUT == null) {
             // Native
-            File app = new File(AUT);
-            capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-        } else if (SUT != null && AUT == null) {
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, APP_PACKAGE);
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, APP_ACTIVITY);
+        } else if (SUT != null && APP_PACKAGE == null && APP_ACTIVITY == null) {
             // Web
             capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
         } else {

@@ -1,35 +1,50 @@
-# Second Homework:
+# Third Homework:
 
 Use webTests.xml or nativeTests.xml to run web or native tests respectively.
 
 1.
-> Rewrite Driver using “singleton” pattern. Are there any advantages?
+> Add support of appPackage and appActivity parameters for Android devices (reading from a .properties file and then setting in the DesiredCapabilities). Locally installed Appium DT has no need in these parameters, but for Appium server of Minsk Mobile Farm it’s mandatory.
 
-We use different drivers for different type of tests, therefore "singleton" isn't used.
+Support of appPackage and appActivity parameters was added to "nativetests.properties" and "Driver.java" files
+
+    appPackage=com.example.android.contactmanager
+    appActivity=.ContactManager
+
+    APP_PACKAGE = getProperty("appPackage");
+    APP_ACTIVITY = getProperty("appActivity");
+    capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, APP_PACKAGE);
+    capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, APP_ACTIVITY);
 
 2. 
-> Suggest improvements for .properties reading. What are the purposes?
+> Change settings to run web test on a certain iOS device on Mobile Test Farm. Run test with your changes. Did test pass?
 
-- Property files are used to easy change capabilities for different devices.
-- Split properties depends of tests type: web or native.
-- Using enum PropertyFIle for different values of properties path.
+Settings changed in "webtests.properties" and "Driver.java"
+
+    platform=iOS
+    udid=25ad632db73b1de523be6565f395cae349b4dd13
+
+    UDID = getProperty("udid");
+    capabilities.setCapability(MobileCapabilityType.UDID, UDID);
+
+Test passed
 
 3. 
-> Add checks of other fields and their titles (Contact Name, Contact phone) in “native” test
+> Change settings to run native test on a certain/random Android device on Mobile Test Farm. Run test with your changes. Did test pass?
 
-Add checks for "Target Account", "Contact Name", "Contact Phone" titles and fields.
+Settings changed in "nativetests.properties" and "Driver.java"
+
+    platform=Android
+    deviceName=LGE Nexus 5
+
+    DEVICE_NAME = getProperty("deviceName");
+    capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
+
+Test passed
 
 4.
-> **Optional**: Add keyboard presence check  in “native” test.
+> What’s wrong with our code? How to fix/improve it? Implement your suggestions.
 
-Using try - catch block to know keyboard status, but not sure that it is correct way.
+- Can use Page Object pattern for more clear readable code
+- Using xml-file instead of .properties for cross-platform using
+- Also can using special annotations like @AndroidFindBy and @iOSFindBy in addition to standard @FindBy to make code cross-platform
 
-5. 
-> Which checks would you place in the “web” test?
-
-Add check title, url.
-
-6. 
-> Implement checks for “web” test in code and try to use.
-
-Done in "WebTests.java".
