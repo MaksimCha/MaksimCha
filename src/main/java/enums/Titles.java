@@ -37,7 +37,9 @@ public enum Titles {
     DIFEL_PAGE_TITLE("Different Elements"),
     DATES_PAGE_TITLE("Dates"),
 
-    USER_TABLE_PAGE_TITLE("User Table");
+    USER_TABLE_PAGE_TITLE("User Table"),
+
+    IANA_TITLE("Internet Assigned Numbers Authority");
 
     private String title;
 
