@@ -1,4 +1,4 @@
-package hwScenarious.nativeTests;
+package hwScenarios.nativeTests;
 
 import driverSetups.Driver;
 import org.openqa.selenium.By;
@@ -7,10 +7,9 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
-@Test(groups = "native")
 public class NativeTests extends Driver {
 
-    @Test(description = "Check fields and titles of Add Contact form")
+    @Test(description = "Check fields and titles of Add Contact form", groups = "native")
     public void AddContactFormTest() throws Exception {
         String app_package_name = "com.example.android.contactmanager:id/";
 
@@ -46,5 +45,14 @@ public class NativeTests extends Driver {
         // Check text field for "Contact Phone" is displayed
         By contactPhoneField= By.id(app_package_name + "contactPhoneEditText");
         assertTrue(driver().findElement(contactPhoneField).isDisplayed());
+
+        // Check keyboard presence
+        try{
+            driver().hideKeyboard();
+            System.out.println("Keyboard presence");
+        }
+        catch(Exception e){
+            System.out.println("Keyboard don't presence");
+        }
     }
 }

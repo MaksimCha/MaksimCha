@@ -6,14 +6,14 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static enums.Capabilities.ANDROID_WEB_EMULATOR;
+import static enums.Capabilities.ANDROID_EMULATOR;
 
 public class FirstWebTest extends DriverSetup {
 
     @BeforeClass(description = "Prepare driver to run test(s)")
     public void setUp() throws Exception {
         //prepareAndroidNative();
-        prepareAndroidWeb(ANDROID_WEB_EMULATOR);
+        prepareAndroidWeb(ANDROID_EMULATOR);
     }
 
     //@Test(description = "This simple test just click on button 'Add contact'")

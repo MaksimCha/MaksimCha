@@ -6,7 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static enums.Capabilities.ANDROID_NATIVE_EMULATOR;
+import static enums.Capabilities.ANDROID_EMULATOR;
 
 public class FirstAndroidTest extends DriverSetup {
 
@@ -15,7 +15,7 @@ public class FirstAndroidTest extends DriverSetup {
      * Prepare driver to run test(s)
      */
     public void setUp() throws Exception {
-        prepareAndroidNative(ANDROID_NATIVE_EMULATOR);
+        prepareAndroidNative(ANDROID_EMULATOR);
     }
 
     @Test

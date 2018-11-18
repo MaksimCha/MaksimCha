@@ -1,4 +1,4 @@
-package driverSetups;
+package enums;
 
 public enum PropertyFile {
 
