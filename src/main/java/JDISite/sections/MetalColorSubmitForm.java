@@ -7,13 +7,13 @@ import com.epam.jdi.uitests.web.selenium.elements.complex.RadioButtons;
 import com.epam.jdi.uitests.web.selenium.elements.complex.Selector;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
-import entities.FormData;
+import entities.MetalColorsPageData;
 import enums.Even;
 import enums.Nature;
 import enums.Odds;
 import org.openqa.selenium.support.FindBy;
 
-public class MetalColorSubmitForm extends Form<FormData> {
+public class MetalColorSubmitForm extends Form<MetalColorsPageData> {
 
     @JDropdown(
             root = @FindBy(id = "salad-dropdown"),
@@ -49,7 +49,7 @@ public class MetalColorSubmitForm extends Form<FormData> {
     @FindBy(id = "submit-button")
     public Button submitButton;
 
-    public void fillForm(FormData dataSet) {
+    public void fillForm(MetalColorsPageData dataSet) {
         vegetables.select("vegetables");
         for (String vegetable : dataSet.vegetables) {
             vegetables.select(vegetable);
@@ -59,7 +59,7 @@ public class MetalColorSubmitForm extends Form<FormData> {
         for (String element : dataSet.elements) {
             elementsCheckBoxes.select(element);
         }
-        oddsRadioButtons.select(dataSet.summary.get(0));
-        evenRadioButtons.select(dataSet.summary.get(1));
+        oddsRadioButtons.select(dataSet.summary[0]);
+        evenRadioButtons.select(dataSet.summary[1]);
     }
 }

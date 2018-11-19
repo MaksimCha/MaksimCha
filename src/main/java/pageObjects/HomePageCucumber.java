@@ -86,7 +86,7 @@ public class HomePageCucumber {
     @Step
     @And("I login as user \"Piter Chailovskii\"")
     public void loginAsPiter() {
-        login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
+        login(PITER_CHALOVSKII.name, PITER_CHALOVSKII.password);
     }
 
     @Step

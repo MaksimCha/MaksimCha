@@ -9,6 +9,7 @@ import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 
 @SuppressWarnings("unchecked")
 public class MetalColorPageTestInit extends TestNGBase {
+
     @BeforeSuite(alwaysRun = true)
     public static void setUp() {
         WebSite.init(JDIExampleSite.class);

@@ -4,9 +4,9 @@ import java.util.Map;
 
 public class DataSet {
 
-    public Map<String, FormData> items;
+    public Map<String, MetalColorsPageData> items;
 
-    public void setItems(Map<String, FormData> items) {
+    public void setItems(Map<String, MetalColorsPageData> items) {
         this.items = items;
     }
 }

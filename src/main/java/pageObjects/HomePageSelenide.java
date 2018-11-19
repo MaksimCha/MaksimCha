@@ -66,7 +66,7 @@ public class HomePageSelenide {
     @Step
     public void login(Users user) {
         profileButton.click();
-        login.sendKeys(user.login);
+        login.sendKeys(user.name);
         password.sendKeys(user.password);
         submit.click();
     }
