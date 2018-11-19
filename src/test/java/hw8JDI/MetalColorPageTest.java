@@ -14,6 +14,7 @@ public class MetalColorPageTest extends MetalColorPageTestInit {
 
         //Login on JDI JDISite as User
         homePage.open();
+        // TODO This method should be parametrised.
         login();
         homePage.checkOpened();
 

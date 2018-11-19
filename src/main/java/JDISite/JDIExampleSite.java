@@ -18,23 +18,28 @@ import static org.testng.Assert.assertEquals;
 
 @JSite("https://epam.github.io/JDI/")
 public class JDIExampleSite extends WebSite {
+    // TODO What is the point of empty page classes ?
     public static HomePage homePage;
 
     public static MetalColorPage metalColorPage;
+    // !TODO
 
     public static LoginForm loginForm;
 
     @FindBy(css = ".profile-photo")
     public static Label profilePhoto;
 
+    // TODO This should not be here
     public static MetalColorSubmitForm metalColorSubmitForm;
 
     @FindBy(css = ".info-panel-body-result")
     public static TextArea result;
+    // !TODO
 
     @Step
     public static void login() {
         profilePhoto.click();
+        // TODO This is not make sense to use enum and class together, there can be only one =)
         loginForm.loginAs(new User(Users.PITER_CHALOVSKII));
     }
 
