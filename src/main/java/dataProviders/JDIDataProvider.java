@@ -28,6 +28,7 @@ public class JDIDataProvider {
     private Map<String, FormData> readFromJSON() throws Exception{
         Type itemsMapType = new TypeToken<Map<String, FormData>>() {}.getType();
         GsonBuilder builder = new GsonBuilder();
+        // TODO This can be loaded with default Serializer...
         builder.registerTypeAdapter(FormData.class, new CustomSerializer());
         Gson gson = builder.create();
         return gson.fromJson(new FileReader("src\\main\\resources\\JDI_ex8_metalsColorsDataSet.json"), itemsMapType);

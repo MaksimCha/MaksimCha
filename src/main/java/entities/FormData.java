@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+// TODO Wrong class name, it should represented the core idea of the class
 public class FormData {
     public List<String> summary;
 
