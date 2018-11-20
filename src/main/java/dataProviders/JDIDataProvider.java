@@ -23,8 +23,9 @@ public class JDIDataProvider {
         return objectDataSet;
     }
 
-    private Map<String, MetalColorsPageData> readFromJSON() throws Exception{
-        Type itemsMapType = new TypeToken<Map<String, MetalColorsPageData>>() {}.getType();
+    private Map<String, MetalColorsPageData> readFromJSON() throws Exception {
+        Type itemsMapType = new TypeToken<Map<String, MetalColorsPageData>>() {
+        }.getType();
         Gson gson = new Gson();
         return gson.fromJson(new FileReader("src\\main\\resources\\JDI_ex8_metalsColorsDataSet.json"), itemsMapType);
     }

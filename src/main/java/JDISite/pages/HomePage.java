@@ -12,6 +12,7 @@ public class HomePage extends WebPage {
     public Header header;
 
     @Step
+    // TODO Take a look on IDEA warning !
     public void login(Users user) {
         header.profilePhoto.click();
         header.loginForm.loginAs(Users.PITER_CHALOVSKII);
