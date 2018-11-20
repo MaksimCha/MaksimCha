@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.page;
 import static enums.Users.PITER_CHALOVSKII;
 
 @Feature("Smoke tests")
-@Story("Different Elements Page Testing")
+@Story("Dates Page Testing")
 @Listeners(AllureAttachmentListener.class)
 public class DatesPageTest extends SelenideTestBase {
 

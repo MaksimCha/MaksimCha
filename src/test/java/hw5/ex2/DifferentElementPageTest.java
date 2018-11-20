@@ -23,20 +23,7 @@ public class DifferentElementPageTest extends SelenideTestBase {
 
     @Test()
     public void firstDifElPageTest() {
-        difElPageTest();
-    }
 
-    @Test()
-    public void secondDifElPageTest() {
-        difElPageTest();
-    }
-
-    @Test()
-    public void thirdDifElPageTest() {
-        difElPageTest();
-    }
-
-    private void difElPageTest() {
         HomePageSelenide homePageSelenide = page(HomePageSelenide.class);
         DifferentElementPageSelenide differentElementPageSelenide = page(DifferentElementPageSelenide.class);
 
