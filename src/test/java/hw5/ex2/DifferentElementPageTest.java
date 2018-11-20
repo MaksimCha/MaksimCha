@@ -22,7 +22,7 @@ import static enums.Users.PITER_CHALOVSKII;
 public class DifferentElementPageTest extends SelenideTestBase {
 
     @Test()
-    public void firstDifElPageTest() {
+    public void difElPageTest() {
 
         HomePageSelenide homePageSelenide = page(HomePageSelenide.class);
         DifferentElementPageSelenide differentElementPageSelenide = page(DifferentElementPageSelenide.class);
