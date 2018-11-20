@@ -4,7 +4,7 @@
     <test name="Simple Test" >
 
         <classes>
-            <class name="hw5.ex2.DifferentElementPageTest" />
+            <class name="hw5.ex2.FailedDifElPageTest" />
             <class name="hw4.ex1.DifferentElementPageTest" />
             <class name="hw4.ex2.DatesPageTest" />
         </classes>

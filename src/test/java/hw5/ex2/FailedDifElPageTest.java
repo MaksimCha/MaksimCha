@@ -19,7 +19,7 @@ import static enums.Users.PITER_CHALOVSKII;
 @Feature("Smoke tests")
 @Story("Different Elements Page Testing")
 @Listeners(AllureAttachmentListener.class)
-public class DifferentElementPageTest extends SelenideTestBase {
+public class FailedDifElPageTest extends SelenideTestBase {
 
     @Test()
     public void difElPageTest() {
