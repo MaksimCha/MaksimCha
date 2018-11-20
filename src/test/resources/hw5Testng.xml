@@ -5,6 +5,8 @@
 
         <classes>
             <class name="hw5.ex2.DifferentElementPageTest" />
+            <class name="hw4.ex1.DifferentElementPageTest" />
+            <class name="hw4.ex2.DatesPageTest" />
         </classes>
 
     </test>
