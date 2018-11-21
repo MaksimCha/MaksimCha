@@ -91,10 +91,10 @@ public class HomePageCucumber {
 
     @Step
     @When("I login as user (.+) with password (.+)")
-    public void login(String name, String passwd) {
+    public void login(String name, String password) {
         profileButton.click();
         login.sendKeys(name);
-        password.sendKeys(passwd);
+        this.password.sendKeys(password);
         submit.click();
     }
 

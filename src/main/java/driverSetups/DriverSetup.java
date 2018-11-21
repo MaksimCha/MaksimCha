@@ -10,10 +10,11 @@ import java.net.URL;
 public class DriverSetup {
     protected AndroidDriver driver;
 
-    public void prepareAndroidNative() throws MalformedURLException { // exception required by java.net.URL
+    protected void prepareAndroidNative() throws MalformedURLException { // exception required by java.net.URL
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
+
         //mandatory capabilities
-        //capabilities.setCapability("device","Android"); // mandatory???????
         capabilities.setCapability("deviceName","emulator-5554");
         capabilities.setCapability("platformName","Android");
 
@@ -31,7 +32,9 @@ public class DriverSetup {
     }
 
     protected void prepareAndroidWeb() throws MalformedURLException {
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
+
         //mandatory Android capabilities
         capabilities.setCapability("deviceName","emulator-5554");
         capabilities.setCapability("platformName","Android");

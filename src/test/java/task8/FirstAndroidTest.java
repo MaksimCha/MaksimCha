@@ -31,7 +31,7 @@ public class FirstAndroidTest extends DriverSetup {
     /**
      * Close driver on all tests completion
      */
-    public void tearDown() throws Exception {
+    public void tearDown() {
         driver.quit();
     }
 }

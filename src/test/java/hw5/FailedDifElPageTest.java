@@ -1,9 +1,10 @@
-package hw5.ex2;
+package hw5;
 
 import base.SelenideTestBase;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DifferentElementPageSelenide;
@@ -21,70 +22,76 @@ import static enums.Users.PITER_CHALOVSKII;
 @Listeners(AllureAttachmentListener.class)
 public class FailedDifElPageTest extends SelenideTestBase {
 
-    @Test()
+    private HomePageSelenide homePage;
+    private DifferentElementPageSelenide differentElementPage;
+
+    @BeforeClass
+    public void beforeClass() {
+        homePage = page(HomePageSelenide.class);
+        differentElementPage = page(DifferentElementPageSelenide.class);
+    }
+
+    @Test
     public void failedDifElPageTest() {
 
-        HomePageSelenide homePageSelenide = page(HomePageSelenide.class);
-        DifferentElementPageSelenide differentElementPageSelenide = page(DifferentElementPageSelenide.class);
-
         //1. Open test JDISite by URL
-        homePageSelenide.openPage();
+        homePage.openPage();
 
         //2. Assert Browser title
-        homePageSelenide.checkTitle();
+        homePage.checkTitle();
 
         //3. Perform login
-        homePageSelenide.login(PITER_CHALOVSKII);
+        homePage.login(PITER_CHALOVSKII);
 
         //4. Assert User name in the left-top side of screen that user is loggined
-        homePageSelenide.checkLoginTitle(PITER_CHALOVSKII);
+        homePage.checkLoginTitle(PITER_CHALOVSKII);
 
         //5. Click on "Service" subcategory in the header and check that drop down contains options
-        homePageSelenide.headServiceButtonClick();
-        homePageSelenide.checkServiceDropDownContains();
+        homePage.headServiceButtonClick();
+        homePage.checkServiceDropDownContains();
 
         //6. Click on Service subcategory in the left section and check that drop down contains options
-        homePageSelenide.leftServiceButtonClick();
-        homePageSelenide.checkServiceDropDownContains();
+        homePage.leftServiceButtonClick();
+        homePage.checkServiceDropDownContains();
 
         //7. Open through the header menu Service -> Different Elements Page
-        homePageSelenide.headServiceButtonClick();
-        homePageSelenide.differentElementsButtonClick();
-        differentElementPageSelenide.checkTitle();
+        homePage.headServiceButtonClick();
+        homePage.differentElementsButtonClick();
+        differentElementPage.checkTitle();
 
         //8. Check interface on Different elements page, it contains all needed elements
-        differentElementPageSelenide.checkDifElPageExists();
+        differentElementPage.checkDifElPageExists();
 
         //9. Assert that there is Right Section
-        differentElementPageSelenide.checkRightSection();
+        differentElementPage.checkRightSection();
 
         //10. Assert that there is Left Section
-        differentElementPageSelenide.checkLeftSection();
+        differentElementPage.checkLeftSection();
 
         //11. Select checkboxes
-        differentElementPageSelenide.selectCheckBoxes(WATER);
-        differentElementPageSelenide.selectCheckBoxes(WIND);
+        differentElementPage.selectCheckBoxes(WATER);
+        differentElementPage.selectCheckBoxes(WIND);
 
         //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementPageSelenide.checkCheckBoxesLogs(true, WIND, WATER);
+        differentElementPage.checkCheckBoxesLogs(true, WIND, WATER);
 
         //13. Select radio
-        differentElementPageSelenide.selectRadioButton(SELEN);
+        differentElementPage.selectRadioButton(SELEN);
 
         //14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
-        differentElementPageSelenide.checkRadioButtonLog(SELEN);
+        differentElementPage.checkRadioButtonLog(SELEN);
 
         //15. Select in dropdown
-        differentElementPageSelenide.selectDropDownButton(YELLOW);
+        differentElementPage.selectDropDownButton(YELLOW);
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value.
-        differentElementPageSelenide.checkDropDownLog(YELLOW);
+        differentElementPage.checkDropDownLog(YELLOW);
 
         //17. Unselect and assert checkboxes
-        differentElementPageSelenide.selectCheckBoxes(WATER);
-        differentElementPageSelenide.selectCheckBoxes(WIND);
+        differentElementPage.selectCheckBoxes(WATER);
+        differentElementPage.selectCheckBoxes(WIND);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementPageSelenide.checkCheckBoxesLogs(false, WATER, WIND);
+        differentElementPage.checkCheckBoxesLogs(false, WATER, WIND);
     }
 }

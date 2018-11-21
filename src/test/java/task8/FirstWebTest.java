@@ -30,7 +30,7 @@ public class FirstWebTest extends DriverSetup {
     }
 
     @AfterClass(description = "Close driver on all tests completion")
-    public void tearDown() throws Exception {
+    public void tearDown() {
         driver.quit();
     }
 }

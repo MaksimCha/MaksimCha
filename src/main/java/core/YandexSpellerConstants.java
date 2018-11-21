@@ -27,7 +27,7 @@ public class YandexSpellerConstants {
         public String corrVer(){return corrVer;}
         public String wrongVer(){return wrongVer;}
 
-        private SimpleWord(String corrVer, String wrongVer){
+        SimpleWord(String corrVer, String wrongVer){
             this.corrVer = corrVer;
             this.wrongVer = wrongVer;
 
@@ -41,7 +41,7 @@ public class YandexSpellerConstants {
         private String languageCode;
         public String langCode(){return languageCode;}
 
-        private Language(String lang) {
+        Language(String lang) {
             this.languageCode = lang;
         }
     }
@@ -52,7 +52,7 @@ public class YandexSpellerConstants {
         String method;
         String reqName;
 
-        private SoapAction(String action, String reqName) {
+        SoapAction(String action, String reqName) {
             this.method = action;
             this.reqName = reqName;
         }

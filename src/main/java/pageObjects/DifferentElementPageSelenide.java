@@ -19,6 +19,9 @@ import static org.testng.Assert.assertTrue;
 public class DifferentElementPageSelenide {
 
     @FindBy(css = ".label-checkbox > input")
+    private List<SelenideElement> checkBoxesInputs;
+
+    @FindBy(css = ".label-checkbox")
     private List<SelenideElement> checkBoxes;
 
     @FindBy(css = ".label-radio > input")
@@ -47,8 +50,8 @@ public class DifferentElementPageSelenide {
     @Step
     public void selectCheckBoxes(CheckBoxItems... items) {
         for (CheckBoxItems item : items) {
-            assertTrue(checkBoxes.size() >= item.counter);
-            iterateButtons(item.counter, checkBoxes);
+            assertTrue(checkBoxesInputs.size() >= item.counter);
+            iterateButtons(item.counter, checkBoxesInputs);
         }
     }
 
@@ -74,6 +77,14 @@ public class DifferentElementPageSelenide {
         }
     }
 
+    private void iterateCheckBoxes(CheckBoxItems item, String expected, boolean isChecked) {
+        for (SelenideElement checkBox : checkBoxes) {
+            if (checkBox.getText().equalsIgnoreCase(item.value)) {
+                checkCheckBoxLog(item.value, isChecked, expected);
+            }
+        }
+    }
+
     //==============================checks===================================
 
     @Step
@@ -89,26 +100,22 @@ public class DifferentElementPageSelenide {
         checkButtons();
     }
 
-    @Step
     private void checkRadios() {
         for (SelenideElement RadioButton : radioButtons) {
             RadioButton.shouldBe(visible);
         }
     }
 
-    @Step
     private void checkCheckBoxes() {
-        for (SelenideElement CheckBox : checkBoxes) {
+        for (SelenideElement CheckBox : checkBoxesInputs) {
             CheckBox.shouldBe(visible);
         }
     }
 
-    @Step
     private void checkDropDown() {
         dropDown.shouldBe(visible);
     }
 
-    @Step
     private void checkButtons() {
         for (SelenideElement Button : buttons) {
             Button.shouldBe(visible);
@@ -133,24 +140,11 @@ public class DifferentElementPageSelenide {
         }
     }
 
-    @Step
-    private void iterateCheckBoxes(CheckBoxItems item, String expected, boolean isChecked) {
-        int i = 0;
-        for (SelenideElement checkBox : checkBoxes) {
-            if (i == item.counter) {
-                checkCheckBoxLog(item.value, isChecked, expected);
-            }
-            ++i;
-        }
-    }
-
-    @Step
     private void checkCheckBoxLog(String value, boolean isChecked, String expected) {
         assertTrue(expected.contains(value));
         assertTrue(expected.contains(String.valueOf(isChecked)));
     }
 
-    @Step
     private void checkLog(String value) {
         String lastLogText = logs.get(0).getText();
         assertTrue(lastLogText.contains(value));

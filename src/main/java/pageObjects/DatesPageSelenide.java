@@ -86,14 +86,6 @@ public class DatesPageSelenide {
         }
     }
 
-    @Step
-    private void setSliderPosition(Integer position, SelenideElement sliderItem, Double currentPosition) {
-        double width = (double) mainSlider.getSize().width;
-        Actions act = new Actions(getWebDriver());
-        int xOffset = (int) ((position - currentPosition - 1) * (width / 100));
-        act.dragAndDropBy(sliderItem, xOffset, 0).build().perform();
-    }
-
     //==============================checks===================================
 
     @Step
@@ -113,7 +105,6 @@ public class DatesPageSelenide {
         }
     }
 
-    @Step
     private void checkSliderLog(int position, boolean isLast, String expected) {
         String nameSlider = isLast ? "From" : "To";
         assertTrue(expected.contains(nameSlider));
