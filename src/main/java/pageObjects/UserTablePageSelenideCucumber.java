@@ -89,24 +89,14 @@ public class UserTablePageSelenideCucumber {
         for (SelenideElement item : selenideItems) {
             list.add(item.getText());
         }
-        List<List<String>> parts = new ArrayList<>();
-        final int N = list.size();
+        List<List<String>> table = new ArrayList<>();
+        int N = list.size();
         for (int i = 0; i < N; i += length) {
-            parts.add(new ArrayList<>(
+            table.add(new ArrayList<>(
                     list.subList(i, Math.min(N, i + length)))
             );
         }
-        return parts;
-    }
-
-    private List<String> exceptFirst(List<String> list) {
-        List<String> newList = new ArrayList<>();
-        Iterator<String> iter = list.iterator();
-        iter.next();
-        while (iter.hasNext()) {
-            newList.add(iter.next());
-        }
-        return newList;
+        return table;
     }
 
     //==============================checks===================================
@@ -183,6 +173,6 @@ public class UserTablePageSelenideCucumber {
     @Then("droplist contains values")
     public void checkDropListContent(List<String> containItems) {
         List<List<String>> typeTable = listToTable(typeDropDownItems, 3);
-        assertTrue(typeTable.get(count).containsAll(exceptFirst(containItems)));
+        assertTrue(typeTable.get(count).containsAll(containItems.subList(1, containItems.size())));
     }
 }

@@ -60,25 +60,14 @@ public class DifferentElementPageCucumber {
     @When("I (?:un|)select checkBoxes")
     public void selectCheckBoxes(List<String> items) {
         for (String name : items) {
-            int i = 0;
+            Iterator<SelenideElement> iter = checkBoxes.iterator();
             for (SelenideElement title : checkBoxTitles) {
-                if (title.getText().equalsIgnoreCase(name)) {
-                    selectCheckBox(i);
+                if (title.getText().equalsIgnoreCase(name) && iter.hasNext()) {
+                    iter.next().click();
+                }else{
+                    iter.next();
                 }
-                ++i;
             }
-        }
-    }
-
-    @Step
-    private void selectCheckBox(int count) {
-        assertTrue(checkBoxes.size() > count);
-        int i = 0;
-        for (SelenideElement item : checkBoxes) {
-            if (i == count) {
-                item.click();
-            }
-            ++i;
         }
     }
 
@@ -102,7 +91,6 @@ public class DifferentElementPageCucumber {
         }
     }
 
-    @Step
     private void iterateButtons(int count, List<SelenideElement> items) {
         int i = 0;
         for (SelenideElement item : items) {
@@ -110,6 +98,12 @@ public class DifferentElementPageCucumber {
                 item.click();
             }
             ++i;
+        }
+    }
+
+    private void iterateCheckBoxes(String value, String expected, String checked) {
+        for (SelenideElement item : checkBoxTitles) {
+            if (item.getText().equalsIgnoreCase(value)) checkCheckBoxLog(value, checked, expected);
         }
     }
 
@@ -169,14 +163,6 @@ public class DifferentElementPageCucumber {
         }
     }
 
-    @Step
-    private void iterateCheckBoxes(String value, String expected, String checked) {
-        for (SelenideElement item : checkBoxTitles) {
-            if (item.getText().equalsIgnoreCase(value)) checkCheckBoxLog(value, checked, expected);
-        }
-    }
-
-    @Step
     private void checkCheckBoxLog(String value, String checked, String expected) {
         assertTrue(expected.contains(value));
         assertTrue(expected.contains(checked));
@@ -194,7 +180,6 @@ public class DifferentElementPageCucumber {
         checkLog(value);
     }
 
-    @Step
     private void checkLog(String value) {
         String lastLogText = logs.get(0).getText();
         assertTrue(lastLogText.contains(value));
