@@ -173,6 +173,7 @@ public class UserTablePageSelenideCucumber {
     @Then("droplist contains values")
     public void checkDropListContent(List<String> containItems) {
         List<List<String>> typeTable = listToTable(typeDropDownItems, 3);
+        assertTrue(containItems.size() >= 1);
         assertTrue(typeTable.get(count).containsAll(containItems.subList(1, containItems.size())));
     }
 }

@@ -60,12 +60,12 @@ public class DifferentElementPageCucumber {
     @When("I (?:un|)select checkBoxes")
     public void selectCheckBoxes(List<String> items) {
         for (String name : items) {
-            Iterator<SelenideElement> iter = checkBoxes.iterator();
+            Iterator<SelenideElement> iterator = checkBoxes.iterator();
             for (SelenideElement title : checkBoxTitles) {
-                if (title.getText().equalsIgnoreCase(name) && iter.hasNext()) {
-                    iter.next().click();
+                if (title.getText().equalsIgnoreCase(name) && iterator.hasNext()) {
+                    iterator.next().click();
                 }else{
-                    iter.next();
+                    iterator.next();
                 }
             }
         }
