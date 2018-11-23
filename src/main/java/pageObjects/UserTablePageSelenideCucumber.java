@@ -122,7 +122,7 @@ public class UserTablePageSelenideCucumber {
 
     @Step
     @And("6 Description images are displayed on Users Table on User Table Page")
-    public void checkdescriptionImages() {
+    public void checkDescriptionImages() {
         for (SelenideElement descriptionImage : descriptionImages) {
             descriptionImage.shouldBe(visible);
         }
