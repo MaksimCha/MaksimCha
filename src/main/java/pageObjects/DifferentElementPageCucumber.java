@@ -62,10 +62,9 @@ public class DifferentElementPageCucumber {
         for (String name : items) {
             Iterator<SelenideElement> iterator = checkBoxes.iterator();
             for (SelenideElement title : checkBoxTitles) {
-                if (title.getText().equalsIgnoreCase(name) && iterator.hasNext()) {
-                    iterator.next().click();
-                }else{
-                    iterator.next();
+                SelenideElement checkBox = iterator.next();
+                if (title.getText().equalsIgnoreCase(name)) {
+                    checkBox.click();
                 }
             }
         }
