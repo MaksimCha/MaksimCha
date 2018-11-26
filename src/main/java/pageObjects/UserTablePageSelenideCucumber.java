@@ -55,7 +55,7 @@ public class UserTablePageSelenideCucumber {
 
     @Step
     @When("I select 'vip' checkbox for \"(.+)\"")
-    public void vipCheckBoxClick(String name) {
+    public void checkBoxClick(String name) {
         Iterator<SelenideElement> status = statusItems.iterator();
         for (SelenideElement userName : userNames) {
             if (userName.getText().equalsIgnoreCase(name)) {
@@ -81,16 +81,16 @@ public class UserTablePageSelenideCucumber {
         }
     }
 
-    private List<List<String>> listToTable(List<SelenideElement> selenideItems, int length) {
+    private List<List<String>> listToTable(List<SelenideElement> selenideItems) {
         List<String> list = new ArrayList<>();
         for (SelenideElement item : selenideItems) {
             list.add(item.getText());
         }
         List<List<String>> table = new ArrayList<>();
-        int N = list.size();
-        for (int i = 0; i < N; i += length) {
+        int n = list.size();
+        for (int i = 0; i < n; i += 3) {
             table.add(new ArrayList<>(
-                    list.subList(i, Math.min(N, i + length)))
+                    list.subList(i, Math.min(n, i + 3)))
             );
         }
         return table;
@@ -168,7 +168,7 @@ public class UserTablePageSelenideCucumber {
     @Step
     @Then("droplist contains values")
     public void checkDropListContent(List<String> containItems) {
-        List<List<String>> typeTable = listToTable(typeDropDownItems, 3);
+        List<List<String>> typeTable = listToTable(typeDropDownItems);
         assertTrue(typeTable.get(count).containsAll(containItems.subList(1, containItems.size())));
     }
 }

@@ -45,7 +45,7 @@ public class DifferentElementPageCucumber {
     private SelenideElement leftSection;
 
     @FindBy(css = ".right-fix-panel")
-    private SelenideElement lightSection;
+    private SelenideElement rightSection;
 
     @FindBy(css = ".panel-body-list.logs > li")
     private List<SelenideElement> logs;
@@ -141,7 +141,7 @@ public class DifferentElementPageCucumber {
     @Step
     @And("right section are displayed on the Different Elements Page")
     public void checkRightSection() {
-        lightSection.shouldBe(visible);
+        rightSection.shouldBe(visible);
     }
 
     @Step
