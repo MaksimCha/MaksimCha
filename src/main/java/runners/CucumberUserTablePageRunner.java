@@ -10,7 +10,7 @@ import static java.lang.System.setProperty;
 @CucumberOptions(
         features = "src/test/java",
         glue = "pageObjects",
-        tags = "@userTest")
+        tags = "@UserTest")
 public class CucumberUserTablePageRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite

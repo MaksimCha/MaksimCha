@@ -21,10 +21,6 @@ import static org.testng.Assert.assertTrue;
 
 public class UserTablePageSelenideCucumber {
 
-    public UserTablePageSelenideCucumber() {
-        page(this);
-    }
-
     @FindBy(css = "table select")
     private List<SelenideElement> typeDropDownItems;
 
@@ -52,6 +48,10 @@ public class UserTablePageSelenideCucumber {
     private Integer count = 0;
 
     //==============================methods==================================
+
+    public UserTablePageSelenideCucumber() {
+        page(this);
+    }
 
     @Step
     @When("I select 'vip' checkbox for \"(.+)\"")

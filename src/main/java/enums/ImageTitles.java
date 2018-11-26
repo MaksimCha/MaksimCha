@@ -31,7 +31,7 @@ public enum ImageTitles {
     public static List<String> getImageTitles() {
         List<String> imageItemTitles = new ArrayList<>();
         for (ImageTitles item : ImageTitles.values()) {
-            imageItemTitles.add(item.getTitle().toUpperCase());
+            imageItemTitles.add(item.getTitle());
         }
         return imageItemTitles;
     }

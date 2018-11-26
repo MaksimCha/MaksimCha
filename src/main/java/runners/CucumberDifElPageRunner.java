@@ -10,7 +10,7 @@ import static java.lang.System.setProperty;
 @CucumberOptions(
         features = "src/test/java",
         glue = "pageObjects",
-        tags = "@smokeTest")
+        tags = "@SmokeTest")
 public class CucumberDifElPageRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite

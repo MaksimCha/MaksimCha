@@ -1,10 +1,11 @@
-@userTest
+@UserTest
 Feature: User Table Page test
 
   Scenario: User Table Page Interface test
 
     Given I'm on the Home Page
     And I login as user "Piter Chailovskii"
+
     When I click on "Service" button in Header
     And I click on "User Table" button in Service dropdown
     Then "User Table" page is opened

@@ -20,10 +20,6 @@ import static org.testng.Assert.assertTrue;
 
 public class DifferentElementPageCucumber {
 
-    public DifferentElementPageCucumber() {
-        page(this);
-    }
-
     @FindBy(css = ".label-checkbox > input")
     private List<SelenideElement> checkBoxes;
 
@@ -55,6 +51,10 @@ public class DifferentElementPageCucumber {
     private List<SelenideElement> logs;
 
     //==============================methods==================================
+
+    public DifferentElementPageCucumber() {
+        page(this);
+    }
 
     @Step
     @When("I (?:un|)select checkBoxes")

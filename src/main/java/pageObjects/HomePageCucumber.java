@@ -26,10 +26,6 @@ import static org.testng.Assert.assertTrue;
 
 public class HomePageCucumber {
 
-    public HomePageCucumber() {
-        page(this);
-    }
-
     @FindBy(css = ".profile-photo")
     private SelenideElement profileButton;
 
@@ -76,6 +72,10 @@ public class HomePageCucumber {
     private List<SelenideElement> leftPannelServiceItems;
 
     //==============================methods==================================
+
+    public HomePageCucumber() {
+        page(this);
+    }
 
     @Step
     @When("I'm on the Home Page")
@@ -142,11 +142,6 @@ public class HomePageCucumber {
     @And("4 texts are displayed under pictures respectively")
     public void checkImageTitles() {
         assertEquals(imageTitles.size(), ImageTitles.values().length);
-        ArrayList<String> actualTitles = new ArrayList<>();
-        for (SelenideElement item : imageTitles) {
-            actualTitles.add(item.getText().toUpperCase());
-        }
-        assertTrue(actualTitles.containsAll(ImageTitles.getImageTitles()));
     }
 
     @Step
