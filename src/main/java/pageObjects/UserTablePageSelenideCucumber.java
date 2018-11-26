@@ -55,7 +55,7 @@ public class UserTablePageSelenideCucumber {
 
     @Step
     @When("I select 'vip' checkbox for \"(.+)\"")
-    public void checkBoxClick(String name) {
+    public void selectCheckBox(String name) {
         Iterator<SelenideElement> status = statusItems.iterator();
         for (SelenideElement userName : userNames) {
             if (userName.getText().equalsIgnoreCase(name)) {
