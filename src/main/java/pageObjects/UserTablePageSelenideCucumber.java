@@ -145,11 +145,10 @@ public class UserTablePageSelenideCucumber {
     }
 
     @Step
-    @And("^User table contains following values$")
+    @And("User table contains following values")
     public void checkUserTable(List<List<String>> table) {
-        table.remove(0);
         Iterator<SelenideElement> element = userTable.iterator();
-        for (List<String> row : table) {
+        for (List<String> row : table.subList(1, table.size())) {
             if (element.hasNext()) {
                 element.next().shouldBe(text(row.get(0)));
                 element.next();
