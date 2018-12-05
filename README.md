@@ -5,7 +5,7 @@ Use webTests.xml or nativeTests.xml to run web or native tests respectively.
 1.
 > Rewrite Driver using “singleton” pattern. Are there any advantages?
 
-We use different drivers for different type of tests, therefore "singleton" isn't used.
+Done but with lazy initialization, because type of driver depends on properties
 
 2. 
 > Suggest improvements for .properties reading. What are the purposes?

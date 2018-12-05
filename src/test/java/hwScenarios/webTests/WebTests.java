@@ -12,12 +12,12 @@ public class WebTests extends Driver {
     public void webTest() throws Exception {
 
         // Go to the site
-        driver().get(SUT);
+        getDriver().get(SUT);
 
         // Check url is correct
-        assertEquals(SUT + "/", driver().getCurrentUrl());
+        assertEquals(SUT + "/", getDriver().getCurrentUrl());
 
         // Check title is correct
-        assertEquals(driver().getTitle() ,IANA_TITLE.getTitle());
+        assertEquals(getDriver().getTitle() ,IANA_TITLE.getTitle());
     }
 }
